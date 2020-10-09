@@ -24,11 +24,11 @@ Please contact us!
 
 Thank you!
 
-*Clara Moreira*
-*Flávia Carvalhido*
-*João Dossena*
-*Leonor Gomes*
-*Luís Assunção*
+Clara Moreira
+Flávia Carvalhido
+João Dossena
+Leonor Gomes
+Luís Assunção
 
 ---
 
