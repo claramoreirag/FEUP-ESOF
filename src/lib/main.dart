@@ -1,174 +1,153 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import 'tags.dart';
+import 'add_tags.dart';
 
-class DatabaseHelper {
-  static final _databaseName = "tags.db";
-  static final _databaseVersion = 1;
+void main() => runApp(App());
 
-  static final table = 'tags';
-
-  static final columnId = 'id';
-  static final columnTitle = 'title';
-
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-
-  static Database _database;
-  Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await _initDatabase();
-    return _database;
-  }
-
-  _initDatabase() async {
-    String path = join(await getDatabasesPath(), _databaseName);
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
-  }
-
-  // SQL code to create the database table
-  Future _onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $columnTitle FLOAT NOT NULL
-          )
-          ''');
-  }
-
-  Future<int> insert(Tags tags) async {
-    Database db = await instance.database;
-    var res = await db.insert(table, tags.toMap());
-    return res;
-  }
-
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
-    Database db = await instance.database;
-    var res = await db.query(table, orderBy: "$columnId DESC");
-    return res;
-  }
-
-  Future<int> delete(int id) async {
-    Database db = await instance.database;
-    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
-  }
-
-  Future<void> clearTable() async {
-    Database db = await instance.database;
-    return await db.rawQuery("DELETE FROM $table");
-  }
-}
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Time Picker example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Add tags'),
+      home: Login(title: 'Schedule IT'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class Login extends StatefulWidget {
+  Login({Key key, this.title}) : super(key: key);
 
   final String title;
-
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _Login createState() => _Login();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController textController = new TextEditingController();
-
-  List<Tags> taskList = new List();
+/* 
+class DatePicker extends StatefulWidget {
+  DatePicker({Key key}) : super(key: key);
 
   @override
-  void initState() {
-    super.initState();
+  _DatePickerState createState() => _DatePickerState();
+}
 
-    DatabaseHelper.instance.queryAllRows().then((value) {
-      setState(() {
-        value.forEach((element) {
-          taskList.add(Tags(id: element['id'], title: element["title"]));
-        });
-      });
-    }).catchError((error) {
-      print(error);
-    });
+
+
+class _TimePickerState extends State<TimePicker> {
+  final timeController = TextEditingController();
+  final dateController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed
+    timeController.dispose();
+    dateController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    return new Scaffold(
+      body: Center(
+        children: newColumn(
+          [
+        children: TextField(
+        readOnly: true,
+        controller: timeController,
+        decoration: InputDecoration(hintText: 'Pick your Time'),
+        onTap: () async {
+          var time = await showTimePicker(
+            initialTime: TimeOfDay.now(),
+            context: context,
+          );
+          timeController.text = time.format(context);
+        },
+      )])),
+    );
+  }
+} */
+
+class _Login extends State<Login> {
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+
+  @override
+  Widget build(BuildContext context) {
+    final emailField = TextField(
+      obscureText: false,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Email",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    final passwordField = TextField(
+      obscureText: true,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Password",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    final loginButon = Material(
+      elevation: 5.0,
+      borderRadius: BorderRadius.circular(30.0),
+      color: Color(0xff01A0C7),
+      child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyApp()),
+          );
+        },
+        child: Text("Login",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+                color: Colors.white, fontWeight: FontWeight.bold)),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
-        alignment: Alignment.topLeft,
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Row(
+      body: Center(
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(36.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(hintText: "Enter a task"),
-                    controller: textController,
+                SizedBox(
+                  height: 155.0,
+                  child: Image.asset(
+                    "assets/logo.png",
+                    fit: BoxFit.contain,
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: _addToDb,
-                )
+                SizedBox(height: 45.0),
+                emailField,
+                SizedBox(height: 25.0),
+                passwordField,
+                SizedBox(
+                  height: 35.0,
+                ),
+                loginButon,
+                SizedBox(
+                  height: 15.0,
+                ),
               ],
             ),
-            SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                child: taskList.isEmpty
-                    ? Container()
-                    : ListView.builder(itemBuilder: (ctx, index) {
-                        if (index == taskList.length) return null;
-                        return ListTile(
-                          title: Text(taskList[index].title),
-                          leading: Text(taskList[index].id.toString()),
-                          trailing: IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () => _deleteTask(taskList[index].id),
-                          ),
-                        );
-                      }),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
-  }
-
-  void _deleteTask(int id) async {
-    await DatabaseHelper.instance.delete(id);
-    setState(() {
-      taskList.removeWhere((element) => element.id == id);
-    });
-  }
-
-  void _addToDb() async {
-    String task = textController.text;
-    var id = await DatabaseHelper.instance.insert(Tags(title: task));
-    setState(() {
-      taskList.insert(0, Tags(id: id, title: task));
-    });
   }
 }
