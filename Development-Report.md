@@ -96,11 +96,7 @@ To document the architecture requires describing the decomposition of the system
 In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
 
 ### Logical architecture
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
-
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
-* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
-* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+![Logical architecture](/logical_architecture.png)
 
 ### Physical architecture
 The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
