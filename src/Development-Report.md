@@ -2,25 +2,25 @@
 
 Welcome to the documentation pages of the Schedule IT of **openCX**!
 
-* Business modeling 
-  * [Product Vision](#Product-Vision)
-  * [Elevator Pitch](#Elevator-Pitch)
-* Requirements
-  * [Use Case Diagram](#Use-case-diagram)
-  * [User stories](#User-stories)
-  * [Domain model](#Domain-model)
-* Architecture and Design
-  * [Logical architecture](#Logical-architecture)
-  * [Physical architecture](#Physical-architecture)
-  * [Prototype](#Prototype)
-* [Implementation](#Implementation)
-* [Test](#Test)
-* [Configuration and change management](#Configuration-and-change-management)
-* [Project management](#Project-management)
+- Business modeling
+  - [Product Vision](#Product-Vision)
+  - [Elevator Pitch](#Elevator-Pitch)
+- Requirements
+  - [Use Case Diagram](#Use-case-diagram)
+  - [User stories](#User-stories)
+  - [Domain model](#Domain-model)
+- Architecture and Design
+  - [Logical architecture](#Logical-architecture)
+  - [Physical architecture](#Physical-architecture)
+  - [Prototype](#Prototype)
+- [Implementation](#Implementation)
+- [Test](#Test)
+- [Configuration and change management](#Configuration-and-change-management)
+- [Project management](#Project-management)
 
 So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
-Please contact us! 
+Please contact us!
 
 Thank you!
 
@@ -33,43 +33,73 @@ Clara Moreira, Flávia Carvalhido, João Dossena, Leonor Gomes, Luís Assunção
 Crafting YOUR conference schedule
 
 ---
+
 ## Elevator Pitch
+
 Conference productivity? Let's make it a thing! You don't have to look for talk, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
 
 ---
+
 ## Requirements
 
 In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
 
 Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
 
-### Use case diagram 
+### Use case diagram
+
 ![use case diagram](/use_case_diagram.png)
 
-Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
+**Register**
 
-Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun. 
+- Actor: Attendee or Conference Admin
+- Description: Attendees and Conference Admins register so that they can use the app and register in the system.
+- Preconditions and Postconditions: Before the Register there is nothing, as a User's story begins registering so they can access their info later.
+- Normal Flow: During register, user's provide their email, a password, name and date of birth. After registering, user's usually carry on and make their own profiles, discover the app's functionalities.
+- Alternative Flows: There are no alternate actions for the register process.
 
-Briefly describe each use case mentioning the following:
+**Login/Profile**
 
-* **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. 
-* **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case. 
-* **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions). Describe also the state of the system at the conclusion of the use case execution (postconditions). 
+- Actor: Attendee or Conference Admin
+- Description: As of the act of registering, the users get access through login with email and password and have their own profile
+- Preconditions and Postconditions: To perform the login action, one must first register. Same goes for the profile.
+- Normal Flow: During login, email and password should be provided in order to access one's account. In the profile, people can visualize their own profile info and they can edit it.
+- Alternate Flows: User's have to login to access the app, howeer they do not have to necessarily go through their profile everytime they login, they can skip ahead and do something else in the app.
 
-* **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system. 
-* **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
+**Choose tags of their interest**
+
+- Actor: Attendee
+- Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
+- Preconditions and postconditions: To choose tags, one must be logged in the app. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
+- Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
+- Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
+
+  **Prioritize tags**
+
+- Actor:Attendee
+- Description:The attendees can order the tags they choose according to their preferences,after register and also later on while using the app.
+- Preconditions and postconditions: Before prioritizing tags, the attendee must have selected the tags of his interest. After prioritizing tags,the app can generate a schedule even more tailored to the attendee.
+- Normal Flow:
+- Alternate Flows:
+
+- **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
+- **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
+- **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions). Describe also the state of the system at the conclusion of the use case execution (postconditions).
+
+- **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system.
+- **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
 ### User stories
+
 This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
 
 For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is 
+A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is
 
-*As a < user role >, I want < goal > so that < reason >.*
+_As a < user role >, I want < goal > so that < reason >._
 
-
-**INVEST in good user stories**. 
+**INVEST in good user stories**.
 You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
 
 **User interface mockups**.
@@ -88,23 +118,29 @@ To better understand the context of the software system, it is very useful to ha
 ---
 
 ## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization. 
+
+The architecture of a software system encompasses the set of key decisions about its overall organization.
 
 A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
 
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
+To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
 
 In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
 
 ### Logical architecture
+
 ![Logical architecture](/logical_architecture.png)
 
 ### Physical architecture
+
+![Physical architecture](/physical_layer.png)
+
 The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
 
 It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
 
 ### Prototype
+
 To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
 In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
@@ -112,30 +148,33 @@ In this subsection please describe in more detail which, and how, user(s) story(
 ---
 
 ## Implementation
-Regular product increments are a good practice of product management. 
+
+Regular product increments are a good practice of product management.
 
 While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
 
 Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
 
 ---
+
 ## Test
 
 There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
 
 In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
+
+- test plan describing the list of features to be tested and the testing methods and tools;
+- test case specifications to verify the functionalities, using unit tests and acceptance tests.
+
 A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
 
 ---
+
 ## Configuration and change management
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
 
 For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
-
 
 ---
 
@@ -146,13 +185,13 @@ Software project management is an art and science of planning and leading softwa
 In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
 
 Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
+
+- [Trello.com](https://trello.com)
+- [Github Projects](https://github.com/features/project-management/com)
+- [Pivotal Tracker](https://www.pivotaltracker.com)
+- [Jira](https://www.atlassian.com/software/jira)
 
 We recommend to use the simplest tool that can possibly work for the team.
-
 
 ---
 
