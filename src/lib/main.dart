@@ -1,20 +1,86 @@
 import 'package:flutter/material.dart';
 import 'add_tags.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart'; 
+import 'authenticate/authentication.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(App());
+void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(App());
+} 
 
 class App extends StatelessWidget {
+
+  // Create the initialization Future outside of `build`:
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Time Picker example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Login(title: 'Schedule IT'),
+    return  MultiProvider(
+      providers: [
+        Provider<Authenticator>(
+          create: (_) => Authenticator(FirebaseAuth.instance),
+          ),//Provider
+        StreamProvider(
+          create: (context) => context.read<Authenticator>().authStateChanges,
+        )
+      ],
+
+
+      child: MaterialApp(
+        title: 'Flutter Time Picker example',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: AuthenticationWrapper(),
+      )
+
     );
+
+
+    /*
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Container(
+            decoration: BoxDecoration(color: Colors.red),
+          );
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Login();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return Container(
+          decoration: BoxDecoration(color: Colors.deepPurple),
+        );
+      },
+    );
+    * */
   }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({Key key,}) : super(key : key);
+
+  @override
+  Widget build(BuildContext context){
+    final firebaseUser =  context.watch<User>();
+
+    if(firebaseUser != null){
+      return MyApp();
+    }
+    return Login();
+  }
+
 }
 
 class Login extends StatefulWidget {
@@ -72,9 +138,15 @@ class _TimePickerState extends State<TimePicker> {
 class _Login extends State<Login> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     final emailField = TextField(
+      controller: emailController,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
@@ -84,6 +156,7 @@ class _Login extends State<Login> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final passwordField = TextField(
+      controller: passwordController,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
@@ -99,11 +172,15 @@ class _Login extends State<Login> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MyApp()),
-          );
+        onPressed: () async {
+        //  Navigator.push(
+
+            context.read<Authenticator>().signIn(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim()
+            );
+            //MaterialPageRoute(builder: (context) => MyApp()),
+          //);
         },
         child: Text("Login",
             textAlign: TextAlign.center,
