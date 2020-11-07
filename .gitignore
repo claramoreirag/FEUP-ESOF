@@ -1,6 +1,10 @@
+src/pubspec.lock
+.dart_tool
+pubspec.lock
+build/
+.packages
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
-.dart_tool
-build
-pubspec.lock
+.idea/
+.vscode/
+
