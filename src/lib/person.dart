@@ -1,3 +1,5 @@
+import 'tags.dart';
+
 class Person {
   String name;
 
@@ -19,11 +21,16 @@ class Speaker extends Person {
 class User extends Person {
   String email;
   String password;
-  List interests;
+  List<String> interests;
   User(name, email, password, interests) : super(name) {
     this.email = email;
     this.password = password;
 
     this.interests = interests;
+  }
+
+  addInterest(String keyword) {
+    if(!interests.contains(keyword))
+      this.interests.add(keyword);
   }
 }

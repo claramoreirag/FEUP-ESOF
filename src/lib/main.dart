@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'add_tags.dart';
+import 'keywords.dart';
+import 'person.dart';
+import 'conference.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<String> lista;
+    User temp = new User("leonor", "leonor.gomes@gmail.com", "1234", lista);
+    Conference c = new Conference();
     return MaterialApp(
       title: 'Flutter Time Picker example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(title: 'Schedule IT'),
+      //home: Login(title: 'Schedule IT'),
+      home: chooseKeywords(temp, c),
     );
   }
+
 }
 
 class Login extends StatefulWidget {
@@ -113,30 +121,27 @@ class _Login extends State<Login> {
     );
 
     final forgotPassword = FlatButton(
-                  onPressed: (){
-                    //forgot password screen
-                  },
-                  textColor: Colors.blue,
-                  child: Text('Forgot your password?'),
+      onPressed: () {
+        //forgot password screen
+      },
+      textColor: Colors.blue,
+      child: Text('Forgot your password?'),
     );
 
     final signUp = Container(
-                    child: Row(
-                      children: <Widget>[
-                        Text('Don\'t have an account yet?'),
-                        FlatButton(
-                          textColor: Colors.blue,
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            //signup screen
-                          },
-                        )
-                      ]
-                    )  
-    );
+        child: Row(children: <Widget>[
+      Text('Don\'t have an account yet?'),
+      FlatButton(
+        textColor: Colors.blue,
+        child: Text(
+          'Sign up',
+          style: TextStyle(fontSize: 20),
+        ),
+        onPressed: () {
+          //signup screen
+        },
+      )
+    ]));
 
     return Scaffold(
       appBar: AppBar(
@@ -169,7 +174,7 @@ class _Login extends State<Login> {
                 SizedBox(
                   height: 15.0,
                 ),
-                forgotPassword, 
+                forgotPassword,
                 signUp,
               ],
             ),
