@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'authenticate/authentication.dart';
 import 'package:provider/provider.dart';
 
-void main(){
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(App());
 } 
 
