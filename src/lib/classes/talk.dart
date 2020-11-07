@@ -7,6 +7,8 @@ class Talk {
   String description;
   List<dynamic> tags;
   Speaker speaker;
+  //Não devíamos também ter aqui a(s) data(s)/horário(s)?
+
 
   Talk(int id, String title, String description, Speaker speaker) {
     this.id = id;
