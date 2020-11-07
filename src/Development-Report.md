@@ -41,10 +41,11 @@ Conference productivity? Let's make it a thing! You don't have to look for talk,
 ---
 
 ## Requirements
-
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
-
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+As a schedule application, the main requirements of our product
+consist in generating a personalized and optimized schedule to each conference attendee based on their respective interests.
+This schedule should then be displayed in a manner that is aesthetically appealing and intuitive to the user. 
+The app must also allow the conference admin to enter the conference informations, such as the list of talks, the conference schedule and the respective tags.
+As a mobile application the product needs to have a performance tailored to the capabilities of smartphones.
 
 ### Use case diagram
 
