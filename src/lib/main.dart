@@ -120,12 +120,22 @@ class _Login extends State<Login> {
                   child: Text('Forgot your password?'),
     );
 
-    final signUp = FlatButton(
-                  onPressed: (){
-                    //sign up screen
-                  },
-                  textColor: Colors.blue,
-                  child: Text('Don\'t have an account yet?'),
+    final signUp = Container(
+                    child: Row(
+                      children: <Widget>[
+                        Text('Don\'t have account yet?'),
+                        FlatButton(
+                          textColor: Colors.blue,
+                          child: Text(
+                            'Sign up',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            //signup screen
+                          },
+                        )
+                      ]
+                    )  
     );
 
     return Scaffold(
