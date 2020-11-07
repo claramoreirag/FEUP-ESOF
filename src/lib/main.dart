@@ -123,7 +123,7 @@ class _Login extends State<Login> {
     final signUp = Container(
                     child: Row(
                       children: <Widget>[
-                        Text('Don\'t have account yet?'),
+                        Text('Don\'t have an account yet?'),
                         FlatButton(
                           textColor: Colors.blue,
                           child: Text(
