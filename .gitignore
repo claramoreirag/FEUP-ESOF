@@ -1,3 +1,4 @@
+pubspec.lock
 .dart_tool/
 pubspec.lock
 build/
@@ -6,3 +7,4 @@ build/
 .flutter-plugins-dependencies
 .idea/
 .vscode/
+
