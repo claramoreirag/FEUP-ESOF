@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../authenticate/authentication.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   Login({Key key, this.title}) : super(key: key);
@@ -11,9 +15,13 @@ class Login extends StatefulWidget {
 class _Login extends State<Login> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final emailField = TextField(
+      controller: emailController,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
@@ -23,6 +31,7 @@ class _Login extends State<Login> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final passwordField = TextField(
+      controller: passwordController,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
@@ -38,8 +47,11 @@ class _Login extends State<Login> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.pushNamed(context, '/create_conference');
+        onPressed: () async {
+            context.read<Authenticator>().signIn(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim()
+            );
         },
         child: Text("Login",
             textAlign: TextAlign.center,
