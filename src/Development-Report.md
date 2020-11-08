@@ -87,7 +87,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - Actor: Attendee
 - Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
 - Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app. 
-After choosing the conference, the attendee can choose the tags according tho their interests.
+After choosing the conference, the attendee can choose the tags according to their interests.
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
 
