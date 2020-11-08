@@ -1,4 +1,8 @@
 src/pubspec.lock
+src/ios
+src/android
+src/build
+src/.dart-tool
 .dart_tool
 pubspec.lock
 build/
