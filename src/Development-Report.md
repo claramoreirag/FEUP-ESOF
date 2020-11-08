@@ -70,7 +70,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - Actor: Attendee
 - Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
-- Preconditions and postconditions: To choose tags, one must be logged in the app. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
+- Preconditions and postconditions: To choose tags, one must be logged in the app and have chosen the conference they will attend. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
 - Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
@@ -86,7 +86,8 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - Actor: Attendee
 - Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
-- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app.
+- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app. 
+After choosing the conference, the attendee can choose the tags according to their interests.
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
 
@@ -171,9 +172,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must have
 
@@ -181,18 +180,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As a user, I want to be able to login in the app
+- As a user, I want to be able to login and register in the app
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
 **Effort:** M
-
 
 <br>
 
@@ -200,14 +196,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must Have
 
 **Effort:** M
-
 
 <br>
 
@@ -215,14 +208,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must Have
 
 **Effort:** L
-
 
 <br>
 
@@ -230,15 +220,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
 **Effort:** M
-
-
 
 <br>
 
@@ -246,9 +232,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
@@ -256,13 +240,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin 
+- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
@@ -270,20 +252,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As a conference admin, I wish to receive the CV's of each talk attendees 
+- As a conference admin, I wish to receive the CV's of each talk attendees
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** M
-
-
-
 
 <br>
 
@@ -291,39 +268,30 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** M
 
-
-
 <br>
 
 - As an attendee, I want my own schedule to be compatible with the generated talk schedule
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** L
 
-
 <br>
 
 - As an attendee, I want my own schedule to be compatible with the generated talk schedule
-**User interface mockups:**
-
+  **User interface mockups:**
 
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
@@ -342,7 +310,7 @@ At the end, it is good to add a rough indication of the value of the user story 
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+![Domain Model](/domain_model.png)
 
 ---
 
