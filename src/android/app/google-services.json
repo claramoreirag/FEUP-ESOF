@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128776683021",
+    "firebase_url": "https://esof-scheduleit.firebaseio.com",
+    "project_id": "esof-scheduleit",
+    "storage_bucket": "esof-scheduleit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128776683021:android:1ee3a805405f0d25e05f44",
+        "android_client_info": {
+          "package_name": "com.example.ScheduleIT"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128776683021-337cjrg0nvjv8ufeahksqfvs3ohgbmmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHbeyF2LS6c9f-JbfWbw1xvv9d8q5PI5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128776683021-337cjrg0nvjv8ufeahksqfvs3ohgbmmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

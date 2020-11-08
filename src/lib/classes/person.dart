@@ -19,10 +19,12 @@ class Speaker extends Person {
 }
 
 class User extends Person {
+  int id;
   String email;
   String password;
   List<String> interests;
-  User(name, email, password) : super(name) {
+  User(id, name, email, password, interests) : super(name) {
+    this.id = id;
     this.email = email;
     this.password = password;
     this.interests = List<String>();
