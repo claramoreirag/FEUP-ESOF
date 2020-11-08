@@ -74,13 +74,79 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
-  **Prioritize tags**
+**Prioritize tags**
 
-- Actor:Attendee
-- Description:The attendees can order the tags they choose according to their preferences,after register and also later on while using the app.
+- Actor: Attendee
+- Description: The attendees can order the tags they choose according to their preferences,after register and also later on while using the app.
 - Preconditions and postconditions: Before prioritizing tags, the attendee must have selected the tags of his interest. After prioritizing tags,the app can generate a schedule even more tailored to the attendee.
-- Normal Flow:
-- Alternate Flows:
+- Normal Flow: The user should prioritize the tags after choosing them. After prioritizing the tags, the user can navigative the rest of the app.
+- Alternate Flows: The users can prioritize tags whenever they want. Prioritizing tags is not a mandatory step, so the user can step over it.
+
+**Choose conference to attend**
+
+- Actor: Attendee
+- Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
+- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app.
+- Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
+- Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
+
+**Upload CV**
+
+- Actor: Attendee
+- Description: The attendees can upload their own CV for conference admins to check and share with the speakers and/or companies.
+- Preconditions and postconditions: In order to upload the CV, the attendee must be logged in and after upload, the conference admin has access to the attendees' CVs. Admins can therefore share the CVs.
+- Normal Flow: To upload the CV, the attendee must choose a file from the device containing their CV and upload it to the app, to their own profile. Therefore, whenever they are in a talk, the conference admin can have access to their profile and check their CV, sharing it with the speaker or other bodies involved.
+- Alternate Flows: A attendee may choose not to upload their CV at all. This is an optional use case.
+
+**Have a Generated Schedule that fits own Schedule**
+
+- Actor: Attendee
+- Description:The ateendes are presented with a costumized conference schedule, according to their interests. This schedule is generated in such a way that it does not interfere with previous activities the user has scheduled.
+- Preconditions and postconditions: There has to be a selected conference for the app to generate a schedule based on the attendee's interests. Afterwards, the attendee will have a personalized schedule just for them.
+- Normal Flow: The attendee, after picking a conference, gets a automatically generated schedule based on their interests.
+- Alternate Flows: There are no alternate flows to this use case.
+
+**Consult Generated Talk Schedule**
+
+- Actor: Attendee
+- Description: The attendees are able to consult their generated talk schedule.
+- Preconditions and postconditions: The attendee must be logged in and also have picked the conference he/she wants to participate in and the keywords he/she is interested in. After the schedule is generated, the attendee already has his/her own schedule to attend the conference and can consult it.
+- Normal Flow: After choosing the conference and keywords of interest, the schedule is generated. The attendee will be able to open and consult it.
+- Alternate Flows:After the schedule is generated, the attendee can check it whenever he/she wants.
+
+**Customize generated schedule**
+
+- Actor: Attendee
+- Description: The Attendee may want to customize the generated schedule: adding talks, deleting talks, choosing a time frame that must be clear (break time), for example.
+- Preconditions and postconditions: There needs to be a generated schedule already for users to customize it. After customization, the user's schedule is updated and saved to the database for later consulting.
+- Normal Flow: The user opens the schedule, taps the 'Edit' button and may add, delete or even move talks around. Afterwards they save the changes so that the schedule is updated and can be consulted later on.
+- Alternate Flows: A user may choose not to edit the schedule at all or edit it and not save the changes.
+
+**Consult speakers' social media profiles**
+
+- Actor: Attendee
+- Description: The attendees are able to consult speaker's social media profiles of the talks they are participating.
+- Preconditions and postconditions: The attendee must already have the schedule generated.
+- Normal Flow: After seeing the generated schedule, attendees may check the social media profiles of speakers from each of the talks in their schedule.
+- Alternate Flows: Attendees may not check any social media profile, this is a complementary feature.
+
+**Add conference talks, schedule and tags**
+
+- Actor: Conference Admin
+- Description: The conference Admin can add the conference information, such as its talks, the schedule and tag, so that they can be accessed later on by the attendees.
+- Preconditions and postconditions: The Conference Admins need to be logged in and have a talk schedule ready to add to the app.
+- Normal Flow: The Conference Admin adds the talks to the app and procedes to indicate the tags associated to them.
+- Alternate Flows: This is a necessary step for the app to be able to generate schedules for the attendees.
+
+**Check and share attendee's CVs**
+
+- Actor: Conference Admin
+- Description: The conference admin can consult and share the attendee's CVs with the bodies involved in the conference.
+- Preconditions and postconditions: The attendees must have already uploaded their CVs for admins to check them and share them with other people.
+- Normal Flow: The Conference Admin checks the participants of a talk and can access their profiles/CVs. They can therefore share them with someone else.
+- Alternate Flows: The Conference Admin can opt to not use this feature or just not share the CVs.
+
+---
 
 - **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
 - **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
@@ -91,16 +157,173 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### User stories
 
-This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
+![User story map](/user_story_map.png)
 
-For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
+<br>
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is
+- As a conference admin, I want to upload talks, their schedule and their themes as keywords
 
-_As a < user role >, I want < goal > so that < reason >._
+**User interface mockups:**
 
-**INVEST in good user stories**.
-You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
+
+**Acceptance tests:**
+
+
+**Value:** Must have
+
+**Effort:** L
+
+<br>
+
+- As a user, I want to be able to login in the app
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+
+<br>
+
+- As an attendee, I wish to choose my interests from a list of keywords so that my schedule is made according to them.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Must Have
+
+**Effort:** M
+
+
+<br>
+
+- As an attendee, I want to have my own profile
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Must Have
+
+**Effort:** L
+
+
+<br>
+
+- As an attendee, I want to evaluate my interests quantitatively in keywords I choose so that talks about topics that interest me the most are prioritized.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+
+
+<br>
+
+- As an attendee, I want to choose the conference that I will attend.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+<br>
+
+- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin 
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+<br>
+
+- As a conference admin, I wish to receive the CV's of each talk attendees 
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+
+
+
+<br>
+
+- As an attendee, I want to check the speaker's social media profiles
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+
+
+<br>
+
+- As an attendee, I want my own schedule to be compatible with the generated talk schedule
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** L
+
+
+<br>
+
+- As an attendee, I want my own schedule to be compatible with the generated talk schedule
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** L
+
+<br>
 
 **User interface mockups**.
 After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
@@ -134,8 +357,6 @@ In this section you should start by briefly describing the overall components of
 ### Physical architecture
 
 ![Physical architecture](/physical_layer.png)
-
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
 
 It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
 
