@@ -70,7 +70,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - Actor: Attendee
 - Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
-- Preconditions and postconditions: To choose tags, one must be logged in the app. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
+- Preconditions and postconditions: To choose tags, one must be logged in the app and have chosen the conference they will attend. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
 - Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
