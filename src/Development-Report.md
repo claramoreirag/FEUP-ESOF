@@ -157,6 +157,12 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### User stories
 
+---
+
+**Epic User Story** : As a conference attendee, I want to have a personalized schedule tailored to my interests.
+
+---
+
 ![User story map](/user_story_map.png)
 
 <br>
@@ -342,6 +348,10 @@ To better understand the context of the software system, it is very useful to ha
 
 ## Architecture and Design
 
+The software architecture of the app contains all its key components and their relationships, from a logical and a physical point. All those key components and interactions between them are what makes the app.
+
+---
+
 The architecture of a software system encompasses the set of key decisions about its overall organization.
 
 A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
@@ -350,13 +360,29 @@ To document the architecture requires describing the decomposition of the system
 
 In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
 
+---
+
 ### Logical architecture
 
 ![Logical architecture](/logical_architecture.png)
 
+To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
+
+In the View component resides the user interface and front-end of our app: the display of our different app states and data.
+
+The Model component contains all the app data: profiles, schedules, CVs, etc.
+
+Last but not least, the Controller component that connects the Model to the View: the Model sends data for the View to display and the View sends user inputs for the Model to process.
+
+The Model gets the data from the databases containing all the user and conference information and the View gets inputs from the user interactions with the GUI Pages.
+
 ### Physical architecture
 
 ![Physical architecture](/physical_layer.png)
+
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+
+---
 
 It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
 
@@ -401,18 +427,7 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
-
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-
-- [Trello.com](https://trello.com)
-- [Github Projects](https://github.com/features/project-management/com)
-- [Pivotal Tracker](https://www.pivotaltracker.com)
-- [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
+We used [Github Projects](https://github.com/features/project-management/com) as our only project management tool to organize the project.
 
 ---
 
