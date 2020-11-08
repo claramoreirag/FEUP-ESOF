@@ -42,9 +42,14 @@ Conference productivity? Let's make it a thing! You don't have to look for talk,
 
 ## Requirements
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
+As a schedule application, the main requirements of our product
+consist in generating a personalized and optimized schedule to each conference attendee based on their respective interests.
+This schedule should then be displayed in a manner that is aesthetically appealing and intuitive to the user. 
+The app must also allow the conference admin to enter the conference informations, such as the list of talks, the conference schedule and the respective tags.
+As a mobile application the product needs to have a performance tailored to the capabilities of smartphones.
 
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+
+---
 
 ### Use case diagram
 
@@ -149,12 +154,6 @@ After choosing the conference, the attendee can choose the tags according to the
 
 ---
 
-- **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
-- **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
-- **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions). Describe also the state of the system at the conclusion of the use case execution (postconditions).
-
-- **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system.
-- **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
 ### User stories
 
@@ -184,6 +183,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+![](/login_display.png)
+
 **Acceptance tests:**
 
 **Value:** Should Have
@@ -195,6 +196,8 @@ After choosing the conference, the attendee can choose the tags according to the
 - As an attendee, I wish to choose my interests from a list of keywords so that my schedule is made according to them.
 
 **User interface mockups:**
+
+![](/select_tags_display.png)
 
 **Acceptance tests:**
 
@@ -297,16 +300,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Effort:** L
 
-<br>
-
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
-
-**Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
-
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
+---
 
 ### Domain model
 
@@ -320,15 +314,6 @@ The software architecture of the app contains all its key components and their r
 
 ---
 
-The architecture of a software system encompasses the set of key decisions about its overall organization.
-
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
-
----
 
 ### Logical architecture
 
@@ -351,8 +336,6 @@ The Model gets the data from the databases containing all the user and conferenc
 We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
 
 ---
-
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
 
 ### Prototype
 
