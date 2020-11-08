@@ -17,10 +17,12 @@ class Speaker extends Person {
 }
 
 class User extends Person {
+  int id;
   String email;
   String password;
   List interests;
-  User(name, email, password, interests) : super(name) {
+  User(id, name, email, password, interests) : super(name) {
+    this.id = id;
     this.email = email;
     this.password = password;
 

@@ -179,7 +179,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As a user, I want to be able to login in the app
+- As a user, I want to be able to login and register in the app
 
 **User interface mockups:**
 
