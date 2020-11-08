@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class Authenticator {
 	final FirebaseAuth _auth;
 
-
-
   Stream<User> get authStateChanges => _auth.authStateChanges();
 
   Authenticator(this._auth);
