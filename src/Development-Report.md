@@ -165,6 +165,172 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ![User story map](/user_story_map.png)
 
+<br>
+
+- As a conference admin, I want to upload talks, their schedule and their themes as keywords
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Must have
+
+**Effort:** L
+
+<br>
+
+- As a user, I want to be able to login in the app
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+
+<br>
+
+- As an attendee, I wish to choose my interests from a list of keywords so that my schedule is made according to them.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Must Have
+
+**Effort:** M
+
+
+<br>
+
+- As an attendee, I want to have my own profile
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Must Have
+
+**Effort:** L
+
+
+<br>
+
+- As an attendee, I want to evaluate my interests quantitatively in keywords I choose so that talks about topics that interest me the most are prioritized.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+
+
+<br>
+
+- As an attendee, I want to choose the conference that I will attend.
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Should Have
+
+**Effort:** M
+
+<br>
+
+- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin 
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+<br>
+
+- As a conference admin, I wish to receive the CV's of each talk attendees 
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+
+
+
+<br>
+
+- As an attendee, I want to check the speaker's social media profiles
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** M
+
+
+
+<br>
+
+- As an attendee, I want my own schedule to be compatible with the generated talk schedule
+
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** L
+
+
+<br>
+
+- As an attendee, I want my own schedule to be compatible with the generated talk schedule
+**User interface mockups:**
+
+
+**Acceptance tests:**
+
+
+**Value:** Could Have
+
+**Effort:** L
+
+<br>
+
 **User interface mockups**.
 After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
 
