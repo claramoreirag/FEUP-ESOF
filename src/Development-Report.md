@@ -171,6 +171,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+![](/add_talk_display.png)
+
 **Acceptance tests:**
 
 **Value:** Must have
@@ -197,7 +199,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](/select_tags_display.png)
+![](/select_tags_display.jpg)
 
 **Acceptance tests:**
 
