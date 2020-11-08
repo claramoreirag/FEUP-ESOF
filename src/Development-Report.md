@@ -171,9 +171,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must have
 
@@ -185,14 +183,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
 **Effort:** M
-
 
 <br>
 
@@ -200,14 +195,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must Have
 
 **Effort:** M
-
 
 <br>
 
@@ -215,14 +207,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Must Have
 
 **Effort:** L
-
 
 <br>
 
@@ -230,15 +219,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
 **Effort:** M
-
-
 
 <br>
 
@@ -246,9 +231,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Should Have
 
@@ -256,13 +239,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin 
+- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
@@ -270,20 +251,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As a conference admin, I wish to receive the CV's of each talk attendees 
+- As a conference admin, I wish to receive the CV's of each talk attendees
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** M
-
-
-
 
 <br>
 
@@ -291,39 +267,30 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** M
 
-
-
 <br>
 
 - As an attendee, I want my own schedule to be compatible with the generated talk schedule
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
 **Effort:** L
 
-
 <br>
 
 - As an attendee, I want my own schedule to be compatible with the generated talk schedule
-**User interface mockups:**
-
+  **User interface mockups:**
 
 **Acceptance tests:**
-
 
 **Value:** Could Have
 
@@ -342,7 +309,7 @@ At the end, it is good to add a rough indication of the value of the user story 
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+![Domain Model](/domain_model.png)
 
 ---
 
