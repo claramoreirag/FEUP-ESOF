@@ -9,8 +9,8 @@ void main() => runApp(App());
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<String> lista;
-    User temp = new User("leonor", "leonor.gomes@gmail.com", "1234", lista);
+  
+    User temp = new User("leonor", "leonor.gomes@gmail.com", "1234");
     Conference c = new Conference();
     return MaterialApp(
       title: 'Flutter Time Picker example',

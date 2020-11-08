@@ -7,61 +7,86 @@ import 'person.dart';
 import 'conference.dart';
 
 
-//TODO: alter color after pressed 
-Widget getButtonsKeywords(List<String> keywords, User user){ //buttons with keywords
-  List<Widget> list = new List<Widget>();
-  for(var i = 0; i < keywords.length; i++){
-    list.add(Expanded(
-      child: new RaisedButton(
-            onPressed: (){
-            user.addInterest(keywords[i]);
-            },
-            color: Colors.indigo,
-            child: Container(
-              child: Center(child: Text(keywords[i]),),
-
-      
-              
-
-            ),
-            textColor: Colors.white,
-            padding: EdgeInsets.all(30.0),
-            )
-    ));
+void printList(List<String> lst) {
+  print("List size: ");
+  print(lst.length);
+  for (var i = 0; i < lst.length; i++) {
+    print(lst[i]);
   }
-  return new Column(children : list, crossAxisAlignment: CrossAxisAlignment.stretch,);
 }
 
-Widget printList(List<String> lst){
-  List<Widget> list = new List<Widget>();
-  for(var i = 0; i < lst.length; i++){
-    list.add(new Text(lst[i]));
-  }
-  return new Row(children : list);
-}
+class chooseKeywords extends StatefulWidget {
 
-class chooseKeywords extends StatelessWidget {
   User user;
   Conference conference;
 
-  chooseKeywords(User user, Conference conference){
+  chooseKeywords(User user, Conference conference) {
     this.user = user;
     this.conference = conference;
   }
 
   @override
-  Widget build(BuildContext context) {
+  _chooseKeywords createState() => _chooseKeywords(user,conference);
+}
 
+class _chooseKeywords extends State<chooseKeywords>{
+
+  User user;
+  Conference conference;
+  bool indigo;
+  bool checkboxValue = false;
+  List<String> keywords = [
+    "AI",
+    "CyberSecurity",
+    "Computer Graphics",
+    "Computer Networks",
+    "Data Mining"
+    
+  ];
+  Map<String, bool> values;
+
+  _chooseKeywords(User user, Conference conference) {
+    this.user = user;
+    this.conference = conference;
+    this.values = mapValues(keywords);
+  }
+
+  Map<String, bool> mapValues(List<String> keywords){
+    Map<String, bool> map = Map<String,bool>();
+    for(int i = 0; i < keywords.length; i++){
+      map[keywords[i]] = false;
+    }
+    return map;
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
     //List<String> keywords = this.conference.addKeywords();
-    List<String> keywords = ["AI", "CyberSecurity", "Computer Graphics", "Computer Networks", "Data Mining"];
-    //TODO: Add app bar
+
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Choose your interests"),
+      ),
       body: SafeArea(
-        child: getButtonsKeywords(keywords, user),
-        left: true,
-        right: true,
-        bottom: true,
-        top: true,
+          child: ListView(
+            children: values.keys.map((String key) {
+              return new CheckboxListTile(
+                title: new Text(key),
+                value: values[key],
+                onChanged: (bool value) {
+                  setState(() {
+                    values[key] = value;
+                    if(value)
+                        user.addInterest(key);
+                    else
+                        user.removeInterest(key);
+                    printList(user.interests);
+                  });
+                },
+              );
+            }).toList(),
+          )
       ),
     );
   }

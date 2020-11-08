@@ -22,15 +22,21 @@ class User extends Person {
   String email;
   String password;
   List<String> interests;
-  User(name, email, password, interests) : super(name) {
+  User(name, email, password) : super(name) {
     this.email = email;
     this.password = password;
-
-    this.interests = interests;
+    this.interests = List<String>();
   }
 
   addInterest(String keyword) {
-    if(!interests.contains(keyword))
+    if (interests.length == 0 || !interests.contains(keyword)){
       this.interests.add(keyword);
+      
+    }
+  }
+
+  removeInterest(String keyword){
+    if(interests.contains(keyword))
+      interests.remove(keyword);
   }
 }
