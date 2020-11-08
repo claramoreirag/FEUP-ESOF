@@ -39,32 +39,6 @@ class App extends StatelessWidget {
       )
 
     );
-
-
-    /*
-    return FutureBuilder(
-      // Initialize FlutterFire:
-      future: _initialization,
-      builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return Container(
-            decoration: BoxDecoration(color: Colors.red),
-          );
-        }
-
-        // Once complete, show your application
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Login();
-        }
-
-        // Otherwise, show something whilst waiting for initialization to complete
-        return Container(
-          decoration: BoxDecoration(color: Colors.deepPurple),
-        );
-      },
-    );
-    * */
   }
 }
 
@@ -78,7 +52,7 @@ class AuthenticationWrapper extends StatelessWidget {
     if(firebaseUser != null){
       return MyApp();
     }
-    return Login();
+    return Login(title: "ScheduleIT");
   }
 
 }
@@ -173,14 +147,10 @@ class _Login extends State<Login> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-        //  Navigator.push(
-
             context.read<Authenticator>().signIn(
               email: emailController.text.trim(),
               password: passwordController.text.trim()
             );
-            //MaterialPageRoute(builder: (context) => MyApp()),
-          //);
         },
         child: Text("Login",
             textAlign: TextAlign.center,
