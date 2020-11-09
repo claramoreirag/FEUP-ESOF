@@ -1,5 +1,5 @@
 import '../pages/login.dart';
-import '../pages/add_tags.dart';
+import '../pages/create_conference.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +13,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser =  context.watch<User>();
 
     if(firebaseUser != null){
-      return AddTags();
+      return CreateConference();
     }
     return Login(title: "ScheduleIT");
   }
