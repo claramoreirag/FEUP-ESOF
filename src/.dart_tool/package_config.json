@@ -74,10 +74,22 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/nested-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "path",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/path-1.8.0-nullsafety.1",
       "packageUri": "lib/",
       "languageVersion": "2.10"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
     },
     {
       "name": "sky_engine",
@@ -158,7 +170,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-11-07T16:54:22.818556Z",
+  "generated": "2020-11-14T00:39:32.054885Z",
   "generator": "pub",
   "generatorVersion": "2.10.2"
 }

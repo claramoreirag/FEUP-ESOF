@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'tags.dart';
+import '../classes/tags.dart';
 
 class DatabaseHelper {
   static final _databaseName = "presentation2.db";
@@ -62,34 +62,16 @@ class DatabaseHelper {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Add tags'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class AddTags extends StatefulWidget {
+  AddTags({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AddTags createState() => _AddTags();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AddTags extends State<AddTags> {
   TextEditingController textController = new TextEditingController();
 
   List<Tags> tagList = new List();
@@ -113,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Tags'),
+        centerTitle: true,
       ),
       body: Container(
         alignment: Alignment.topLeft,
@@ -173,3 +156,5 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 }
+
+

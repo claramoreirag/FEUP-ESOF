@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 pubspec.lock
 .dart_tool/
+=======
+src/pubspec.lock
+src/ios
+src/android
+src/build
+src/.dart_tool/
+src/.flutter-plugins-dependencies
+src/.packages
+.dart_tool
+>>>>>>> 29a527fcf240dd779e0faf9dc0f0ba6ece031fa5
 pubspec.lock
 build/
 .packages
@@ -7,3 +18,7 @@ build/
 .flutter-plugins-dependencies
 .idea/
 .vscode/
+<<<<<<< HEAD
+=======
+android/settings_aar.gradle
+>>>>>>> 29a527fcf240dd779e0faf9dc0f0ba6ece031fa5
