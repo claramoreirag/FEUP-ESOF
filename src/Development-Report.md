@@ -52,7 +52,7 @@ As a mobile application the product needs to have a performance tailored to the 
 
 ### Use case diagram
 
-![use case diagram](img/use_case_diagram.png)
+![use case diagram](../img/use_case_diagram.png)
 
 **Register**
 
@@ -162,7 +162,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 ---
 
-![User story map](img/user_story_map.png)
+![User story map](../img/user_story_map.png)
 
 <br>
 
@@ -170,7 +170,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](img/add_talk_display.png)
+![](../img/add_talk_display.png)
 
 **Acceptance tests:**
 
@@ -184,7 +184,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](img/login_display.png)
+![](../img/login_display.png)
 
 **Acceptance tests:**
 
@@ -198,7 +198,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](img/select_tags_display.jpg)
+![](../img/select_tags_display.jpg)
 
 **Acceptance tests:**
 
@@ -305,7 +305,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 ### Domain model
 
-![Domain Model](img/domain_model.png)
+![Domain Model](../img/domain_model.png)
 
 ---
 
@@ -318,7 +318,7 @@ The software architecture of the app contains all its key components and their r
 
 ### Logical architecture
 
-![Logical architecture](img/logical_architecture.png)
+![Logical architecture](../img/logical_architecture.png)
 
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
@@ -332,7 +332,7 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ### Physical architecture
 
-![Physical architecture](img/physical_layer.png)
+![Physical architecture](../img/physical_layer.png)
 
 We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
 

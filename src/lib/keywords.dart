@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'tags.dart';
-import 'person.dart';
-import 'conference.dart';
+import 'classes/tags.dart';
+import 'classes/person.dart';
+import 'classes/conference.dart';
 
 
 void printList(List<String> lst) {
