@@ -292,12 +292,25 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want my own schedule to be compatible with the generated talk schedule
-  **User interface mockups:**
+- As a user, I want to be able to log off of my profile
+
+**User interface mockups:**
 
 **Acceptance tests:**
 
-**Value:** Could Have
+**Value:** Must Have
+
+**Effort:** S
+
+<br>
+
+- As a conference admin, I want to create a Conference
+
+**User interface mockups:**
+
+**Acceptance tests:**
+
+**Value:** Must Have
 
 **Effort:** L
 
