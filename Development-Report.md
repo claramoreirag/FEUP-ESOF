@@ -36,7 +36,7 @@ Crafting YOUR conference schedule
 
 ## Elevator Pitch
 
-Conference productivity? Let's make it a thing! You don't have to look for talk, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
+Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
 
 ---
 
@@ -334,7 +334,7 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ![Physical architecture](./img/physical_layer.png)
 
-We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
 
 ---
 
