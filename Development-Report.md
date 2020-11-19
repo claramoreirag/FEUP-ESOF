@@ -36,7 +36,7 @@ Crafting YOUR conference schedule
 
 ## Elevator Pitch
 
-Conference productivity? Let's make it a thing! You don't have to look for talk, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
+Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
 
 ---
 
@@ -52,7 +52,7 @@ As a mobile application the product needs to have a performance tailored to the 
 
 ### Use case diagram
 
-![use case diagram](../img/use_case_diagram.png)
+![use case diagram](./img/use_case_diagram.png)
 
 **Register**
 
@@ -162,7 +162,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 ---
 
-![User story map](../img/user_story_map.png)
+![User story map](./img/user_story_map.png)
 
 <br>
 
@@ -170,7 +170,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](../img/add_talk_display.png)
+![](./img/add_talk_display.png)
 
 **Acceptance tests:**
 
@@ -184,7 +184,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](../img/login_display.png)
+![](./img/login_display.png)
 
 **Acceptance tests:**
 
@@ -198,7 +198,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](../img/select_tags_display.jpg)
+![](./img/select_tags_display.jpg)
 
 **Acceptance tests:**
 
@@ -292,12 +292,25 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want my own schedule to be compatible with the generated talk schedule
-  **User interface mockups:**
+- As a user, I want to be able to log off of my profile
+
+**User interface mockups:**
 
 **Acceptance tests:**
 
-**Value:** Could Have
+**Value:** Must Have
+
+**Effort:** S
+
+<br>
+
+- As a conference admin, I want to create a Conference
+
+**User interface mockups:**
+
+**Acceptance tests:**
+
+**Value:** Must Have
 
 **Effort:** L
 
@@ -305,7 +318,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 ### Domain model
 
-![Domain Model](../img/domain_model.png)
+![Domain Model](./img/domain_model.png)
 
 ---
 
@@ -318,7 +331,7 @@ The software architecture of the app contains all its key components and their r
 
 ### Logical architecture
 
-![Logical architecture](../img/logical_architecture.png)
+![Logical architecture](./img/logical_architecture.png)
 
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
@@ -332,9 +345,9 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ### Physical architecture
 
-![Physical architecture](../img/physical_layer.png)
+![Physical architecture](./img/physical_layer.png)
 
-We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
 
 ---
 

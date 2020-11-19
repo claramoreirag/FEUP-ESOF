@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'authenticate/authentication.dart';
 import 'authenticate/authentication_wrapper.dart';
 import 'pages/login.dart';
+import 'pages/view_profile.dart';
 import 'pages/create_conference.dart';
 import 'pages/add_tags.dart';
 
@@ -47,7 +48,11 @@ class App extends StatelessWidget {
         routes: {
           //'/actor': (context) => Actor(),
           '/authentication': (context) => AuthenticationWrapper(),
+
           '/create_conf': (context) => CreateConf(),
+
+          '/profile': (context) => ViewProfile(),
+
           '/create_conference': (context) => CreateConference(),
           '/add_tags': (context) => AddTags(),
           '/create_conf': (context) => CreateConf()
