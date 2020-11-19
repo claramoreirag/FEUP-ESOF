@@ -1,4 +1,9 @@
+
+import 'package:hello/pages/createConf.dart';
+
+
 import 'package:hello/pages/view_profile.dart';
+
 import '../pages/login.dart';
 import '../pages/create_conference.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +19,11 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser =  context.watch<User>();
 
     if(firebaseUser != null){
-      return ViewProfile();
+
+      return CreateConf();
+
+      //return ViewProfile();
+
     }
     return Login(title: "ScheduleIT");
   }

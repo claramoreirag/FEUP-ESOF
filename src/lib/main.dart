@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hello/pages/createConf.dart';
 import 'package:provider/provider.dart';
 import 'authenticate/authentication.dart';
 import 'authenticate/authentication_wrapper.dart';
@@ -47,9 +48,15 @@ class App extends StatelessWidget {
         routes: {
           //'/actor': (context) => Actor(),
           '/authentication': (context) => AuthenticationWrapper(),
+
+          '/create_conf': (context) => CreateConf(),
+
           '/profile': (context) => ViewProfile(),
+
           '/create_conference': (context) => CreateConference(),
           '/add_tags': (context) => AddTags(),
+          '/create_conf': (context) => CreateConf()
+          
         },
       )
     );
