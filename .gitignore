@@ -8,10 +8,11 @@ src/.packages
 .dart_tool
 pubspec.lock
 build/
-.packages
+src/.packages
+src/.dart_tool/package_config.json
 .flutter-plugins
-.flutter-plugins-dependencies
+src/.flutter-plugins-dependencies
 .idea/
 .vscode/
 android/settings_aar.gradle
-!src/build/app/outputs
+!*.apk
