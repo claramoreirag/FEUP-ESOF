@@ -173,6 +173,9 @@ After choosing the conference, the attendee can choose the tags according to the
 ![](./img/add_talk_display.png)
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Must have
 
@@ -180,13 +183,22 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to login and register in the app
+- As a user, I want to be able to login in the app
 
 **User interface mockups:**
 
 ![](./img/login_display.png)
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Entering as a user
+	    Given I am in the Login page
+	    And I am registered in the database
+	    When I correctly type my email
+	    And I correctly type my password
+	    And I tap the “Sign in” button
+	    Then I am in the Initial page
+```
 
 **Value:** Should Have
 
@@ -201,6 +213,9 @@ After choosing the conference, the attendee can choose the tags according to the
 ![](./img/select_tags_display.jpg)
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Must Have
 
@@ -213,6 +228,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Must Have
 
@@ -225,6 +243,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Should Have
 
@@ -237,6 +258,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Should Have
 
@@ -249,6 +273,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Could Have
 
@@ -261,6 +288,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Could Have
 
@@ -273,6 +303,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Could Have
 
@@ -285,6 +318,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Could Have
 
@@ -297,6 +333,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Must Have
 
@@ -309,10 +348,33 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+
+```
 
 **Value:** Must Have
 
 **Effort:** L
+
+<br>
+
+- As a user, I want to be able to register to the app
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: Registering as a user
+	    Given I am in the Register page
+	    When I correctly type my email
+	    And I correctly type my password
+	    And I tap the "Register" button
+	    Then I am
+```
+
+**Value:** Should Have
+
+**Effort:** S
 
 ---
 
