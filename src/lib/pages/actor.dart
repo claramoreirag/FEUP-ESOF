@@ -48,7 +48,7 @@ class Actor extends StatelessWidget {
           label: Text('Sign out'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
-            //signOut();
+            signOut();
           },
         ));
   }
