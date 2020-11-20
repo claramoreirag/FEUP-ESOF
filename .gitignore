@@ -14,3 +14,4 @@ build/
 .idea/
 .vscode/
 android/settings_aar.gradle
+!src/build/app/outputs

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../authenticate/authentication.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -48,10 +47,9 @@ class _Login extends State<Login> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-            context.read<Authenticator>().signIn(
+          context.read<Authenticator>().signIn(
               email: emailController.text.trim(),
-              password: passwordController.text.trim()
-            );
+              password: passwordController.text.trim());
         },
         child: Text("Login",
             textAlign: TextAlign.center,
