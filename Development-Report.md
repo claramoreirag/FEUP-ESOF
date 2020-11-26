@@ -174,7 +174,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario: Uploading talks as an admin
+		Given I am logged in as an admin
+		And I am on the add_talk page
+		When I add a talk
+		Then the talk is registered in the database
 ```
 
 **Value:** Must have
@@ -214,7 +218,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario: Choosing interests as an attendee
+		Given I am logged in as an attendee
+		And I am on the add_tags page
+		When I
+		Then 
 ```
 
 **Value:** Must Have
@@ -229,7 +237,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Must Have
@@ -244,7 +253,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Should Have
@@ -259,7 +269,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Should Have
@@ -274,7 +285,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Could Have
@@ -289,7 +301,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Could Have
@@ -304,7 +317,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Could Have
@@ -319,7 +333,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario:
+		Given 
 ```
 
 **Value:** Could Have
@@ -334,7 +349,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario: 
+		Given 
 ```
 
 **Value:** Must Have
@@ -349,7 +365,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-
+	Scenario: Creating a conference as an admin
+		Given I am logged in as an admin
+		And I am on the create_conference page
+		When I
+		Then a conference is registered on the database
 ```
 
 **Value:** Must Have
@@ -369,7 +389,7 @@ After choosing the conference, the attendee can choose the tags according to the
 	    When I correctly type my email
 	    And I correctly type my password
 	    And I tap the "Register" button
-	    Then I am
+	    Then I am registered on the database
 ```
 
 **Value:** Should Have
