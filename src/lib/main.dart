@@ -56,6 +56,8 @@ class App extends StatelessWidget {
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
             '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/register': (context) => Register(),
+
           },
         ));
   }
