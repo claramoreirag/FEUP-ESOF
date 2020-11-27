@@ -9,6 +9,7 @@ import 'pages/view_profile.dart';
 import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
 import 'pages/actor.dart';
+import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
 import 'keywords.dart';
