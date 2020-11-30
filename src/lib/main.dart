@@ -13,10 +13,11 @@ import 'classes/conference.dart';
 import 'classes/person.dart';
 import 'pages/keywords.dart';
 
-/* import 'pages/actor.dart';
+import 'pages/actor.dart';
 import 'pages/date_picker.dart';
 import 'pages/time_picker.dart';
- */
+
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,3 +61,29 @@ class App extends StatelessWidget {
         ));
   }
 }
+
+
+
+/*void main() => runApp(App());
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
+    User temp = new User(1, "leonor", "leonor.gomes@gmail.com", "1234");
+    temp.addInterest("Science");
+    temp.addInterest("Math");
+    temp.addInterest("Kittens");
+    return MaterialApp(
+      title: 'Flutter Time Picker example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      //home: Login(title: 'Schedule IT'),
+      home: evaluatesInterests(temp),
+    );
+  }
+
+}*/
+
