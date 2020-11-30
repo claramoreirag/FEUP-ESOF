@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'classes/person.dart';
-import 'classes/conference.dart';
+import '../classes/person.dart';
+import '../classes/conference.dart';
 
 void printList(List<String> lst) {
   print("List size: ");

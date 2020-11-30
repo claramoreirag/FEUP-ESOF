@@ -11,7 +11,7 @@ import 'pages/add_tags.dart';
 import 'pages/actor.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
-import 'keywords.dart';
+import 'pages/keywords.dart';
 
 /* import 'pages/actor.dart';
 import 'pages/date_picker.dart';
