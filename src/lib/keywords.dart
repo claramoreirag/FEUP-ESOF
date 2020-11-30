@@ -15,10 +15,10 @@ void printList(List<String> lst) {
 }
 
 class chooseKeywords extends StatefulWidget {
-  User user;
+  Attendee user;
   Conference conference;
 
-  chooseKeywords(User user, Conference conference) {
+  chooseKeywords(Attendee user, Conference conference) {
     this.user = user;
     this.conference = conference;
   }
@@ -28,7 +28,7 @@ class chooseKeywords extends StatefulWidget {
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
-  User user;
+  Attendee user;
   Conference conference;
   bool indigo;
   bool checkboxValue = false;
@@ -41,7 +41,7 @@ class _chooseKeywords extends State<chooseKeywords> {
   ];
   Map<String, bool> values;
 
-  _chooseKeywords(User user, Conference conference) {
+  _chooseKeywords(Attendee user, Conference conference) {
     this.user = user;
     this.conference = conference;
     this.values = mapValues(keywords);

@@ -36,19 +36,23 @@ Crafting YOUR conference schedule
 
 ## Elevator Pitch
 
-Conference productivity? Let's make it a thing! You don't have to look for talk, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
+Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
 
 ---
 
 ## Requirements
+As a schedule application, the main requirements of our product
+consist in generating a personalized and optimized schedule to each conference attendee based on their respective interests.
+This schedule should then be displayed in a manner that is aesthetically appealing and intuitive to the user. 
+The app must also allow the conference admin to enter the conference informations, such as the list of talks, the conference schedule and the respective tags.
+As a mobile application the product needs to have a performance tailored to the capabilities of smartphones.
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
 
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+---
 
 ### Use case diagram
 
-![use case diagram](/use_case_diagram.png)
+![use case diagram](./img/use_case_diagram.png)
 
 **Register**
 
@@ -70,7 +74,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - Actor: Attendee
 - Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
-- Preconditions and postconditions: To choose tags, one must be logged in the app. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
+- Preconditions and postconditions: To choose tags, one must be logged in the app and have chosen the conference they will attend. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
 - Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
@@ -86,7 +90,8 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - Actor: Attendee
 - Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
-- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app.
+- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app. 
+After choosing the conference, the attendee can choose the tags according to their interests.
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
 
@@ -148,12 +153,6 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ---
 
-- **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
-- **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
-- **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions). Describe also the state of the system at the conclusion of the use case execution (postconditions).
-
-- **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system.
-- **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
 ### User stories
 
@@ -163,7 +162,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ---
 
-![User story map](/user_story_map.png)
+![User story map](./img/user_story_map.png)
 
 <br>
 
@@ -171,9 +170,16 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
+![](./img/add_talk_display.png)
 
 **Acceptance tests:**
-
+```gherkin
+	Scenario: Uploading talks as an admin
+		Given I am logged in as an admin
+		And I am on the add_talk page
+		When I add a talk
+		Then the talk is registered in the database
+```
 
 **Value:** Must have
 
@@ -185,14 +191,22 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
+![](./img/login_display.png)
 
 **Acceptance tests:**
-
+```gherkin
+	Scenario: Entering as a user
+	    Given I am in the Login page
+	    And I am registered in the database
+	    When I correctly type my email
+	    And I correctly type my password
+	    And I tap the “Sign in” button
+	    Then I am in the Initial page
+```
 
 **Value:** Should Have
 
 **Effort:** M
-
 
 <br>
 
@@ -200,14 +214,20 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
+![](./img/select_tags_display.jpg)
 
 **Acceptance tests:**
-
+```gherkin
+	Scenario: Choosing interests as an attendee
+		Given I am logged in as an attendee
+		And I am on the add_tags page
+		When I
+		Then 
+```
 
 **Value:** Must Have
 
 **Effort:** M
-
 
 <br>
 
@@ -215,14 +235,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Must Have
 
 **Effort:** L
-
 
 <br>
 
@@ -230,15 +251,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Should Have
 
 **Effort:** M
-
-
 
 <br>
 
@@ -246,9 +267,11 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Should Have
 
@@ -256,13 +279,15 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin 
+- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Could Have
 
@@ -270,20 +295,19 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-- As a conference admin, I wish to receive the CV's of each talk attendees 
+- As a conference admin, I wish to receive the CV's of each talk attendees
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Could Have
 
 **Effort:** M
-
-
-
 
 <br>
 
@@ -291,39 +315,27 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Could Have
 
 **Effort:** M
 
-
-
 <br>
 
 - As an attendee, I want my own schedule to be compatible with the generated talk schedule
 
 **User interface mockups:**
 
-
 **Acceptance tests:**
-
-
-**Value:** Could Have
-
-**Effort:** L
-
-
-<br>
-
-- As an attendee, I want my own schedule to be compatible with the generated talk schedule
-**User interface mockups:**
-
-
-**Acceptance tests:**
-
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Could Have
 
@@ -331,18 +343,64 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 <br>
 
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
+- As a user, I want to be able to log off of my profile
 
-**Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
+**User interface mockups:**
 
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
+**Acceptance tests:**
+```gherkin
+	Scenario: 
+		Given 
+```
+
+**Value:** Must Have
+
+**Effort:** S
+
+<br>
+
+- As a conference admin, I want to create a Conference
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: Creating a conference as an admin
+		Given I am logged in as an admin
+		And I am on the create_conference page
+		When I
+		Then a conference is registered on the database
+```
+
+**Value:** Must Have
+
+**Effort:** L
+
+<br>
+
+- As a user, I want to be able to register to the app
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: Registering as a user
+	    Given I am in the Register page
+	    When I correctly type my email
+	    And I correctly type my password
+	    And I tap the "Register" button
+	    Then I am registered on the database
+```
+
+**Value:** Should Have
+
+**Effort:** S
+
+---
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+![Domain Model](./img/domain_model.png)
 
 ---
 
@@ -352,19 +410,10 @@ The software architecture of the app contains all its key components and their r
 
 ---
 
-The architecture of a software system encompasses the set of key decisions about its overall organization.
-
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
-
----
 
 ### Logical architecture
 
-![Logical architecture](/logical_architecture.png)
+![Logical architecture](./img/logical_architecture.png)
 
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
@@ -378,13 +427,11 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ### Physical architecture
 
-![Physical architecture](/physical_layer.png)
+![Physical architecture](./img/physical_layer.png)
 
-We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest to get acquainted with and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for out login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
 
 ---
-
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
 
 ### Prototype
 
