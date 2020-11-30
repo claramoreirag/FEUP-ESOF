@@ -11,12 +11,12 @@ import 'keywords.dart';
 import 'classes/person.dart';
 import 'classes/conference.dart';
 
-/* import 'pages/actor.dart';
+import 'pages/actor.dart';
 import 'pages/date_picker.dart';
 import 'pages/time_picker.dart';
- */
 
-/*
+
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -57,9 +57,10 @@ class App extends StatelessWidget {
     );
   }
 }
-*/
 
-void main() => runApp(App());
+
+
+/*void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
@@ -80,4 +81,5 @@ class App extends StatelessWidget {
     );
   }
 
-}
+}*/
+
