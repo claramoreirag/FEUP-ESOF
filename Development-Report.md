@@ -178,7 +178,7 @@ After choosing the conference, the attendee can choose the tags according to the
 		Given I am logged in as an admin
 		And I am on the add_talk page
 		When I add a talk
-		Then the talk is registered in the database
+		Then the talk is registered in the database [TO DO: REVIEW]
 ```
 
 **Value:** Must have
@@ -222,8 +222,8 @@ After choosing the conference, the attendee can choose the tags according to the
 		Given I am an attendee
 		And I am logged in
 		And I am on the add_tags page
-		When I [TO DO]
-		Then [TO DO]
+		When I check a tag's box
+		Then that tag is added to my profile [TO DO: REVIEW]
 ```
 
 **Value:** Must Have
