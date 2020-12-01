@@ -9,6 +9,7 @@ import 'pages/view_profile.dart';
 import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
 import 'pages/actor.dart';
+import 'pages/timetable.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
 import 'keywords.dart';
@@ -49,13 +50,15 @@ class App extends StatelessWidget {
           ),
           initialRoute: '/authentication',
           routes: {
+            '/timetable': (context) => TimetableExample(),
             '/authentication': (context) => AuthenticationWrapper(),
             '/profile': (context) => ViewProfile(),
-            '/actor': (contect) => Actor(),
+            '/actor': (context) => Actor(),
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
             '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/evaluate_interests': (context) => evaluatesInterests(user),
           },
         ));
   }
