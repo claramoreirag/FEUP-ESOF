@@ -107,6 +107,10 @@ class _Login extends State<Login> {
                 SizedBox(
                   height: 15.0,
                 ),
+                goToRegisterButton,
+                SizedBox(
+                  height: 15.0,
+                ),
               ],
             ),
           ),
