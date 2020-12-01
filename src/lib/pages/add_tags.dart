@@ -74,7 +74,7 @@ class AddTags extends StatefulWidget {
 class _AddTags extends State<AddTags> {
   TextEditingController textController = new TextEditingController();
 
-  List<Tags> tagList = new List();
+  List<String> tagList = new List();
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class _AddTags extends State<AddTags> {
     DatabaseHelper.instance.queryAllRows().then((value) {
       setState(() {
         value.forEach((element) {
-          tagList.add(Tags(id: element['id'], title: element["title"]));
+          //tagList.add(Tags(id: element['id'], title: element["title"]));
         });
       });
     }).catchError((error) {
@@ -107,7 +107,7 @@ class _AddTags extends State<AddTags> {
               children: <Widget>[
                 Expanded(
                   child: TextFormField(
-                    decoration: InputDecoration(hintText: "Enter a tag"),
+                    decoration: InputDecoration(hintText: "Enter a Tag"),
                     controller: textController,
                   ),
                 ),
@@ -125,11 +125,11 @@ class _AddTags extends State<AddTags> {
                     : ListView.builder(itemBuilder: (ctx, index) {
                         if (index == tagList.length) return null;
                         return ListTile(
-                          title: Text(tagList[index].title),
-                          leading: Text(tagList[index].id.toString()),
+                          title: Text(tagList[index]),
+                          leading: Text(index.toString()),
                           trailing: IconButton(
                             icon: Icon(Icons.delete),
-                            onPressed: () => _deletetag(tagList[index].id),
+                            onPressed: () => _deletetag(index),
                           ),
                         );
                       }),
@@ -141,20 +141,12 @@ class _AddTags extends State<AddTags> {
     );
   }
 
-  void _deletetag(int id) async {
-    await DatabaseHelper.instance.delete(id);
-    setState(() {
-      tagList.removeWhere((element) => element.id == id);
-    });
+  void _deletetag(int index) {
+    tagList.removeAt(index);
   }
 
-  void _addToDb() async {
+  void _addToDb() {
     String tag = textController.text;
-    var id = await DatabaseHelper.instance.insert(Tags(title: tag));
-    setState(() {
-      tagList.insert(0, Tags(id: id, title: tag));
-    });
+    tagList.add(tag);
   }
 }
-
-

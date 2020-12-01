@@ -36,7 +36,7 @@ class _RegisterTalk extends State<RegisterTalk> {
   String button_end_time = '';
   String button_date = '';
   String button_tags = '';
-
+ 
   final databaseReference = FirebaseFirestore.instance;
   final dbRef = FirebaseDatabase.instance.reference().child("talks");
   final beginTimeController = TextEditingController();
@@ -118,6 +118,16 @@ class _RegisterTalk extends State<RegisterTalk> {
                     ),
                   ),
                 ]),
+                TextButton.icon(
+                  onPressed: () async {
+                    Navigator.pushNamed(context, '/add_tags');
+                  },
+                  icon: Icon(Icons.calendar_today),
+                  label: Text('Tags: $button_tags'),
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                ),
                 RaisedButton(
                   color: Colors.lightBlue,
                   onPressed: () async {
@@ -156,6 +166,7 @@ class _RegisterTalk extends State<RegisterTalk> {
                             .showSnackBar(SnackBar(content: Text(onError)));
                       });
                     }
+                    Navigator.pop(context);
                   },
                   child: Text('Add'),
                 ),
