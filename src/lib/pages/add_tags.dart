@@ -141,11 +141,11 @@ class _AddTags extends State<AddTags> {
     );
   }
 
-  void _deletetag(int index) {
+  void _deletetag(int index) async{
     tagList.removeAt(index);
   }
 
-  void _addToDb() {
+  void _addToDb() async{
     String tag = textController.text;
     tagList.add(tag);
   }
