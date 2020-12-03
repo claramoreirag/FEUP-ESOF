@@ -10,6 +10,7 @@ import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
 import 'pages/actor.dart';
 import 'pages/timetable.dart';
+import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
 import 'pages/keywords.dart';
@@ -59,7 +60,12 @@ class App extends StatelessWidget {
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
             '/choose_keywords': (context) => chooseKeywords(user, conference),
+
             '/evaluate_interests': (context) => evaluatesInterests(user),
+
+            '/register': (context) => Register(),
+
+
           },
         ));
   }
