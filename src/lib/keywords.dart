@@ -26,8 +26,6 @@ class chooseKeywords extends StatefulWidget {
 class _chooseKeywords extends State<chooseKeywords> {
   Atendee user;
   Conference conference;
-  bool indigo;
-  bool checkboxValue = false;
   List<String> keywords = [
     "AI",
     "CyberSecurity",

@@ -23,7 +23,7 @@ class Atendee extends Person {
   String email;
   String password;
   List<String> interests;
-  Atendee(id, name, email, interests) : super(name) {
+  Atendee(id, name, email) : super(name) {
     this.id = id;
     this.email = email;
     this.password = password;

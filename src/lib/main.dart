@@ -31,8 +31,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Atendee user;
-    Conference conference;
+    Atendee user = new Atendee(1, "leonor", "leonor.gomes@gmail.com");
+    Conference conference = new Conference();
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
