@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'classes/tags.dart';
 import 'classes/person.dart';
 import 'classes/conference.dart';
 
@@ -11,20 +15,20 @@ void printList(List<String> lst) {
 }
 
 class chooseKeywords extends StatefulWidget {
-  Atendee user;
+  Attendee user;
   Conference conference;
 
-  chooseKeywords(Atendee user, Conference conference) {
+  chooseKeywords(Attendee user, Conference conference) {
     this.user = user;
     this.conference = conference;
   }
 
   @override
-  _chooseKeywords createState() => _chooseKeywords(this.user, this.conference);
+  _chooseKeywords createState() => _chooseKeywords(user, conference);
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
-  Atendee user;
+  Attendee user;
   Conference conference;
   List<String> keywords = [
     "AI",
@@ -35,7 +39,7 @@ class _chooseKeywords extends State<chooseKeywords> {
   ];
   Map<String, bool> values;
 
-  _chooseKeywords(Atendee user, Conference conference) {
+  _chooseKeywords(Attendee user, Conference conference) {
     this.user = user;
     this.conference = conference;
     this.values = mapValues(keywords);
@@ -70,7 +74,7 @@ class _chooseKeywords extends State<chooseKeywords> {
                   user.addInterest(key);
                 else
                   user.removeInterest(key);
-                printList(user.interests);
+
               });
             },
           );
@@ -81,10 +85,12 @@ class _chooseKeywords extends State<chooseKeywords> {
 }
 
 class evaluatesInterests extends StatefulWidget {
+
   Atendee user;
 
   evaluatesInterests(Atendee user) {
     this.user = user;
+
   }
 
   @override
@@ -92,6 +98,7 @@ class evaluatesInterests extends StatefulWidget {
 }
 
 class _evaluatesInterests extends State<evaluatesInterests> {
+
   Atendee user;
   Map<String, int> map;
 
@@ -127,6 +134,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
     this.user.orderInterestsByPriority(map);
     printList(this.user.interests);
     return new Column(children: lista);
+
   }
 
   @override
@@ -135,6 +143,8 @@ class _evaluatesInterests extends State<evaluatesInterests> {
         appBar: AppBar(
           title: Text("Evaluate your interests from 1 to 5"),
         ),
+
         body: SafeArea(child: getDropdownButton()));
   }
 }
+
