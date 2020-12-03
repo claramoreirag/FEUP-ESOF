@@ -27,6 +27,7 @@ dependencies:
   sqflite: ^1.3.0
   firebase_core: "^0.5.2"
   firebase_auth: "^0.18.3"
+  timetable: ^0.2.9
   #path_provider: any
 
 
@@ -38,6 +39,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 
 

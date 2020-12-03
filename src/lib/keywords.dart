@@ -30,8 +30,6 @@ class chooseKeywords extends StatefulWidget {
 class _chooseKeywords extends State<chooseKeywords> {
   Attendee user;
   Conference conference;
-  bool indigo;
-  bool checkboxValue = false;
   List<String> keywords = [
     "AI",
     "CyberSecurity",
@@ -87,10 +85,10 @@ class _chooseKeywords extends State<chooseKeywords> {
 }
 
 class evaluatesInterests extends StatefulWidget {
-  User user;
 
+  Atendee user;
 
-  evaluatesInterests(User user) {
+  evaluatesInterests(Atendee user) {
     this.user = user;
 
   }
@@ -100,40 +98,40 @@ class evaluatesInterests extends StatefulWidget {
 }
 
 class _evaluatesInterests extends State<evaluatesInterests> {
-  User user;
+
+  Atendee user;
   Map<String, int> map;
 
-  _evaluatesInterests(User user) {
+  _evaluatesInterests(Atendee user) {
     this.user = user;
     this.map = Map<String, int>();
+/*     this.user.addInterest('Computer Science');
+    this.user.addInterest('AI'); */
   }
 
-  Widget getDropdownButton(){
+  Widget getDropdownButton() {
     List<Widget> lista = [];
-    for(int i = 0; i < user.interests.length; i++){
-      lista.add(new Row(
-        children: <Widget>[
-          new Text(user.interests[i]),
-          new DropdownButton<int>(
-            items: <int>[1,2,3,4,5].map((int value){
-              return new DropdownMenuItem<int>(
-                value: value,
-                child: new Text(value.toString()),
-              );
-            }
-            ).toList(),
-            onChanged: (int value){
-              setState(() {
-                map[user.interests[i]] = value;
-              });
-            },
-            focusColor: Colors.blue[100],
-          ),
-        ]
-      ));
+    for (int i = 0; i < user.interests.length; i++) {
+      lista.add(new Row(children: <Widget>[
+        new Text(user.interests[i]),
+        new DropdownButton<int>(
+          items: <int>[1, 2, 3, 4, 5].map((int value) {
+            return new DropdownMenuItem<int>(
+              value: value,
+              child: new Text(value.toString()),
+            );
+          }).toList(),
+          onChanged: (int value) {
+            setState(() {
+              map[user.interests[i]] = value;
+            });
+          },
+          focusColor: Colors.blue[100],
+        ),
+      ]));
     }
 
-    this.user.orderInterestsByPriority(map); // TODO mudar isto do sítio
+    this.user.orderInterestsByPriority(map);
     printList(this.user.interests);
     return new Column(children: lista);
 
@@ -145,11 +143,8 @@ class _evaluatesInterests extends State<evaluatesInterests> {
         appBar: AppBar(
           title: Text("Evaluate your interests from 1 to 5"),
         ),
-        body: SafeArea(
-            child: getDropdownButton()
-        )
-    );
+
+        body: SafeArea(child: getDropdownButton()));
   }
 }
-
 
