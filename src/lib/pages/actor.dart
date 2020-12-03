@@ -42,6 +42,16 @@ class Actor extends StatelessWidget {
               primary: Colors.black,
             ),
           ),
+           TextButton.icon(
+            onPressed: () async {
+              Navigator.pushNamed(context, '/conference_list');
+            },
+            icon: Icon(Icons.calendar_today),
+            label: Text('Conferences'),
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
+          ),
         ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton.extended(
