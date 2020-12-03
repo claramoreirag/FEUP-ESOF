@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../authenticate/authentication.dart';
 import '../authenticate/authentication_wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
 
 class Actor extends StatelessWidget {
   @override
@@ -58,7 +61,7 @@ class Actor extends StatelessWidget {
           label: Text('Sign out'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
-            //signOut();
+            context.read<Authenticator>().signOut();
           },
         ));
   }

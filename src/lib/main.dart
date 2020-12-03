@@ -10,6 +10,9 @@ import 'pages/view_profile.dart';
 import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
 import 'pages/actor.dart';
+import 'pages/register.dart';
+import 'classes/conference.dart';
+import 'classes/person.dart';
 import 'keywords.dart';
 
 /* import 'pages/actor.dart';
@@ -29,6 +32,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Atendee user;
+    Conference conference;
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
@@ -46,15 +51,16 @@ class App extends StatelessWidget {
           ),
           initialRoute: '/authentication',
           routes: {
-            //'/actor': (context) => Actor(),
             '/authentication': (context) => AuthenticationWrapper(),
             '/profile': (context) => ViewProfile(),
             '/actor': (contect) => Actor(),
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
-            '/conference_list':(context)=>ConferenceList()
-            //'/choose_keywords': (context) => ChooseKeywords(),
+            '/conference_list':(context)=>ConferenceList(),
+            '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/register': (context) => Register(),
+
           },
         ));
   }
