@@ -316,6 +316,21 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
+- As an attendee, I wish to customize the generated talk schedule so that it becomes perfectly tailored to my needs
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: 
+```
+
+**Value:** Must Have
+
+**Effort:** [TO DO: add here and to kanban board]
+
+<br>
+
 - As an attendee, I want to check the speaker's social media profiles
 
 **User interface mockups:**
@@ -386,7 +401,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to register to the app
+- As a user, I want to register to the app
 
 **User interface mockups:**
 
@@ -401,9 +416,25 @@ After choosing the conference, the attendee can choose the tags according to the
 	    Then I am registered on the database
 ```
 
-**Value:** Should Have
+**Value:** Must Have
 
 **Effort:** S
+
+<br>
+
+- As an attendee, I want to be able to check my schedule
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: 
+```
+
+**Value:** Must Have
+
+**Effort:** [TO DO: fill here and on kanban board]
+
 
 ---
 
