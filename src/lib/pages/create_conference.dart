@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/conference.dart';
 
@@ -5,42 +7,56 @@ class CreateConference extends StatefulWidget {
   Conference conference;
 
   @override
-  _CreateConference createState() => _CreateConference(conference);
+  _CreateConference createState() => _CreateConference();
 }
 
 class _CreateConference extends State<CreateConference> {
-  TextEditingController confNameController = TextEditingController();
-  Conference conference;
-  chooseKeywords(Conference conference) {
-    this.conference = conference;
-  }
-
-  _CreateConference(Conference conference) {
-    this.conference = conference;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Create Conference'),
-          centerTitle: true,
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: Text('Create Conference'),
+        centerTitle: true,
+      ),
+      body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: TextFormField(
-                controller: confNameController,
-                decoration: InputDecoration(
-                  border: new OutlineInputBorder(),
-                  labelText: 'Enter Conference name',
-                  contentPadding: EdgeInsets.all(10.0),
+          children: <Widget>[
+            RegisterConference(),
+          ]),
+    );
+  }
+}
+
+class RegisterConference extends StatefulWidget {
+  @override
+  _RegisterConference createState() => _RegisterConference();
+}
+
+class _RegisterConference extends State<RegisterConference> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController confNameController = TextEditingController();
+  final databaseReference = FirebaseFirestore.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 16.0),
+                child: TextFormField(
+                  controller: confNameController,
+                  decoration: InputDecoration(
+                    border: new OutlineInputBorder(),
+                    labelText: 'Enter Conference name',
+                    contentPadding: EdgeInsets.all(10.0),
+                  ),
                 ),
               ),
-            ),
-            TextButton.icon(
+              /* TextButton.icon(
               onPressed: () async {
                 Navigator.pushNamed(context, '/create_talk');
               },
@@ -48,17 +64,30 @@ class _CreateConference extends State<CreateConference> {
               label: Text('Add talk '),
               style: TextButton.styleFrom(
                 primary: Colors.black,
-              ),
-            ),
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          label: Text('Add Conference'),
-          icon: Icon(Icons.playlist_add_check_rounded),
-          onPressed: () async {
-            Navigator.pop(context);
-          },
+              ), 
+            
+            ),*/
+              RaisedButton(
+                color: Colors.lightBlue,
+                onPressed: () async {
+                  if (_formKey.currentState.validate()) {
+                    await databaseReference.collection("conference").doc().set({
+                      "name": confNameController.text,
+                    }).then((_) {
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(content: Text('Successfully Added')));
+                      confNameController.clear();
+                    }).catchError((onError) {
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text(onError)));
+                    });
+                  }
+                  Navigator.pop(context);
+                },
+                child: Text('Add'),
+              )
+            ],
+          ),
         ));
   }
 }

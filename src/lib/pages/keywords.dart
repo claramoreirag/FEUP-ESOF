@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'classes/person.dart';
-import 'classes/conference.dart';
+import '../classes/person.dart';
+import '../classes/conference.dart';
 
 void printList(List<String> lst) {
   print("List size: ");
@@ -20,12 +20,14 @@ class chooseKeywords extends StatefulWidget {
   }
 
   @override
-  _chooseKeywords createState() => _chooseKeywords(user, conference);
+  _chooseKeywords createState() => _chooseKeywords(this.user, this.conference);
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
   Atendee user;
   Conference conference;
+  bool indigo;
+  bool checkboxValue = false;
   List<String> keywords = [
     "AI",
     "CyberSecurity",
@@ -70,70 +72,12 @@ class _chooseKeywords extends State<chooseKeywords> {
                   user.addInterest(key);
                 else
                   user.removeInterest(key);
+                printList(user.interests);
               });
             },
           );
         }).toList(),
       )),
     );
-  }
-}
-
-class evaluatesInterests extends StatefulWidget {
-  Atendee user;
-
-  evaluatesInterests(Atendee user) {
-    this.user = user;
-  }
-
-  @override
-  _evaluatesInterests createState() => _evaluatesInterests(user);
-}
-
-class _evaluatesInterests extends State<evaluatesInterests> {
-  Atendee user;
-  Map<String, int> map;
-
-  _evaluatesInterests(Atendee user) {
-    this.user = user;
-    this.map = Map<String, int>();
-/*     this.user.addInterest('Computer Science');
-    this.user.addInterest('AI'); */
-  }
-
-  Widget getDropdownButton() {
-    List<Widget> lista = [];
-    for (int i = 0; i < user.interests.length; i++) {
-      lista.add(new Row(children: <Widget>[
-        new Text(user.interests[i]),
-        new DropdownButton<int>(
-          items: <int>[1, 2, 3, 4, 5].map((int value) {
-            return new DropdownMenuItem<int>(
-              value: value,
-              child: new Text(value.toString()),
-            );
-          }).toList(),
-          onChanged: (int value) {
-            setState(() {
-              map[user.interests[i]] = value;
-            });
-          },
-          focusColor: Colors.blue[100],
-        ),
-      ]));
-    }
-
-    this.user.orderInterestsByPriority(map);
-    printList(this.user.interests);
-    return new Column(children: lista);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Evaluate your interests from 1 to 5"),
-        ),
-        body: SafeArea(child: getDropdownButton()));
   }
 }
