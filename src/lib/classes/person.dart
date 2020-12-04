@@ -1,5 +1,6 @@
 import 'tags.dart';
 
+
 class Person {
   String name;
 
@@ -18,12 +19,12 @@ class Speaker extends Person {
   }
 }
 
-class User extends Person {
+class Atendee extends Person {
   int id;
   String email;
   String password;
   List<String> interests;
-  User(id, name, email, password, interests) : super(name) {
+  Atendee(id, name, email) : super(name) {
     this.id = id;
     this.email = email;
     this.password = password;
@@ -31,14 +32,23 @@ class User extends Person {
   }
 
   addInterest(String keyword) {
-    if (interests.length == 0 || !interests.contains(keyword)){
+    if (interests.length == 0 || !interests.contains(keyword)) {
       this.interests.add(keyword);
-      
     }
   }
 
-  removeInterest(String keyword){
-    if(interests.contains(keyword))
-      interests.remove(keyword);
+  removeInterest(String keyword) {
+    if (interests.contains(keyword)) interests.remove(keyword);
+  }
+
+
+  orderInterestsByPriority(Map<String, int> map) {
+    if (map.isNotEmpty) {
+      for (int i = 0; i < interests.length; i++) {
+        if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
+      }
+      interests.sort((a, b) => map[b].compareTo(map[a]));
+
+    }
   }
 }

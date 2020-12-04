@@ -10,12 +10,15 @@ import 'pages/view_profile.dart';
 import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
 import 'pages/actor.dart';
-import 'keywords.dart';
+import 'pages/timetable.dart';
+import 'pages/register.dart';
+import 'classes/conference.dart';
+import 'classes/person.dart';
+import 'pages/keywords.dart';
 
-/* import 'pages/actor.dart';
+import 'pages/actor.dart';
 import 'pages/date_picker.dart';
 import 'pages/time_picker.dart';
- */
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +32,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Atendee user = new Atendee(1, "leonor", "leonor.gomes@gmail.com");
+    Conference conference = new Conference();
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
@@ -46,16 +51,45 @@ class App extends StatelessWidget {
           ),
           initialRoute: '/authentication',
           routes: {
-            //'/actor': (context) => Actor(),
+            '/timetable': (context) => TimetableExample(),
             '/authentication': (context) => AuthenticationWrapper(),
             '/profile': (context) => ViewProfile(),
-            '/actor': (contect) => Actor(),
+            '/actor': (context) => Actor(),
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
+<<<<<<< HEAD
             '/conference_list':(context)=>ConferenceList()
             //'/choose_keywords': (context) => ChooseKeywords(),
+=======
+            '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/evaluate_interests': (context) => evaluatesInterests(user),
+            '/register': (context) => Register(),
+>>>>>>> development
           },
         ));
   }
 }
+
+/*void main() => runApp(App());
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
+    User temp = new User(1, "leonor", "leonor.gomes@gmail.com", "1234");
+    temp.addInterest("Science");
+    temp.addInterest("Math");
+    temp.addInterest("Kittens");
+    return MaterialApp(
+      title: 'Flutter Time Picker example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      //home: Login(title: 'Schedule IT'),
+      home: evaluatesInterests(temp),
+    );
+  }
+
+}*/

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../authenticate/authentication.dart';
 import '../authenticate/authentication_wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 class Actor extends StatelessWidget {
   @override
@@ -42,12 +44,31 @@ class Actor extends StatelessWidget {
               primary: Colors.black,
             ),
           ),
+<<<<<<< HEAD
            TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/conference_list');
             },
             icon: Icon(Icons.calendar_today),
             label: Text('Conferences'),
+=======
+          TextButton.icon(
+            onPressed: () async {
+              Navigator.pushNamed(context, '/timetable');
+            },
+            icon: Icon(Icons.calendar_today),
+            label: Text('Timetable'),
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
+          ),
+          TextButton.icon(
+            onPressed: () async {
+              Navigator.pushNamed(context, '/evaluate_interests');
+            },
+            icon: Icon(Icons.calendar_today),
+            label: Text('Evaluate Interest'),
+>>>>>>> development
             style: TextButton.styleFrom(
               primary: Colors.black,
             ),
@@ -58,7 +79,7 @@ class Actor extends StatelessWidget {
           label: Text('Sign out'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
-            //signOut();
+            context.read<Authenticator>().signOut();
           },
         ));
   }

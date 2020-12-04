@@ -61,6 +61,7 @@ class _RegisterTalk extends State<RegisterTalk> {
   List<String>tags = new List();
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -78,6 +79,57 @@ class _RegisterTalk extends State<RegisterTalk> {
                       contentPadding: EdgeInsets.all(10.0),
                     ),
                   ),
+=======
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Talk'),
+          centerTitle: true,
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextButton.icon(
+              onPressed: () async {
+                var date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100));
+                dateController.text = date.toString().substring(0, 10);
+                setState(() {
+                  button_date = dateController.text;
+                });
+              },
+              icon: Icon(Icons.calendar_today),
+              label: Text('Date: $button_date'),
+              style: TextButton.styleFrom(
+                primary: Colors.black,
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              TextButton.icon(
+                onPressed: () async {
+                  var time = await showTimePicker(
+                    initialTime: TimeOfDay.now(),
+                    context: context,
+                    builder: (BuildContext context, Widget child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context)
+                            .copyWith(alwaysUse24HourFormat: true),
+                        child: child,
+                      );
+                    },
+                  );
+                  timeController.text = time.format(context);
+                  setState(() {
+                    button_start_time = timeController.text;
+                  });
+                },
+                icon: Icon(Icons.access_time),
+                label: Text('Start Time: $button_start_time'),
+                style: TextButton.styleFrom(
+                  primary: Colors.black,
+>>>>>>> development
                 ),
                 TextButton.icon(
                   onPressed: () async {

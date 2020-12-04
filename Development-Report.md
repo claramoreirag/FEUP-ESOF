@@ -173,6 +173,13 @@ After choosing the conference, the attendee can choose the tags according to the
 ![](./img/add_talk_display.png)
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Uploading talks as an admin
+		Given I am logged in as an admin
+		And I am on the add_talk page
+		When I add a talk
+		Then the talk is registered in the database [TO DO: REVIEW]
+```
 
 **Value:** Must have
 
@@ -180,13 +187,22 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to login and register in the app
+- As a user, I want to be able to login in the app
 
 **User interface mockups:**
 
 ![](./img/login_display.png)
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Entering as a user
+	    Given I am in the Login page
+	    And I am registered in the database
+	    When I correctly type my email
+	    And I correctly type my password
+	    And I tap the “Sign in” button
+	    Then I am in the Initial page
+```
 
 **Value:** Should Have
 
@@ -201,6 +217,14 @@ After choosing the conference, the attendee can choose the tags according to the
 ![](./img/select_tags_display.jpg)
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Choosing interests as an attendee
+		Given I am an attendee
+		And I am logged in
+		And I am on the add_tags page
+		When I check a tag's box
+		Then that tag is added to my profile [TO DO: REVIEW]
+```
 
 **Value:** Must Have
 
@@ -213,6 +237,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario:
+		Given 
+```
 
 **Value:** Must Have
 
@@ -225,6 +253,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: 
+		Given 
+```
 
 **Value:** Should Have
 
@@ -237,6 +269,14 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Choosing a conference as an attendee
+		Given I am an attendee
+		And I am logged in
+		And I am on the [TO DO] page
+		When I [TO DO]
+		Then [TO DO]
+```
 
 **Value:** Should Have
 
@@ -249,6 +289,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Uploading CV as an attendee
+		Given 
+```
 
 **Value:** Could Have
 
@@ -261,6 +305,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Receiving attendees' CVs as an admin
+		Given 
+```
 
 **Value:** Could Have
 
@@ -273,6 +321,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Viewing a speaker's social media profiles as an attendee
+		Given 
+```
 
 **Value:** Could Have
 
@@ -285,6 +337,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: 
+		Given 
+```
 
 **Value:** Could Have
 
@@ -297,6 +353,13 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Logging off as a user
+		Given I am logged in
+		And I am on the [TO DEFINE] page
+		When I click on the 'Sign out' button
+		Then I am logged off of the app
+```
 
 **Value:** Must Have
 
@@ -309,10 +372,38 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 **Acceptance tests:**
+```gherkin
+	Scenario: Creating a conference as an admin
+		Given I am logged in as an admin
+		And I am on the create_conference page
+		When I [TO DO]
+		Then a conference is registered on the database
+```
 
 **Value:** Must Have
 
 **Effort:** L
+
+<br>
+
+- As a user, I want to be able to register to the app
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: Registering as a user
+	    Given I am in the Register page
+	    When I correctly type my username
+	    And I correctly type my email
+	    And I correctly type my password
+	    And I tap the "Register" button
+	    Then I am registered on the database
+```
+
+**Value:** Should Have
+
+**Effort:** S
 
 ---
 
