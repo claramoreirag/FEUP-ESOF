@@ -19,8 +19,6 @@ import 'pages/actor.dart';
 import 'pages/date_picker.dart';
 import 'pages/time_picker.dart';
 
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -60,18 +58,12 @@ class App extends StatelessWidget {
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
             '/choose_keywords': (context) => chooseKeywords(user, conference),
-
             '/evaluate_interests': (context) => evaluatesInterests(user),
-
             '/register': (context) => Register(),
-
-
           },
         ));
   }
 }
-
-
 
 /*void main() => runApp(App());
 
@@ -95,4 +87,3 @@ class App extends StatelessWidget {
   }
 
 }*/
-
