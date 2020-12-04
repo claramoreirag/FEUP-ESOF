@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hello/pages/conference_list.dart';
 import 'package:hello/pages/create_conference.dart';
 import 'package:provider/provider.dart';
 import 'authenticate/authentication.dart';
@@ -57,9 +58,14 @@ class App extends StatelessWidget {
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
+<<<<<<< HEAD
+            '/conference_list':(context)=>ConferenceList()
+            //'/choose_keywords': (context) => ChooseKeywords(),
+=======
             '/choose_keywords': (context) => chooseKeywords(user, conference),
             '/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
+>>>>>>> development
           },
         ));
   }
