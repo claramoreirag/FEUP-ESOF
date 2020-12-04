@@ -433,7 +433,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Value:** Must Have
 
-**Effort:** [TO DO: fill here and on kanban board]
+**Effort:** M
 
 
 ---
