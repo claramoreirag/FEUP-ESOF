@@ -105,11 +105,59 @@ class _ConferencePage extends State<ConferencePage> {
               label: Text('Add talk '),
               style: TextButton.styleFrom(
                 primary: Colors.black,
-              )),],
+              )),
+             
+              ],
            
          )
          
         );
   }
   
+}
+
+
+
+
+class ListTalks extends StatefulWidget {
+  final DocumentSnapshot conference;
+   ListTalks({this.conference});
+  @override
+  _ListTalks createState() => _ListTalks();
+}
+
+class _ListTalks extends State<ListTalks> {
+  Future<void> getTalks() async {
+    var dbref=FirebaseFirestore.instance;
+    QuerySnapshot queryTalks= await dbref.collection("conference").where('conference', isEqualTo: ('/conference/'+widget.conference.id )).get();
+    return queryTalks.docs;
+  }
+
+
+  navigateToDetail(DocumentSnapshot conference){
+    Navigator.push(context,MaterialPageRoute(builder: (context)=>ConferencePage(conference:conference) ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder(
+        future: getTalks(),
+        builder: (_,snapshot){
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return Center(child: Text("Loading..."),);
+        }else{
+       
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+          
+            itemBuilder:(_,index){
+              return ListTile(
+                
+                title:Text(snapshot.data[index]["name"]));
+                //onTap: ()=> navigateToDetail(snapshot.data[index]));
+            } ,);
+        }
+      }),);
+  }
 }
