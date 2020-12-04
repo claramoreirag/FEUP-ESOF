@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../authenticate/authentication.dart';
-import '../authenticate/authentication_wrapper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:provider/provider.dart';
 
 class Actor extends StatelessWidget {
@@ -44,14 +42,16 @@ class Actor extends StatelessWidget {
               primary: Colors.black,
             ),
           ),
-<<<<<<< HEAD
-           TextButton.icon(
+          TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/conference_list');
             },
             icon: Icon(Icons.calendar_today),
             label: Text('Conferences'),
-=======
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
+          ),
           TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/timetable');
@@ -68,7 +68,6 @@ class Actor extends StatelessWidget {
             },
             icon: Icon(Icons.calendar_today),
             label: Text('Evaluate Interest'),
->>>>>>> development
             style: TextButton.styleFrom(
               primary: Colors.black,
             ),

@@ -14,11 +14,7 @@ import 'pages/timetable.dart';
 import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
-import 'pages/keywords.dart';
-
-import 'pages/actor.dart';
-import 'pages/date_picker.dart';
-import 'pages/time_picker.dart';
+import 'keywords.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,14 +54,11 @@ class App extends StatelessWidget {
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
-<<<<<<< HEAD
-            '/conference_list':(context)=>ConferenceList()
+            '/conference_list': (context) => ConferenceList(),
             //'/choose_keywords': (context) => ChooseKeywords(),
-=======
             '/choose_keywords': (context) => chooseKeywords(user, conference),
             '/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
->>>>>>> development
           },
         ));
   }
