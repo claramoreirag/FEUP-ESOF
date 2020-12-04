@@ -47,6 +47,13 @@ class _CreateTalk extends State<CreateTalk> {
                   var time = await showTimePicker(
                     initialTime: TimeOfDay.now(),
                     context: context,
+                    builder: (BuildContext context, Widget child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context)
+                            .copyWith(alwaysUse24HourFormat: true),
+                        child: child,
+                      );
+                    },
                   );
                   timeController.text = time.format(context);
                   setState(() {
