@@ -1,5 +1,3 @@
-import 'tags.dart';
-
 class Speaker {
   String name;
   String cv;
@@ -59,5 +57,16 @@ class User {
 
   removeInterest(String keyword) {
     if (interests.contains(keyword)) interests.remove(keyword);
+  }
+
+
+  orderInterestsByPriority(Map<String, int> map) {
+    if (map.isNotEmpty) {
+      for (int i = 0; i < interests.length; i++) {
+        if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
+      }
+      interests.sort((a, b) => map[b].compareTo(map[a]));
+
+    }
   }
 }
