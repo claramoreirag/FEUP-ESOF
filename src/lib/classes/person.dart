@@ -10,8 +10,7 @@ class Speaker {
   }
 }
 
-class User {
-  
+class Atendee {
   List<String> interests;
   final String id;
   final String fullName;
@@ -22,10 +21,19 @@ class User {
   final String phoneNumber;
   final String linkedIn;
   final String cv;
-  
-  User({this.id, this.fullName, this.email, this.userRole, this.location, this.profilePhoto, this.phoneNumber, this.linkedIn, this.cv});
 
-  User.fromData(Map<String, dynamic> data)
+  Atendee(
+      {this.id,
+      this.fullName,
+      this.email,
+      this.userRole,
+      this.location,
+      this.profilePhoto,
+      this.phoneNumber,
+      this.linkedIn,
+      this.cv});
+
+  Atendee.fromData(Map<String, dynamic> data)
       : id = data['id'],
         fullName = data['fullName'],
         email = data['email'],
@@ -33,8 +41,8 @@ class User {
         location = data['location'],
         profilePhoto = data['profilePhoto'],
         phoneNumber = data['phoneNumber'],
-        linkedIn=data['linkedIn'],
-        cv=data['cv'];
+        linkedIn = data['linkedIn'],
+        cv = data['cv'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -46,9 +54,10 @@ class User {
       'profilePhoto': profilePhoto,
       'phoneNumber': phoneNumber,
       'linkedIn': linkedIn,
-      'cv':cv
+      'cv': cv
     };
   }
+
   addInterest(String keyword) {
     if (interests.length == 0 || !interests.contains(keyword)) {
       this.interests.add(keyword);
@@ -59,14 +68,12 @@ class User {
     if (interests.contains(keyword)) interests.remove(keyword);
   }
 
-
   orderInterestsByPriority(Map<String, int> map) {
     if (map.isNotEmpty) {
       for (int i = 0; i < interests.length; i++) {
         if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
       }
       interests.sort((a, b) => map[b].compareTo(map[a]));
-
     }
   }
 }

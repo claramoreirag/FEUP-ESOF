@@ -5,6 +5,7 @@ import 'package:hello/pages/create_conference.dart';
 import 'package:provider/provider.dart';
 import 'authenticate/authentication.dart';
 import 'authenticate/authentication_wrapper.dart';
+import 'classes/person.dart';
 import 'pages/view_profile.dart';
 import 'pages/create_talk.dart';
 import 'pages/add_tags.dart';
@@ -26,7 +27,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Atendee user = new Atendee(1, "leonor", "leonor.gomes@gmail.com");
+    Atendee user = new Atendee(
+        id: '1', fullName: "leonor", email: "leonor.gomes@gmail.com");
     Conference conference = new Conference();
     return MultiProvider(
         providers: [
@@ -52,10 +54,13 @@ class App extends StatelessWidget {
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
-            '/conference_list':(context)=> ConferenceList(),
-            '/choose_keywords': (context) => chooseKeywords(context.read<Authenticator>().currentUser, conference), //TODO : check choose keyword for changes needed
+            '/conference_list': (context) => ConferenceList(),
+            '/choose_keywords': (context) => chooseKeywords(
+                context.read<Authenticator>().currentUser,
+                conference), //TODO : check choose keyword for changes needed
             '/register': (context) => Register(),
-            '/evaluate_interests': (context) => evaluatesInterests(context.read<Authenticator>().currentUser),
+            '/evaluate_interests': (context) =>
+                evaluatesInterests(context.read<Authenticator>().currentUser),
           },
         ));
   }

@@ -1,15 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hello/authenticate/locator.dart';
 import 'firestoreService.dart';
-import '../classes/person.dart' as session; //our class user
+import '../classes/person.dart';
 
 class Authenticator {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   FirestoreService _firestoreService = locator<FirestoreService>();
 
-  session.User _currentUser;
-  session.User get currentUser => _currentUser;
-  Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();    //FIXME: FIREBASEAUTH IS NOT DEFINED
+  Atendee _currentUser;
+  Atendee get currentUser => _currentUser;
+  Stream<User> get authStateChanges =>
+      _firebaseAuth.authStateChanges(); //FIXME: FIREBASEAUTH IS NOT DEFINED
 
   //see changes that need to be done in signin
   Future<String> signIn({String email, String password}) async {
@@ -59,7 +60,7 @@ class Authenticator {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       //((value) => value.user.updateProfile(displayName: displayName));
-      await _firestoreService.createUser(session.User(
+      await _firestoreService.createUser(Atendee(
         id: authResult.user.uid,
         email: email,
         fullName: displayName,

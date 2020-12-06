@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/classes/person.dart';
 import '../classes/conference.dart';
 
 void printList(List<String> lst) {
