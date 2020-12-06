@@ -1,35 +1,56 @@
 import 'tags.dart';
 
-class Person {
+class Speaker {
   String name;
-
-  Person(name) {
-    this.name = name;
-  }
-}
-
-class Speaker extends Person {
   String cv;
   String linkedIn;
 
-  Speaker(name, cv, linkedIn) : super(name) {
+  Speaker(name, cv, linkedIn) {
+    this.name = name;
     this.cv = cv;
     this.linkedIn = linkedIn;
   }
 }
 
-class Atendee extends Person {
-  int id;
-  String email;
-  String password;
+class User {
+  
   List<String> interests;
-  Atendee(id, name, email, interests) : super(name) {
-    this.id = id;
-    this.email = email;
-    this.password = password;
-    this.interests = List<String>();
-  }
+  final String id;
+  final String fullName;
+  final String email;
+  final String userRole;
+  final String location;
+  final String profilePhoto;
+  final String phoneNumber;
+  final String linkedIn;
+  final String cv;
+  
+  User({this.id, this.fullName, this.email, this.userRole, this.location, this.profilePhoto, this.phoneNumber, this.linkedIn, this.cv});
 
+  User.fromData(Map<String, dynamic> data)
+      : id = data['id'],
+        fullName = data['fullName'],
+        email = data['email'],
+        userRole = data['userRole'],
+        location = data['location'],
+        profilePhoto = data['profilePhoto'],
+        phoneNumber = data['phoneNumber'],
+        linkedIn=data['linkedIn'],
+        cv=data['cv'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'fullName': fullName,
+      'email': email,
+      'userRole': userRole,
+      'location': location,
+      'profilePhoto': profilePhoto,
+      'phoneNumber': phoneNumber,
+      'linkedIn': linkedIn,
+      'cv':cv
+    };
+  }
   addInterest(String keyword) {
     if (interests.length == 0 || !interests.contains(keyword)) {
       this.interests.add(keyword);

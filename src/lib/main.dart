@@ -32,12 +32,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Atendee user;
     Conference conference;
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
-            create: (_) => Authenticator(FirebaseAuth.instance),
+            create: (_) => Authenticator(),
           ), //Provider
           StreamProvider(
             create: (context) => context.read<Authenticator>().authStateChanges,
@@ -57,8 +56,8 @@ class App extends StatelessWidget {
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
-            '/conference_list':(context)=>ConferenceList(),
-            '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/conference_list':(context)=> ConferenceList(),
+            '/choose_keywords': (context) => chooseKeywords(context.read<Authenticator>().currentUser, conference), //TODO : check choose keyword for changes needed
             '/register': (context) => Register(),
 
           },

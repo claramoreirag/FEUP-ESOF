@@ -10,7 +10,7 @@ class Register extends StatefulWidget {
   @override
   _Register createState() => _Register();
 }
-
+//TODO: ask for all user fields, push to database/auth
 class _Register extends State<Register> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
