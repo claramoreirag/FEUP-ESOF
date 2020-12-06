@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hello/pages/actor.dart';
 import '../authenticate/authentication.dart';
-
+import '../authenticate/signupModel.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
@@ -10,6 +11,7 @@ class Register extends StatefulWidget {
   @override
   _Register createState() => _Register();
 }
+
 //TODO: ask for all user fields, push to database/auth
 class _Register extends State<Register> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -17,6 +19,8 @@ class _Register extends State<Register> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  SignUpViewModel model = SignUpViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +62,26 @@ class _Register extends State<Register> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-          context.read<Authenticator>().register(
-              displayName: usernameController.text.trim(),
-              email: emailController.text.trim(),
-              password: passwordController.text.trim());
+          var result = await model.signUp(
+            displayName: usernameController.text.trim(),
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+          );
+          /* if (result is bool) {
+            if (result) { */
+              Navigator.pushNamed(context, '/actor');
+      /*       } else {
+              AlertDialog(
+                title: Text('Register Failure'),
+                actions: [
+                  FlatButton(
+                    child: Text("OK"),
+                    onPressed: () {},
+                  ),
+                ],
+              );
+            } */
+          }
         },
         child: Text("Register",
             textAlign: TextAlign.center,

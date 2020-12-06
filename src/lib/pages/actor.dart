@@ -41,12 +41,13 @@ class Actor extends StatelessWidget {
               primary: Colors.black,
             ),
           ),
-           TextButton.icon(
+          TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/conference_list');
             },
             icon: Icon(Icons.calendar_today),
-            label: Text('Conferences'),),
+            label: Text('Conferences'),
+          ),
           TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/timetable');
@@ -54,7 +55,8 @@ class Actor extends StatelessWidget {
             icon: Icon(Icons.calendar_today),
             label: Text('Timetable'),
             style: TextButton.styleFrom(
-              primary: Colors.black,            ),
+              primary: Colors.black,
+            ),
           ),
           TextButton.icon(
             onPressed: () async {
