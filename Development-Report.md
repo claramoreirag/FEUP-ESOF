@@ -95,18 +95,11 @@ After choosing the conference, the attendee can choose the tags according to the
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
 
-**Upload CV**
+
+**Have a Generated Schedule According to Attendee interests**
 
 - Actor: Attendee
-- Description: The attendees can upload their own CV for conference admins to check and share with the speakers and/or companies.
-- Preconditions and postconditions: In order to upload the CV, the attendee must be logged in and after upload, the conference admin has access to the attendees' CVs. Admins can therefore share the CVs.
-- Normal Flow: To upload the CV, the attendee must choose a file from the device containing their CV and upload it to the app, to their own profile. Therefore, whenever they are in a talk, the conference admin can have access to their profile and check their CV, sharing it with the speaker or other bodies involved.
-- Alternate Flows: A attendee may choose not to upload their CV at all. This is an optional use case.
-
-**Have a Generated Schedule that fits own Schedule**
-
-- Actor: Attendee
-- Description:The ateendes are presented with a costumized conference schedule, according to their interests. This schedule is generated in such a way that it does not interfere with previous activities the user has scheduled.
+- Description:The ateendes are presented with a costumized conference schedule, according to their interests.
 - Preconditions and postconditions: There has to be a selected conference for the app to generate a schedule based on the attendee's interests. Afterwards, the attendee will have a personalized schedule just for them.
 - Normal Flow: The attendee, after picking a conference, gets a automatically generated schedule based on their interests.
 - Alternate Flows: There are no alternate flows to this use case.
@@ -119,21 +112,6 @@ After choosing the conference, the attendee can choose the tags according to the
 - Normal Flow: After choosing the conference and keywords of interest, the schedule is generated. The attendee will be able to open and consult it.
 - Alternate Flows:After the schedule is generated, the attendee can check it whenever he/she wants.
 
-**Customize generated schedule**
-
-- Actor: Attendee
-- Description: The Attendee may want to customize the generated schedule: adding talks, deleting talks, choosing a time frame that must be clear (break time), for example.
-- Preconditions and postconditions: There needs to be a generated schedule already for users to customize it. After customization, the user's schedule is updated and saved to the database for later consulting.
-- Normal Flow: The user opens the schedule, taps the 'Edit' button and may add, delete or even move talks around. Afterwards they save the changes so that the schedule is updated and can be consulted later on.
-- Alternate Flows: A user may choose not to edit the schedule at all or edit it and not save the changes.
-
-**Consult speakers' social media profiles**
-
-- Actor: Attendee
-- Description: The attendees are able to consult speaker's social media profiles of the talks they are participating.
-- Preconditions and postconditions: The attendee must already have the schedule generated.
-- Normal Flow: After seeing the generated schedule, attendees may check the social media profiles of speakers from each of the talks in their schedule.
-- Alternate Flows: Attendees may not check any social media profile, this is a complementary feature.
 
 **Add conference talks, schedule and tags**
 
@@ -142,14 +120,6 @@ After choosing the conference, the attendee can choose the tags according to the
 - Preconditions and postconditions: The Conference Admins need to be logged in and have a talk schedule ready to add to the app.
 - Normal Flow: The Conference Admin adds the talks to the app and procedes to indicate the tags associated to them.
 - Alternate Flows: This is a necessary step for the app to be able to generate schedules for the attendees.
-
-**Check and share attendee's CVs**
-
-- Actor: Conference Admin
-- Description: The conference admin can consult and share the attendee's CVs with the bodies involved in the conference.
-- Preconditions and postconditions: The attendees must have already uploaded their CVs for admins to check them and share them with other people.
-- Normal Flow: The Conference Admin checks the participants of a talk and can access their profiles/CVs. They can therefore share them with someone else.
-- Alternate Flows: The Conference Admin can opt to not use this feature or just not share the CVs.
 
 ---
 
