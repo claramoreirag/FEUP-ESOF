@@ -67,10 +67,10 @@ class _Register extends State<Register> {
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
           );
-          /* if (result is bool) {
-            if (result) { */
+          if (result is bool) {
+            if (result) {
               Navigator.pushNamed(context, '/actor');
-      /*       } else {
+            } else {
               AlertDialog(
                 title: Text('Register Failure'),
                 actions: [
@@ -80,7 +80,7 @@ class _Register extends State<Register> {
                   ),
                 ],
               );
-            } */
+            }
           }
         },
         child: Text("Register",
