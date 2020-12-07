@@ -1,5 +1,5 @@
 import '../pages/login.dart';
-import '../pages/actor.dart';
+import '../pages/timetable.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +15,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return Actor();
+      return TimetableExample();
     }
     return Login(title: "ScheduleIT");
   }
