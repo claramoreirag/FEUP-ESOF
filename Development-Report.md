@@ -398,7 +398,7 @@ To structure our app on a high-level, we opted to use the MVC architectural patt
 
 In the View component resides the user interface and front-end of our app: the display of our different app states and data.
 
-The Model component contains all the app data: profiles, schedules, CVs, etc.
+The Model component contains all the app data: profiles, schedules, etc.
 
 Last but not least, the Controller component that connects the Model to the View: the Model sends data for the View to display and the View sends user inputs for the Model to process.
 
@@ -408,7 +408,7 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ![Physical architecture](./img/physical_layer.png)
 
-We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like schedules, talks, profiles, etc.
 
 ---
 
