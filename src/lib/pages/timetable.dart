@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../classes/drawer_tile.dart';
+import '../authenticate/authentication.dart';
+
+import 'package:provider/provider.dart';
 
 class TimetableExample extends StatefulWidget {
   @override
@@ -48,7 +52,7 @@ class _TimetableExampleState extends State<TimetableExample> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Timetable example'),
+        title: Text('Your Timetable'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.today),
@@ -69,6 +73,51 @@ class _TimetableExampleState extends State<TimetableExample> {
           event,
           info: info,
           onTap: () => _showSnackBar('All-day event $event tapped'),
+        ),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Container(
+                  child: Column(
+                children: <Widget>[
+                  Material(
+                      elevation: 10,
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Image.asset("images/logo.png",
+                            width: 80, height: 80),
+                      )),
+                  Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Text(
+                        'Schedule IT',
+                        style: TextStyle(color: Colors.white, fontSize: 25.0),
+                      )),
+                ],
+              )),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: <Color>[Colors.blue[800], Colors.blue])),
+            ),
+            Drawer_Tile(Icons.person, 'Profile',
+                () => Navigator.pushNamed(context, '/profile')),
+            Drawer_Tile(Icons.my_library_add, 'Create Conference',
+                () => Navigator.pushNamed(context, '/create_conference')),
+            Drawer_Tile(Icons.import_contacts, 'Choose Interests',
+                () => Navigator.pushNamed(context, '/choose_keywords')),
+            Drawer_Tile(Icons.list, 'Conferences List',
+                () => Navigator.pushNamed(context, '/conference_list')),
+            Drawer_Tile(Icons.lock, 'Logout',
+                () => {context.read<Authenticator>().signOut()}),
+          ],
         ),
       ),
     );
