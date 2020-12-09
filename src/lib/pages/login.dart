@@ -42,7 +42,7 @@ class _Login extends State<Login> {
     final loginButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
+      color: Colors.blue[300],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -61,12 +61,12 @@ class _Login extends State<Login> {
     final goToRegisterButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
+      color: Colors.blue[300],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-            Navigator.pushNamed(context, '/register');
+          Navigator.pushNamed(context, '/register');
         },
         child: Text("Don't have an account? Register here",
             textAlign: TextAlign.center,
@@ -89,13 +89,6 @@ class _Login extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                  child: Image.asset(
-                    "assets/logo.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
                 SizedBox(height: 45.0),
                 emailField,
                 SizedBox(height: 25.0),

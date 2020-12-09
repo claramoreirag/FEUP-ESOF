@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hello/classes/person.dart';
+
+//TODO change name to Firestore controller para parecer mais mvc
 
 class FirestoreService {
   final CollectionReference _usersCollectionReference =
@@ -13,7 +16,7 @@ class FirestoreService {
     }
   }
 
-  Future getUser(String uid) async {
+  Future<Atendee> getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.doc(uid).get();
       return Atendee.fromData(userData.data());
@@ -21,4 +24,21 @@ class FirestoreService {
       return e.message;
     }
   }
+
+
+
+
+
+
+  // Atendee getSignedUser(String uid) {
+  //   try {
+  //     Atendee atendee;
+
+  //     var userData = (_usersCollectionReference.doc(uid).get());
+  //     userData.then((DocumentSnapshot) => DocumentSnapshot.data());
+  //     return Atendee.fromData(userData.data());
+  //   } catch (e) {
+  //     return e.message;
+  //   }
+  // }
 }

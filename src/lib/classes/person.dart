@@ -34,15 +34,15 @@ class Atendee {
       this.cv});
 
   Atendee.fromData(Map<String, dynamic> data)
-      : id = data['id'],
-        fullName = data['fullName'],
-        email = data['email'],
-        userRole = data['userRole'],
-        location = data['location'],
-        profilePhoto = data['profilePhoto'],
-        phoneNumber = data['phoneNumber'],
-        linkedIn = data['linkedIn'],
-        cv = data['cv'];
+      : this.id = data['id'],
+        this.fullName = data['fullName'],
+        this.email = data['email'],
+        this.userRole = data['userRole'],
+        this.location = data['location'],
+        this.profilePhoto = data['profilePhoto'],
+        this.phoneNumber = data['phoneNumber'],
+        this.linkedIn = data['linkedIn'],
+        this.cv = data['cv'];
 
   Map<String, dynamic> toJson() {
     return {

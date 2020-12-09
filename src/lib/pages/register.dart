@@ -12,16 +12,18 @@ class Register extends StatefulWidget {
   _Register createState() => _Register();
 }
 
-//TODO: ask for all user fields, push to database/auth
 class _Register extends State<Register> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   SignUpViewModel model = SignUpViewModel();
 
+  String dropdownValue = 'Atendee';
   @override
   Widget build(BuildContext context) {
     final usernameField = TextField(
@@ -54,34 +56,90 @@ class _Register extends State<Register> {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
+    final locationField = TextField(
+      controller: locationController,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Location",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    /*  TODO
+    final profilePhotoField = TextField(
+      controller: photoController,
+      obscureText: true,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "L",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    */
+    final phoneField = TextField(
+      controller: phoneController,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Phone Number",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    /*
+    final linkedInField = TextField(
+      controller: linkedInController,
+      obscureText: true,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "LinkedIn Profile Link",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    ); 
+    */
+    final userType = DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.blue[300], fontSize: 24),
+      underline: Container(
+        height: 3,
+        color: Colors.blue[300],
+        
+      ),
+      onChanged: (String newValue) {
+        setState(() {
+          dropdownValue = newValue;
+        });
+      },
+      items: <String>['Atendee', 'Admin']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
     final registerButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        padding: EdgeInsets.fromLTRB(17.0, 15.0, 17.0, 15.0),
         onPressed: () async {
-          var result = await model.signUp(
+           var result = await model.signUp(
             displayName: usernameController.text.trim(),
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
+            location: locationController.text.trim(),
+            phoneNumber: phoneController.text.trim(),
+            userRole: dropdownValue,
+            
           );
-          if (result is bool) {
-            if (result) {
-              Navigator.pushNamed(context, '/actor');
-            } else {
-              AlertDialog(
-                title: Text('Register Failure'),
-                actions: [
-                  FlatButton(
-                    child: Text("OK"),
-                    onPressed: () {},
-                  ),
-                ],
-              );
-            }
-          }
+          return Actor();
         },
         child: Text("Register",
             textAlign: TextAlign.center,
@@ -104,19 +162,18 @@ class _Register extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                  child: Image.asset(
-                    "assets/logo.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(height: 45.0),
+                SizedBox(height: 15.0),
                 usernameField,
-                SizedBox(height: 45.0),
+                SizedBox(height: 15.0),
                 emailField,
-                SizedBox(height: 25.0),
+                SizedBox(height: 15.0),
                 passwordField,
+                SizedBox(height: 15.0),
+                locationField,
+                SizedBox(height: 15.0),
+                phoneField,
+                SizedBox(height: 15.0),
+                userType,
                 SizedBox(
                   height: 35.0,
                 ),
