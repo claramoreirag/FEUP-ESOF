@@ -30,13 +30,13 @@ Clara Moreira, Flávia Carvalhido, João Dossena, Leonor Gomes, Luís Assunção
 
 ## Product Vision
 
-Crafting YOUR conference schedule
+Crafting YOUR personalized schedule, tailored for your needs.
 
 ---
 
 ## Elevator Pitch
 
-Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
+Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! With ScheduleIT, you’ll have your own personalized generated schedule fit to your preferences and interests! Going to a conference was never easier.
 
 ---
 
