@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../authenticate/signupModel.dart';
+import 'package:hello/pages/actor.dart';
 
 class Register extends StatefulWidget {
   Register({Key key, this.title}) : super(key: key);
@@ -136,7 +137,7 @@ class _Register extends State<Register> {
             userRole: dropdownValue,
             
           );
-          return Actor();
+          return Navigator.pushNamedAndRemoveUntil(context, '/actor',(Route<dynamic> route) => false);
         },
         child: Text("Register",
             textAlign: TextAlign.center,
