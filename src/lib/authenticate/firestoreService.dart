@@ -43,21 +43,21 @@ class FirestoreService {
 
   } 
 
-/*   Atendee getAtendee(String uid){
-    Atendee atendee;
-    getUser(uid).then((value){atendee=value;} );
-    return atendee;
-  }
 
- */
 
-/* 
-  Future getUserTags(String uid) async{
-    return firestore.collection("users").doc(uid).get();
-  } */
+
+  Future getConferenceTags(String confID) async{
+    List<String> tags;
+    QuerySnapshot snapshot=await  firestore.collection("talks").where('conference',isEqualTo: '/conference/'+confID).get();
+    var talks=snapshot.docs;
+    for(var talk in talks){
+      tags.addAll(talk.data()["tags"]);
+    }
+    return tags;
+  } 
 
   setUserConference(String confID, String uid) async{
-    firestore.collection("users").doc(uid).update({"conference": '/conference/'+confID});
+    firestore.collection("users").doc(uid).update({"conference": confID});
   }
 
 

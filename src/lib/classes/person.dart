@@ -21,6 +21,7 @@ class Atendee {
    String phoneNumber;
    String linkedIn;
    String cv;
+   String conference;
 
   Atendee(
       {this.id,
@@ -31,7 +32,8 @@ class Atendee {
       this.profilePhoto,
       this.phoneNumber,
       this.linkedIn,
-      this.cv});
+      this.cv,
+      this.conference});
 
   Atendee.fromData(Map<String, dynamic> data)
       : this.id = data['id'],
@@ -42,7 +44,8 @@ class Atendee {
         this.profilePhoto = data['profilePhoto'],
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
-        this.cv = data['cv'];
+        this.cv = data['cv'],
+        this.conference=data['conference'];
 
   fromData(Map<String, dynamic> data){
        this.id = data['id'];
@@ -52,7 +55,8 @@ class Atendee {
         this.location = data['location'];
         this.profilePhoto = data['profilePhoto'];
         this.linkedIn = data['linkedIn'];
-        this.cv = data['cv'];}
+        this.cv = data['cv'];
+        this.conference=data['conference'];}
 
   Map<String, dynamic> toJson() {
     return {
@@ -64,7 +68,8 @@ class Atendee {
       'profilePhoto': profilePhoto,
       'phoneNumber': phoneNumber,
       'linkedIn': linkedIn,
-      'cv': cv
+      'cv': cv,
+      'conference':conference
     };
   }
 

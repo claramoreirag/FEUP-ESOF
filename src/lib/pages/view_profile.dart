@@ -12,11 +12,12 @@ class ViewProfile extends StatefulWidget {
 }
 
 class _ViewProfile extends State<ViewProfile> {
+
+
   @override
   Widget build(BuildContext context) {
     Atendee u;
    
-
     return Scaffold(
         appBar: AppBar(
           title: Text('Profile'),
