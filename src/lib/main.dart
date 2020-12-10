@@ -16,7 +16,7 @@ import 'pages/timetable.dart';
 import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
-import 'pages/keywords.dart';
+import 'keywords.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,6 +63,9 @@ class App extends StatelessWidget {
             //'/choose_keywords': (context) => ChooseKeywords(),
             //'/choose_keywords': (context) => chooseKeywords(),
             //'/evaluate_interests': (context) => evaluatesInterests(user),
+            //'/choose_keywords': (context) => ChooseKeywords(),
+            '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
           },
         ));

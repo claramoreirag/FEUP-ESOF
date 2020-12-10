@@ -12,16 +12,16 @@ class Speaker {
 
 class Atendee {
   List<String> interests;
-   String id;
-   String fullName;
-   String email;
-   String userRole;
-   String location;
-   String profilePhoto;
-   String phoneNumber;
-   String linkedIn;
-   String cv;
-   String conference;
+  String id;
+  String fullName;
+  String email;
+  String userRole;
+  String location;
+  String profilePhoto;
+  String phoneNumber;
+  String linkedIn;
+  String cv;
+  String conference;
 
   Atendee(
       {this.id,
@@ -45,18 +45,19 @@ class Atendee {
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
         this.cv = data['cv'],
-        this.conference=data['conference'];
+        this.conference = data['conference'];
 
-  fromData(Map<String, dynamic> data){
-       this.id = data['id'];
-        this.fullName = data['fullName'];
-        this.email = data['email'];
-        this.userRole = data['userRole'];
-        this.location = data['location'];
-        this.profilePhoto = data['profilePhoto'];
-        this.linkedIn = data['linkedIn'];
-        this.cv = data['cv'];
-        this.conference=data['conference'];}
+  fromData(Map<String, dynamic> data) {
+    this.id = data['id'];
+    this.fullName = data['fullName'];
+    this.email = data['email'];
+    this.userRole = data['userRole'];
+    this.location = data['location'];
+    this.profilePhoto = data['profilePhoto'];
+    this.linkedIn = data['linkedIn'];
+    this.cv = data['cv'];
+    this.conference = data['conference'];
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -69,7 +70,7 @@ class Atendee {
       'phoneNumber': phoneNumber,
       'linkedIn': linkedIn,
       'cv': cv,
-      'conference':conference
+      'conference': conference
     };
   }
 

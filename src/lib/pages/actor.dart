@@ -75,6 +75,9 @@ class Actor extends StatelessWidget {
             },
             icon: Icon(Icons.calendar_today),
             label: Text('Choose Conferences'),
+            style: TextButton.styleFrom(
+              primary: Colors.black,
+            ),
           ),
           TextButton.icon(
             onPressed: () async {
