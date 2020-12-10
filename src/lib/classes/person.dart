@@ -12,15 +12,15 @@ class Speaker {
 
 class Atendee {
   List<String> interests;
-  final String id;
-  final String fullName;
-  final String email;
-  final String userRole;
-  final String location;
-  final String profilePhoto;
-  final String phoneNumber;
-  final String linkedIn;
-  final String cv;
+   String id;
+   String fullName;
+   String email;
+   String userRole;
+   String location;
+   String profilePhoto;
+   String phoneNumber;
+   String linkedIn;
+   String cv;
 
   Atendee(
       {this.id,
@@ -43,6 +43,16 @@ class Atendee {
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
         this.cv = data['cv'];
+
+  fromData(Map<String, dynamic> data){
+       this.id = data['id'];
+        this.fullName = data['fullName'];
+        this.email = data['email'];
+        this.userRole = data['userRole'];
+        this.location = data['location'];
+        this.profilePhoto = data['profilePhoto'];
+        this.linkedIn = data['linkedIn'];
+        this.cv = data['cv'];}
 
   Map<String, dynamic> toJson() {
     return {

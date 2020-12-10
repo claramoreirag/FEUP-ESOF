@@ -14,8 +14,8 @@ class ViewProfile extends StatefulWidget {
 class _ViewProfile extends State<ViewProfile> {
   @override
   Widget build(BuildContext context) {
-    Future<Atendee> user = locator<FirestoreService>()
-        .getUser(FirebaseAuth.instance.currentUser.uid);
+    Atendee u;
+   
 
     return Scaffold(
         appBar: AppBar(
@@ -25,7 +25,7 @@ class _ViewProfile extends State<ViewProfile> {
         body: SafeArea(
           child: FutureBuilder(
           future: locator<FirestoreService>()
-        .getUser(FirebaseAuth.instance.currentUser.uid),
+        .getUser(FirebaseAuth.instance.currentUser.uid).then((value){u=value;}),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -40,7 +40,7 @@ class _ViewProfile extends State<ViewProfile> {
                 radius: 50,
               ),
               Text(
-                snapshot.data.fullName,
+                u.fullName,
                 style: TextStyle(
                   fontSize: 35.0,
                   color: Colors.black,
@@ -48,7 +48,7 @@ class _ViewProfile extends State<ViewProfile> {
                 ),
               ),
               Text(
-                snapshot.data.userRole,
+               u.userRole,
                 style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.blueGrey,
@@ -71,7 +71,7 @@ class _ViewProfile extends State<ViewProfile> {
                         Icons.pin_drop_outlined,
                         color: Colors.black,
                       ),
-                      title: Text(snapshot.data.location,
+                      title: Text(u.location,
                           style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.black,
@@ -86,7 +86,7 @@ class _ViewProfile extends State<ViewProfile> {
                       color: Colors.black,
                     ),
                     title: Text(
-                      snapshot.data.phoneNumber,
+                      u.phoneNumber,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
@@ -102,7 +102,7 @@ class _ViewProfile extends State<ViewProfile> {
                         Icons.email,
                         color: Colors.black,
                       ),
-                      title: Text(snapshot.data.email,
+                      title: Text(u.email,
                           style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.black,
