@@ -12,15 +12,16 @@ class Speaker {
 
 class Atendee {
   List<String> interests;
-  final String id;
-  final String fullName;
-  final String email;
-  final String userRole;
-  final String location;
-  final String profilePhoto;
-  final String phoneNumber;
-  final String linkedIn;
-  final String cv;
+   String id;
+   String fullName;
+   String email;
+   String userRole;
+   String location;
+   String profilePhoto;
+   String phoneNumber;
+   String linkedIn;
+   String cv;
+   String conference;
 
   Atendee(
       {this.id,
@@ -31,18 +32,31 @@ class Atendee {
       this.profilePhoto,
       this.phoneNumber,
       this.linkedIn,
-      this.cv});
+      this.cv,
+      this.conference});
 
   Atendee.fromData(Map<String, dynamic> data)
-      : id = data['id'],
-        fullName = data['fullName'],
-        email = data['email'],
-        userRole = data['userRole'],
-        location = data['location'],
-        profilePhoto = data['profilePhoto'],
-        phoneNumber = data['phoneNumber'],
-        linkedIn = data['linkedIn'],
-        cv = data['cv'];
+      : this.id = data['id'],
+        this.fullName = data['fullName'],
+        this.email = data['email'],
+        this.userRole = data['userRole'],
+        this.location = data['location'],
+        this.profilePhoto = data['profilePhoto'],
+        this.phoneNumber = data['phoneNumber'],
+        this.linkedIn = data['linkedIn'],
+        this.cv = data['cv'],
+        this.conference=data['conference'];
+
+  fromData(Map<String, dynamic> data){
+       this.id = data['id'];
+        this.fullName = data['fullName'];
+        this.email = data['email'];
+        this.userRole = data['userRole'];
+        this.location = data['location'];
+        this.profilePhoto = data['profilePhoto'];
+        this.linkedIn = data['linkedIn'];
+        this.cv = data['cv'];
+        this.conference=data['conference'];}
 
   Map<String, dynamic> toJson() {
     return {
@@ -54,7 +68,8 @@ class Atendee {
       'profilePhoto': profilePhoto,
       'phoneNumber': phoneNumber,
       'linkedIn': linkedIn,
-      'cv': cv
+      'cv': cv,
+      'conference':conference
     };
   }
 

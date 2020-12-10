@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hello/authenticate/locator.dart';
+import 'package:hello/pages/choose_conference.dart';
 import 'package:hello/pages/conference_list.dart';
 import 'package:hello/pages/create_conference.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ import 'pages/timetable.dart';
 import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
-import 'keywords.dart';
+import 'pages/keywords.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,9 +59,10 @@ class App extends StatelessWidget {
             '/add_tags': (context) => AddTags(),
             '/create_conference': (context) => CreateConference(),
             '/conference_list': (context) => ConferenceList(),
+            '/choose_conference': (context) => ChooseConference(),
             //'/choose_keywords': (context) => ChooseKeywords(),
-            '/choose_keywords': (context) => chooseKeywords(user, conference),
-            '/evaluate_interests': (context) => evaluatesInterests(user),
+            '/choose_keywords': (context) => chooseKeywords(),
+            //'/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
           },
         ));

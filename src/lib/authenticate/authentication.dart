@@ -10,20 +10,17 @@ class Authenticator {
 
   Authenticator(this._auth);
 
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   FirestoreService _firestoreService = locator<FirestoreService>();
 
   Atendee _currentUser;
   Atendee get currentUser => _currentUser;
-  // Stream<User> get authStateChanges =>
-  // _firebaseAuth.authStateChanges(); //FIXME: FIREBASEAUTH IS NOT DEFINED
-
-  //FIXME: FIREBASEAUTH IS NOT DEFINED
 
   //see changes that need to be done in signin
   Future<String> signIn({String email, String password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      var authResult = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      await _populateCurrentUser(authResult.user);
       return "Signed In";
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -62,16 +59,24 @@ class Authenticator {
   }
 */
   Future<String> register(
-      {String displayName, String email, String password}) async {
+      {String displayName,
+      String email,
+      String password,
+      String userRole,
+      String location,
+      String phoneNumber}) async {
     try {
       var authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      //((value) => value.user.updateProfile(displayName: displayName));
       await _firestoreService.createUser(Atendee(
         id: authResult.user.uid,
         email: email,
         fullName: displayName,
+        userRole: userRole,
+        location: location,
+        phoneNumber: phoneNumber,
       ));
+      await _populateCurrentUser(authResult.user);
       return "Registered";
     } on FirebaseAuthException catch (e) {
       return e.message;

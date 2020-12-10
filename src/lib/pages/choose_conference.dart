@@ -1,18 +1,21 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/conference.dart';
 
-import 'create_talk.dart';
-
-class ListConferences extends StatefulWidget {
+class ChooseConference extends StatefulWidget {
    
 
   @override
-  _ListConferences createState() => _ListConferences();
+  _ChooseConference createState() => _ChooseConference();
 }
 
-class _ListConferences extends State<ListConferences> {
+class _ChooseConference extends State<ChooseConference> {
   
 
   @override
@@ -63,7 +66,11 @@ class _ListPage extends State<ListPage> {
             itemBuilder:(_,index){
               return ListTile(
                 title:Text(snapshot.data[index]["name"]),
-                onTap: ()=> navigateToDetail(snapshot.data[index]));
+                onTap: (){ 
+                  locator<FirestoreService>().setUserConference(snapshot.data[index].documentID,FirebaseAuth.instance.currentUser.uid );
+                  sleep(Duration(milliseconds: 500));
+                  Navigator.pop(context);
+                });
             } ,);
         }
       }),);
@@ -71,8 +78,7 @@ class _ListPage extends State<ListPage> {
 
 }
 
-
-
+ 
 
 class ConferencePage extends StatefulWidget {
    
@@ -162,3 +168,4 @@ class _ListTalks extends State<ListTalks> {
       }),);
   }
 }
+ 

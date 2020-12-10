@@ -48,6 +48,13 @@ class Actor extends StatelessWidget {
             icon: Icon(Icons.calendar_today),
             label: Text('Conferences'),
           ),
+           TextButton.icon(
+            onPressed: () async {
+              Navigator.pushNamed(context, '/choose_conference');
+            },
+            icon: Icon(Icons.calendar_today),
+            label: Text('Choose Conferences'),
+          ),
           TextButton.icon(
             onPressed: () async {
               Navigator.pushNamed(context, '/timetable');
