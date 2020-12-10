@@ -1,31 +1,77 @@
-class Person {
+class Speaker {
   String name;
-
-  Person(name) {
-    this.name = name;
-  }
-}
-
-class Speaker extends Person {
   String cv;
   String linkedIn;
 
-  Speaker(name, cv, linkedIn) : super(name) {
+  Speaker(name, cv, linkedIn) {
+    this.name = name;
     this.cv = cv;
     this.linkedIn = linkedIn;
   }
 }
 
-class Atendee extends Person {
-  int id;
-  String email;
-  String password;
+class Atendee {
   List<String> interests;
-  Atendee(id, name, email) : super(name) {
-    this.id = id;
-    this.email = email;
-    this.password = password;
-    this.interests = List<String>();
+  String id;
+  String fullName;
+  String email;
+  String userRole;
+  String location;
+  String profilePhoto;
+  String phoneNumber;
+  String linkedIn;
+  String cv;
+  String conference;
+
+  Atendee(
+      {this.id,
+      this.fullName,
+      this.email,
+      this.userRole,
+      this.location,
+      this.profilePhoto,
+      this.phoneNumber,
+      this.linkedIn,
+      this.cv,
+      this.conference});
+
+  Atendee.fromData(Map<String, dynamic> data)
+      : this.id = data['id'],
+        this.fullName = data['fullName'],
+        this.email = data['email'],
+        this.userRole = data['userRole'],
+        this.location = data['location'],
+        this.profilePhoto = data['profilePhoto'],
+        this.phoneNumber = data['phoneNumber'],
+        this.linkedIn = data['linkedIn'],
+        this.cv = data['cv'],
+        this.conference = data['conference'];
+
+  fromData(Map<String, dynamic> data) {
+    this.id = data['id'];
+    this.fullName = data['fullName'];
+    this.email = data['email'];
+    this.userRole = data['userRole'];
+    this.location = data['location'];
+    this.profilePhoto = data['profilePhoto'];
+    this.linkedIn = data['linkedIn'];
+    this.cv = data['cv'];
+    this.conference = data['conference'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'fullName': fullName,
+      'email': email,
+      'userRole': userRole,
+      'location': location,
+      'profilePhoto': profilePhoto,
+      'phoneNumber': phoneNumber,
+      'linkedIn': linkedIn,
+      'cv': cv,
+      'conference': conference
+    };
   }
 
   addInterest(String keyword) {
@@ -43,6 +89,7 @@ class Atendee extends Person {
       for (int i = 0; i < interests.length; i++) {
         if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
       }
+      interests.sort((a, b) => map[b].compareTo(map[a]));
     }
   }
 }
