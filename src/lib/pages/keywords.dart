@@ -16,19 +16,15 @@ void printList(List<String> lst) {
 
 class chooseKeywords extends StatefulWidget {
   Atendee user;
-  String conference;
+  List<String> keywords;
 
-
-  chooseKeywords(/*Atendee user, Conference conference*/) {
-
-    locator<FirestoreService>()
-        .getUser(FirebaseAuth.instance.currentUser.uid).then((value){this.user=value;});
-    
-    this.conference = conference;
+  chooseKeywords(Atendee user, List<String> keywords) {
+    this.user = user;
+    this.keywords = keywords;
   }
 
   @override
-  _chooseKeywords createState() => _chooseKeywords(/*this.user, this.conference*/);
+  _chooseKeywords createState() => _chooseKeywords(this.user, this.keywords);
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
@@ -36,7 +32,8 @@ class _chooseKeywords extends State<chooseKeywords> {
   String conference;
   bool indigo;
   bool checkboxValue = false;
-  List<String> keywords; /*= [
+  List<String> keywords;
+  /*= [
     "AI",
     "CyberSecurity",
     "Computer Graphics",
@@ -46,12 +43,9 @@ class _chooseKeywords extends State<chooseKeywords> {
 
   Map<String, bool> values;
 
-  _chooseKeywords(/*Atendee user, String conference*/) {
-    //this.user = user;
-     locator<FirestoreService>()
-        .getUser(FirebaseAuth.instance.currentUser.uid).then((value){this.user=value;});
-    this.conference = this.user.conference;
-  locator<FirestoreService>().getConferenceTags(this.conference).then((value) {this.keywords=value;});   
+  _chooseKeywords(Atendee user, List<String> keywords) {
+    this.user = user;
+    this.keywords = keywords;
     this.values = mapValues(keywords);
   }
 
