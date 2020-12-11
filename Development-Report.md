@@ -406,7 +406,7 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ### Physical architecture
 
-![Physical architecture](./img/physical_layer.png)
+![Physical architecture](./img/physical_arch.png)
 
 We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like schedules, talks, profiles, etc.
 
