@@ -8,6 +8,10 @@ class Talk {
   List<dynamic> tags;
   Speaker speaker;
 
+
+
+
+
   Talk(int id, String title, String description, Speaker speaker) {
     this.id = id;
     this.title = title;

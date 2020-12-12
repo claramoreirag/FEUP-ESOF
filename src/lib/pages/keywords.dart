@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../classes/person.dart';
+import 'package:hello/classes/person.dart';
 import '../classes/conference.dart';
 
 void printList(List<String> lst) {
@@ -12,34 +16,36 @@ void printList(List<String> lst) {
 
 class chooseKeywords extends StatefulWidget {
   Atendee user;
-  Conference conference;
+  List<String> keywords;
 
-  chooseKeywords(Atendee user, Conference conference) {
+  chooseKeywords(Atendee user, List<String> keywords) {
     this.user = user;
-    this.conference = conference;
+    this.keywords = keywords;
   }
 
   @override
-  _chooseKeywords createState() => _chooseKeywords(this.user, this.conference);
+  _chooseKeywords createState() => _chooseKeywords(this.user, this.keywords);
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
   Atendee user;
-  Conference conference;
+  String conference;
   bool indigo;
   bool checkboxValue = false;
-  List<String> keywords = [
+  List<String> keywords;
+  /*= [
     "AI",
     "CyberSecurity",
     "Computer Graphics",
     "Computer Networks",
     "Data Mining"
-  ];
+  ];*/
+
   Map<String, bool> values;
 
-  _chooseKeywords(Atendee user, Conference conference) {
+  _chooseKeywords(Atendee user, List<String> keywords) {
     this.user = user;
-    this.conference = conference;
+    this.keywords = keywords;
     this.values = mapValues(keywords);
   }
 

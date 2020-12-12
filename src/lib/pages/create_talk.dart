@@ -1,7 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/classes/person.dart';
 import 'package:hello/pages/add_tags.dart';
 
 class CreateTalk extends StatefulWidget {
