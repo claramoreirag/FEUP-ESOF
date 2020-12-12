@@ -15,14 +15,14 @@ void main(){
     List<String> interestsList = ['kw1', 'kw2', 'kw3'];
     await tester.pumpWidget(MaterialApp(home: chooseKeywords(mockAttendee, interestsList),));
 
-    Finder keyword1 = find.text('kw1');
-    Finder keyword2 = find.text('kw2');
-    Finder keyword3 = find.text('kw3');
+    var keyword1 = find.byType(CheckboxListTile).first;
+    var keyword2 = find.text('kw2');
+    var keyword3 = find.text('kw3');
     await tester.tap(keyword1);
     await tester.pump();
     expect(keyword1, findsOneWidget);
-    expect(keyword2, findsNothing);
-    expect(keyword3, findsNothing);
+    expect(keyword2, findsOneWidget);
+    expect(keyword3, findsOneWidget);
 
   });
 }
