@@ -148,7 +148,7 @@ After choosing the conference, the attendee can choose the tags according to the
 		Given I am logged in as an admin
 		And I am on the add_talk page
 		When I add a talk
-		Then the talk is registered in the database [TO DO: REVIEW]
+		Then the talk is added on the app
 ```
 
 **Value:** Must have
@@ -157,7 +157,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to login in the app
+- As an user, I want to be able to login on the app
 
 **User interface mockups:**
 
@@ -165,13 +165,10 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: Entering as a user
-	    Given I am in the Login page
-	    And I am registered in the database
-	    When I correctly type my email
-	    And I correctly type my password
-	    And I tap the “Sign in” button
-	    Then I am in the Initial page
+	Scenario: Entering as an user
+	    Given I am on the Login page
+	    When I login with valid credentials
+	    Then I am logged in
 ```
 
 **Value:** Should Have
@@ -189,11 +186,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing interests as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the add_tags page
-		When I check a tag's box
-		Then that tag is added to my profile [TO DO: REVIEW]
+		Given I am logged in as an attendee
+		And I am on the choose tag page
+		When I select a tag
+		Then that tag is added as an interest of mine
 ```
 
 **Value:** Must Have
@@ -208,8 +204,10 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario:
-		Given 
+	Scenario: Consulting profile information
+		Given I am logged in
+		And I am viewing the Profile Page
+		Then I see my profile information
 ```
 
 **Value:** Must Have
@@ -224,8 +222,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: 
-		Given 
+	Scenario: Evaluating interests quantitatively
+		Given I am logged in as an attendee
+		And I am on the evaluate interests page
+		When I choose the value of my interest
+		Then that value persists on the app
 ```
 
 **Value:** Should Have
@@ -241,11 +242,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing a conference as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the [TO DO] page
-		When I [TO DO]
-		Then [TO DO]
+		Given I am logged in as an attendee
+		And I am on the choose conference page
+		When I select a conference
+		Then I can select my interests
 ```
 
 **Value:** Should Have
@@ -254,62 +254,17 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin
+- As an attendee, I want to be able to check my generated schedule
 
 **User interface mockups:**
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: Uploading CV as an attendee
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As a conference admin, I wish to receive the CV's of each talk attendees
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Receiving attendees' CVs as an admin
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As an attendee, I want to check the speaker's social media profiles
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Viewing a speaker's social media profiles as an attendee
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As an attendee, I want my own schedule to be compatible with the generated talk schedule
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: 
-		Given 
+	Scenario: Checking generated schedule
+		Given I am logged in as an attendee
+		And I have already chose my interests and evaluated them
+		When I ask to see my schedule
+		Then I can consult my schedule
 ```
 
 **Value:** Could Have
@@ -318,17 +273,16 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to log off of my profile
+- As an user, I want to be able to log out of my profile
 
 **User interface mockups:**
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: Logging off as a user
+	Scenario: Logging out as an user
 		Given I am logged in
-		And I am on the [TO DEFINE] page
-		When I click on the 'Sign out' button
-		Then I am logged off of the app
+		When I logout 
+		Then I am logged out of the app
 ```
 
 **Value:** Must Have
@@ -346,8 +300,8 @@ After choosing the conference, the attendee can choose the tags according to the
 	Scenario: Creating a conference as an admin
 		Given I am logged in as an admin
 		And I am on the create_conference page
-		When I [TO DO]
-		Then a conference is registered on the database
+		When I create a conference with valid data 
+		Then the conference is saved on the app
 ```
 
 **Value:** Must Have
@@ -356,19 +310,16 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to register to the app
+- As an user, I want to be able to register on the app
 
 **User interface mockups:**
 
 **Acceptance tests:**
 ```gherkin
 	Scenario: Registering as a user
-	    Given I am in the Register page
-	    When I correctly type my username
-	    And I correctly type my email
-	    And I correctly type my password
-	    And I tap the "Register" button
-	    Then I am registered on the database
+	    Given I am on the Register page
+	    When I register with valid data
+	    Then I am authenticated
 ```
 
 **Value:** Should Have
