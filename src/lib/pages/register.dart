@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/pages/timetable.dart';
 import '../authenticate/signupModel.dart';
 import 'package:hello/pages/actor.dart';
 
@@ -137,7 +138,8 @@ class _Register extends State<Register> {
             userRole: dropdownValue,
             
           );
-          return Navigator.pushNamedAndRemoveUntil(context, '/actor',(Route<dynamic> route) => false);
+            return Navigator.pop(context);//context,MaterialPageRoute(builder: (context) => TimetableExample()),(Route<dynamic> route) => false);
+          
         },
         child: Text("Register",
             textAlign: TextAlign.center,

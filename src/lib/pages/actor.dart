@@ -45,11 +45,11 @@ class Actor extends StatelessWidget {
                   .then((value) {
                 user = value;
               });
-              locator<FirestoreService>()
+             /*  locator<FirestoreService>()
                   .getConferenceTags(user.conference)
                   .then((value) {
-                keywords = value;
-              });
+                keywords = value; 
+              });*/
               print(keywords[0]);
               Navigator.push(
                   context,

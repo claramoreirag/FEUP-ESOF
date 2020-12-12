@@ -11,7 +11,7 @@ class Speaker {
 }
 
 class Atendee {
-  List<String> interests;
+  List<String> interests=new List();
   String id;
   String fullName;
   String email;
@@ -33,7 +33,30 @@ class Atendee {
       this.phoneNumber,
       this.linkedIn,
       this.cv,
-      this.conference});
+      this.conference,
+      this.interests});
+
+Atendee.withoutInterests({String id,
+  String fullName,
+  String email,
+  String userRole,
+  String location,
+  String profilePhoto,
+  String phoneNumber,
+  String linkedIn,
+  String cv,
+  String conference
+      }) : this(id:id,
+      fullName:fullName,
+      email:email,
+      userRole:userRole,
+      location:location,
+      profilePhoto:profilePhoto,
+      phoneNumber:phoneNumber,
+      linkedIn:linkedIn,
+      cv:cv,
+      conference:conference,
+      interests:new List());
 
   Atendee.fromData(Map<String, dynamic> data)
       : this.id = data['id'],
@@ -70,18 +93,29 @@ class Atendee {
       'phoneNumber': phoneNumber,
       'linkedIn': linkedIn,
       'cv': cv,
-      'conference': conference
+      'conference': conference,
+      'interests':interests
     };
   }
 
   addInterest(String keyword) {
+    if(interests== null){
+        interests=new List();
+    }
     if (interests.length == 0 || !interests.contains(keyword)) {
       this.interests.add(keyword);
     }
+    print('INTERESTS:    +' + interests.toString());
   }
 
   removeInterest(String keyword) {
-    if (interests.contains(keyword)) interests.remove(keyword);
+    if(interests== null){
+        interests=new List();
+    }
+    if (interests.contains(keyword)){
+      var x=this.interests.remove(keyword);
+    print(x.toString());
+    }  
   }
 
   orderInterestsByPriority(Map<String, int> map) {

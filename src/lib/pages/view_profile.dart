@@ -39,7 +39,7 @@ class _ViewProfile extends State<ViewProfile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundImage: AssetImage('no'),
+                        // backgroundImage: AssetImage('no'),
                         radius: 50,
                       ),
                       Text(

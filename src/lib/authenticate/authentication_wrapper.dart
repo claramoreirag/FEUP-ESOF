@@ -1,3 +1,7 @@
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/person.dart';
+
 import '../pages/login.dart';
 import '../pages/timetable.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +16,17 @@ class AuthenticationWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Atendee user;
     final Authenticator _auth = Authenticator(FirebaseAuth.instance);
 
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return TimetableExample();
+     
+                  
+        return TimetableExample(user:user);
     }
+    
     return Login(title: "ScheduleIT");
   }
 }

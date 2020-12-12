@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/person.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,20 +11,29 @@ import '../authenticate/authentication.dart';
 
 import 'package:provider/provider.dart';
 
+import '../keywords.dart';
+
 class TimetableExample extends StatefulWidget {
+  Atendee user;
+
+  
+  TimetableExample({Atendee user}){
+    this.user=user;
+  }
+
   @override
-  _TimetableExampleState createState() => _TimetableExampleState();
+  _TimetableExampleState createState() => _TimetableExampleState(user: this.user);
 }
 
 class _TimetableExampleState extends State<TimetableExample> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TimetableController<BasicEvent> _controller;
   List<BasicEvent> events;
-
-  _TimetableExampleState() {
+  Atendee user;
+  _TimetableExampleState({Atendee user}) {
     events = List();
     _addEvents();
-  }
+    this.user=user;  }
 
   @override
   void initState() {
@@ -49,10 +62,28 @@ class _TimetableExampleState extends State<TimetableExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return StreamBuilder<QuerySnapshot>(
+      stream:locator<FirestoreService>()
+                  .getUserStream(FirebaseAuth.instance.currentUser.uid),
+      builder:(_, snapshot){
+        if (!snapshot.hasData) {
+                  return Center(
+                    child: Text("Loading..."),
+                  );
+                } else {
+                  if(snapshot.data.size==0) {
+                  return Center(
+                    child: Text("Loading..."),
+                  );
+                  }
+                  else{
+                 user=Atendee.fromData(snapshot.data.docs[0].data());
+                  
+                  return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Your Timetable'),
+        title: Text(''),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.today),
@@ -112,16 +143,35 @@ class _TimetableExampleState extends State<TimetableExample> {
             Drawer_Tile(Icons.my_library_add, 'Create Conference',
                 () => Navigator.pushNamed(context, '/create_conference')),
             Drawer_Tile(Icons.import_contacts, 'Choose Interests',
-                () => Navigator.pushNamed(context, '/choose_keywords')),
+               () async {
+               user = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => chooseKeywords(user:user)));
+               
+              }),
             Drawer_Tile(Icons.list, 'Conferences List',
                 () => Navigator.pushNamed(context, '/conference_list')),
             Drawer_Tile(Icons.lock, 'Logout',
                 () => {context.read<Authenticator>().signOut()}),
+            Drawer_Tile(Icons.my_library_add, 'Choose conference',
+                () => Navigator.pushNamed(context, '/choose_conference')),
+           Drawer_Tile(Icons.import_contacts, 'Evaluate Interests',
+                () => Navigator.push(context,MaterialPageRoute(
+                builder: (context) => evaluatesInterests(user))))
           ],
         ),
       ),
+    );}
+                  
+                }
+      }
     );
+
+
+    
   }
+
+
+
 
   void _showSnackBar(String content) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(

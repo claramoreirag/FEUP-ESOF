@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/person.dart';
+import 'authenticate/firestoreService.dart';
+import 'authenticate/locator.dart';
 import 'classes/conference.dart';
 
 void printList(List<String> lst) {
@@ -12,33 +16,29 @@ void printList(List<String> lst) {
 
 class chooseKeywords extends StatefulWidget {
   Atendee user;
-  Conference conference;
+  
 
-  chooseKeywords(Atendee user, Conference conference) {
+  chooseKeywords({Atendee user}) {
     this.user = user;
-    this.conference = conference;
+    
   }
 
   @override
-  _chooseKeywords createState() => _chooseKeywords(user, conference);
+  _chooseKeywords createState() => _chooseKeywords(user:this.user);
 }
 
 class _chooseKeywords extends State<chooseKeywords> {
   Atendee user;
-  Conference conference;
-  List<String> keywords = [
-    "AI",
-    "CyberSecurity",
-    "Computer Graphics",
-    "Computer Networks",
-    "Data Mining"
-  ];
-  Map<String, bool> values;
+ 
+  List<String> keywords=new List();
+  Map<String, bool> values = new Map();
 
-  _chooseKeywords(Atendee user, Conference conference) {
+  _chooseKeywords({Atendee user, Conference conference}) {
     this.user = user;
-    this.conference = conference;
-    this.values = mapValues(keywords);
+   this.keywords=new List();
+  this.values = new Map();
+    //this.conference = conference;
+    //this.values = mapValues(keywords);
   }
 
   Map<String, bool> mapValues(List<String> keywords) {
@@ -51,33 +51,81 @@ class _chooseKeywords extends State<chooseKeywords> {
 
   @override
   Widget build(BuildContext context) {
-    //List<String> keywords = this.conference.addKeywords();
-
-    return Scaffold(
+    
+   return Scaffold(
       appBar: AppBar(
         title: Text("Choose your interests"),
       ),
       body: SafeArea(
-          child: ListView(
+          child:  StreamBuilder<QuerySnapshot>(
+              stream: locator<FirestoreService>()
+                  .getConferenceTags(user.conference),
+               
+              builder: (_, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: Text("Loading..."),
+                  );
+                } else {
+                   List<DocumentSnapshot> docs=snapshot.data.docs;
+                   if(keywords.length<=0){
+                   for(int i=0; i<docs.length; i++){
+                     List<String> tags=tagsToStringList(docs.elementAt(i).data()['tags']);
+                    keywords.addAll(tags);
+                   }
+                   }
+                   print(keywords);
+                   values= mapValues(keywords);
+                  return StatefulBuilder(
+                    builder:(BuildContext context, StateSetter setState) {
+                 return  ListView(
         children: values.keys.map((String key) {
-          return new CheckboxListTile(
+          return  CheckboxListTile(
             title: new Text(key),
             value: values[key],
             onChanged: (bool value) {
               setState(() {
                 values[key] = value;
-                if (value)
+                print(values);
+                if (value){
+                  
                   user.addInterest(key);
-                else
+                  locator<FirestoreService>().updateUser( user);
+                }
+                else{
                   user.removeInterest(key);
-              });
+                  locator<FirestoreService>().updateUser( user);
+              }});
             },
           );
         }).toList(),
-      )),
-    );
+      );
+      }
+      );
+              }}),
+        ),floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          label: Text('Validate'),
+          icon: Icon(Icons.playlist_add_check_rounded),
+          onPressed: () async {
+            Navigator.pop(context, user);
+          },
+        ));
   }
+
+
+  List<String> tagsToStringList(List<dynamic> tags){
+    List<String> list= new List();
+    for(int i=0; i<tags.length; i++){
+      list.add(tags[i]);
+  }
+  return list;
+  }
+
 }
+
+
+
 
 class evaluatesInterests extends StatefulWidget {
   Atendee user;
@@ -92,7 +140,7 @@ class evaluatesInterests extends StatefulWidget {
 
 class _evaluatesInterests extends State<evaluatesInterests> {
   Atendee user;
-  Map<String, int> map;
+  Map<String, int> map = new Map();
 
   _evaluatesInterests(Atendee user) {
     this.user = user;
@@ -102,6 +150,8 @@ class _evaluatesInterests extends State<evaluatesInterests> {
   }
 
   Widget getDropdownButton() {
+    print("hello");
+    print(user.interests.toString());
     List<Widget> lista = [];
     for (int i = 0; i < user.interests.length; i++) {
       lista.add(new Row(children: <Widget>[
@@ -114,7 +164,9 @@ class _evaluatesInterests extends State<evaluatesInterests> {
             );
           }).toList(),
           onChanged: (int value) {
+            locator<FirestoreService>().updateUser( user);
             setState(() {
+          
               map[user.interests[i]] = value;
             });
           },

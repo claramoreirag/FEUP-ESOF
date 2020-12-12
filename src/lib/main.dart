@@ -64,7 +64,7 @@ class App extends StatelessWidget {
             //'/choose_keywords': (context) => chooseKeywords(),
             //'/evaluate_interests': (context) => evaluatesInterests(user),
             //'/choose_keywords': (context) => ChooseKeywords(),
-            '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/choose_keywords': (context) => chooseKeywords(),
             '/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
           },
