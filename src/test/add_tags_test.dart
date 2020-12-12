@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 
 void main(){
- testWidgets('Add tags', (tester) async {
+ testWidgets('Adding tags as an admin', (tester) async {
     await tester.pumpWidget(MaterialApp(home: AddTags(),));
 
     Finder tagField = find.byType(TextField);
