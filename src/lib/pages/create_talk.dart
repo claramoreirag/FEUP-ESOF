@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/authenticate/firestoreService.dart';
 import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/add_tags.dart';
 
 class CreateTalk extends StatefulWidget {
@@ -56,7 +57,7 @@ class _RegisterTalk extends State<RegisterTalk> {
   final speakerCVController = TextEditingController();
   final speakerLinkedinController = TextEditingController();
   List<String> tags = new List();
-  String stringtags='';
+  String stringtags = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -133,10 +134,10 @@ class _RegisterTalk extends State<RegisterTalk> {
               onPressed: () async {
                 tags = await Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AddTags()));
-                stringtags =showTagsString();
+                stringtags = showTagsString();
               },
               icon: Icon(Icons.calendar_today),
-              label: Text('Tags: '+stringtags+' $button_tags'),
+              label: Text('Tags: ' + stringtags + ' $button_tags'),
               style: TextButton.styleFrom(
                 primary: Colors.black,
               ),
@@ -179,12 +180,17 @@ class _RegisterTalk extends State<RegisterTalk> {
               color: Colors.lightBlue,
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  locator<FirestoreService>().addTalk(date: dateController.text,
-                    beginTime: beginTimeController.text,
-                    endTime: endTimeController.text,
-                    name: nameController.text,
-                    conference: widget.conference.id,
-                    tags: tags).then((_) {
+                  Talk talk = Talk(
+                      date: dateController.text,
+                      beginTime: beginTimeController.text,
+                      endTime: endTimeController.text,
+                      name: nameController.text,
+                      speaker: speakerNameController.text,
+                      //conference: widget.conference.id,
+                      tags: tags);
+                  locator<FirestoreService>()
+                      .addTalk(talk, widget.conference.id)
+                      .then((_) {
                     Scaffold.of(context).showSnackBar(
                         SnackBar(content: Text('Successfully Added')));
                     beginTimeController.clear();
@@ -205,11 +211,10 @@ class _RegisterTalk extends State<RegisterTalk> {
         ));
   }
 
-
-  String showTagsString(){
-    String tagsString='';
-    for(String tag in tags){
-      tagsString=tagsString+', '+tag;
+  String showTagsString() {
+    String tagsString = '';
+    for (String tag in tags) {
+      tagsString = tagsString + ', ' + tag;
     }
     return tagsString;
   }
