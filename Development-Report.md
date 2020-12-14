@@ -326,6 +326,41 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Effort:** S
 
+<br>
+
+ - As an user, I want to have an app that is easy to navigate through
+
+ **User interface mockups:**
+
+ **Acceptance tests:**
+ ```gherkin
+	Scenario: Navigating through the app
+		Given I am logged in 
+		When I open the burger menu
+		Then I can navigate through the app
+```
+
+**Value:** Must Have
+
+**Effort:** M
+<br>
+
+ - As an admin, I want to be able to consult the already uploaded talks so that I know which ones I still need to upload
+
+**User interface mockups:**
+
+**Acceptance tests:**
+```gherkin
+	Scenario: Consulting talks already added 
+		Given I am logged in as an admin user
+		And I am viewing the conference information
+		Then I see the talks that I have already added
+```
+
+**Value:** Must Have
+
+**Effort:** S
+
 ---
 
 ### Domain model
@@ -345,7 +380,7 @@ The software architecture of the app contains all its key components and their r
 
 ![Logical architecture](./img/logical_architecture.png)
 
-![Dependencies] (./img/logical_architecture.png)
+![Dependencies](./img/logical_architecture.png)
 
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
