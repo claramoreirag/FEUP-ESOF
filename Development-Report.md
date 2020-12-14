@@ -380,7 +380,7 @@ The software architecture of the app contains all its key components and their r
 
 ![Logical architecture](./img/logical_architecture.png)
 
-![Dependencies](./img/logical_architecture.png)
+![Dependencies](./img/logical_architecture2.png)
 
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
