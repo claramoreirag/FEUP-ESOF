@@ -345,6 +345,8 @@ The software architecture of the app contains all its key components and their r
 
 ![Logical architecture](./img/logical_architecture.png)
 
+![Dependencies] (./img/logical_architecture.png)
+
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
 In the View component resides the user interface and front-end of our app: the display of our different app states and data.
