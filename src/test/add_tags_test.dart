@@ -23,6 +23,8 @@ void main(){
     expect(artificialIntelligenceTag, findsOneWidget);
 
     //Verifying that the 'Data Science' tag was not selected
+    await tester.enterText(tagField, 'Data Science');
+    await tester.enterText(tagField, '');
     final dataScienceTag = find.text('Data Science');
     expect(dataScienceTag, findsNothing);
   });
