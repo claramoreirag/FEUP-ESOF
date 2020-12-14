@@ -343,6 +343,27 @@ After choosing the conference, the attendee can choose the tags according to the
 **Value:** Must Have
 
 **Effort:** M
+
+<br>
+
+ - As an attendee, I want to choose the conference that I will attend
+
+**User interface mockups:**
+
+**Acceptance tests:**
+ ```gherkin
+	Scenario: Choosing the conference
+		Given I am logged in 
+		And I am in the burger menu
+		When I want to choose a conference
+		Then I can choose the conference
+```
+
+**Value:** Must have
+
+**Effort:** S
+
+
 <br>
 
  - As an admin, I want to be able to consult the already uploaded talks so that I know which ones I still need to upload
