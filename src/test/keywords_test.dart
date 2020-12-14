@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../lib/pages/keywords.dart';
+import 'package:hello/pages/keywords.dart';
 import 'package:hello/classes/person.dart' as person;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,19 +10,29 @@ class MockAttendee extends Mock implements person.Atendee {}
 
 void main(){
  testWidgets('Choosing keywords as an attendee', (tester) async {
-    //TODO mockAttendee
     MockAttendee mockAttendee = MockAttendee();
-    List<String> interestsList = ['kw1', 'kw2', 'kw3'];
-    await tester.pumpWidget(MaterialApp(home: chooseKeywords(mockAttendee, interestsList),));
+    
+    await tester.pumpWidget(MaterialApp(home: chooseKeywords(mockAttendee, ['kw1', 'kw2', 'kw3']),));
 
-    var keyword1 = find.byType(CheckboxListTile).first;
-    var keyword2 = find.text('kw2');
-    var keyword3 = find.text('kw3');
-    await tester.tap(keyword1);
+    var checkboxKeyword1 = find.byType(CheckboxListTile).first;
+
+    //Adding first interest
+    when(mockAttendee.interests).thenReturn(['kw1']);
+    await tester.tap(checkboxKeyword1);
     await tester.pump();
-    expect(keyword1, findsOneWidget);
-    expect(keyword2, findsOneWidget);
-    expect(keyword3, findsOneWidget);
+    
+    //Verifying only the first interest was checked
+    verify(mockAttendee.addInterest('kw1')).called(1);
+    verifyNever(mockAttendee.addInterest('kw2'));
+    verifyNever(mockAttendee.addInterest('kw3'));
 
+    //Removing first interest
+    await tester.tap(checkboxKeyword1);
+    await tester.pump();
+    
+    //Verifying only the first interest was removed
+    verify(mockAttendee.removeInterest('kw1')).called(1);
+    verifyNever(mockAttendee.removeInterest('kw2'));
+    verifyNever(mockAttendee.removeInterest('kw3'));
   });
 }
