@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../lib/pages/add_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:mockito/mockito.dart';
+
 
 
 void main(){
@@ -17,9 +19,11 @@ void main(){
     await tester.tap(button);
     await tester.pump();
 
-    //Verifying that only the intended tag got inserted
+    //Verifying that the 'Artificial Intelligence' tag got selected
     final artificialIntelligenceTag = find.text('Artificial Intelligence');
     expect(artificialIntelligenceTag, findsOneWidget);
+
+    //Verifying that the 'Data Science' tag was not selected
     final dataScienceTag = find.text('Data Science');
     expect(dataScienceTag, findsNothing);
   });
