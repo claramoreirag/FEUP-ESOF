@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/person.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/add_tags.dart';
 import 'dart:io';
@@ -60,6 +64,7 @@ class _RegisterTalk extends State<RegisterTalk> {
   final speakerLinkedinController = TextEditingController();
 
   List<String> tags = new List();
+  String stringtags = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -161,9 +166,10 @@ class _RegisterTalk extends State<RegisterTalk> {
               onPressed: () async {
                 tags = await Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AddTags()));
+                stringtags = showTagsString();
               },
               icon: Icon(Icons.calendar_today),
-              label: Text('Tags: $button_tags'),
+              label: Text('Tags: ' + stringtags + ' $button_tags'),
               style: TextButton.styleFrom(
                 primary: Colors.black,
               ),
@@ -179,8 +185,60 @@ class _RegisterTalk extends State<RegisterTalk> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 330,
+            SizedBox(height: 330),
+
+            /*  Padding(
+                  padding: EdgeInsets.only(top: 16.0),
+                  child: TextFormField(
+                    controller: speakerLinkedinController,
+                    decoration: InputDecoration(
+                      border: new OutlineInputBorder(),
+                      labelText: "Enter Speakers LinkedIn",
+                      contentPadding: EdgeInsets.all(10.0),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16.0),
+                  child: TextFormField(
+                    controller: speakerCVController,
+                    decoration: InputDecoration(
+                      border: new OutlineInputBorder(),
+                      labelText: "Enter Speakers CV",
+                      contentPadding: EdgeInsets.all(10.0),
+                    ),
+                  ),
+                ), */
+            RaisedButton(
+              color: Colors.lightBlue,
+              onPressed: () async {
+                if (_formKey.currentState.validate()) {
+                  Talk talk = Talk(
+                      date: dateController.text,
+                      beginTime: beginTimeController.text,
+                      endTime: endTimeController.text,
+                      name: nameController.text,
+                      speaker: speakerNameController.text,
+                      //conference: widget.conference.id,
+                      tags: tags);
+                  locator<FirestoreService>()
+                      .addTalk(talk, widget.conference.id)
+                      .then((_) {
+                    Scaffold.of(context).showSnackBar(
+                        SnackBar(content: Text('Successfully Added')));
+                    beginTimeController.clear();
+                    endTimeController.clear();
+                    nameController.clear();
+                    dateController.clear();
+                  }).catchError((onError) {
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text(onError)));
+                  });
+                }
+                sleep(Duration(milliseconds: 1000));
+                Navigator.pop(context);
+              },
+              child: Text('Add'),
             ),
             Align(
               alignment: Alignment.bottomRight,
@@ -217,5 +275,13 @@ class _RegisterTalk extends State<RegisterTalk> {
             )
           ]),
         ));
+  }
+
+  String showTagsString() {
+    String tagsString = '';
+    for (String tag in tags) {
+      tagsString = tagsString + ', ' + tag;
+    }
+    return tagsString;
   }
 }
