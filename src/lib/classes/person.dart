@@ -73,7 +73,8 @@ class Atendee {
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
         this.cv = data['cv'],
-        this.conference = data['conference'];
+        this.conference = data['conference'],
+        this.talks = new List();
 
   fromData(Map<String, dynamic> data) {
     this.id = data['id'];
@@ -168,8 +169,11 @@ class Atendee {
   }
 
   isCompatible(Talk talk1, Talk talk2) {
-    if (talk1.date != talk2.date) return true;if(talk1.endTime == talk2.beginTime || isBefore(talk1.endTime, talk2.beginTime)) return true;
-    if(talk2.endTime == talk1.beginTime || isBefore(talk2.endTime, talk1.beginTime)) return true;
+    if (talk1.date != talk2.date) return true;
+    if (talk1.endTime == talk2.beginTime ||
+        isBefore(talk1.endTime, talk2.beginTime)) return true;
+    if (talk2.endTime == talk1.beginTime ||
+        isBefore(talk2.endTime, talk1.beginTime)) return true;
     return false;
   }
 
@@ -180,8 +184,7 @@ class Atendee {
     return true;
   }
 
-  selectTalksToAttend() {
-    List<Talk> conferenceTalks = List<Talk>(); //ir buscar à base de dados
+  selectTalksToAttend(List<Talk> conferenceTalks) {
     Map<Talk, int> talksByPriority =
         calculateTalksPriority(this.priorities, conferenceTalks);
     conferenceTalks
@@ -189,11 +192,8 @@ class Atendee {
     //limpar lista de talks do attendee
     talks.add(conferenceTalks[0]);
     for (int i = 1; i < conferenceTalks.length; i++) {
+      if (isTalkCompatible(talks, conferenceTalks[i]))
+        talks.add(conferenceTalks[i]);
     }
   }
- 
-//  if(isTalkCompatible(talks, conferenceTalks[i]))
-//         talks.add(conferenceTalks[i]);
-//     }
-//   }
 }

@@ -50,7 +50,7 @@ class Actor extends StatelessWidget {
                   .then((value) {
                 keywords = value; 
               });*/
-              print(keywords[0]);
+              
               Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -7,7 +7,7 @@ class Talk {
   //String description;
   String beginTime;
   String endTime;
-  List<String> tags;
+  List<dynamic> tags;
   String speaker;
   String date;
 
@@ -48,4 +48,14 @@ class Talk {
         this.tags = data['tags'],
         this.speaker = data['speaker'],
         this.date = data['date'];
+
+
+
+    List<String> tagsToStringList(List<dynamic> tags) {
+    List<String> list = new List();
+    for (int i = 0; i < tags.length; i++) {
+      list.add(tags[i]);
+    }
+    return list;
+  }
 }

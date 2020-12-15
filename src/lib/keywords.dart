@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/person.dart';
+import 'package:hello/classes/talk.dart';
 import 'authenticate/firestoreService.dart';
 import 'authenticate/locator.dart';
 import 'classes/conference.dart';
@@ -71,7 +72,7 @@ class _chooseKeywords extends State<chooseKeywords> {
                       keywords.addAll(tags);
                     }
                   }
-                  print(keywords);
+                  //print(keywords);
                   values = mapValues(keywords);
                   return StatefulBuilder(
                       builder: (BuildContext context, StateSetter setState) {
@@ -142,7 +143,6 @@ class _evaluatesInterests extends State<evaluatesInterests> {
   }
 
   Widget getDropdownButton() {
-    print("hello");
     print(user.interests.toString());
     List<Widget> lista = [];
     for (int i = 0; i < user.interests.length; i++) {
@@ -169,10 +169,11 @@ class _evaluatesInterests extends State<evaluatesInterests> {
     }
 
     this.user.orderInterestsByPriority(map);
-    printList(this.user.interests);
+    //printList(this.user.interests);
     return new Column(children: lista);
   }
 
+  List<Talk> conferenceTalks = new List();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,8 +186,80 @@ class _evaluatesInterests extends State<evaluatesInterests> {
           label: Text('Validate'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
-            Navigator.pop(context, user);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => scheduleMaking(user)));
           },
         ));
+  }
+
+  Widget talksCalculation() {
+    return SafeArea(
+      child: FutureBuilder(
+          future: locator<FirestoreService>()
+              .getListTalks(user.conference)
+              .then((value) {
+            conferenceTalks = value;
+          }),
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Text("Calculating your preferred talks..."),
+              );
+            } else {
+              print('hehehehe ' + conferenceTalks[0].tags.toString());
+              Navigator.pop(context, user);
+              return Center(child: Text("Your schedule is ready!"));
+            }
+          }),
+    );
+  }
+}
+
+class scheduleMaking extends StatefulWidget {
+  Atendee user;
+
+  scheduleMaking(Atendee user) {
+    this.user = user;
+  }
+
+  @override
+  _scheduleMaking createState() => _scheduleMaking(user);
+}
+
+class _scheduleMaking extends State<scheduleMaking> {
+  Atendee user;
+
+  _scheduleMaking(Atendee user) {
+    this.user = user;
+  }
+  List<Talk> conferenceTalks = new List();
+  Widget talksCalculation() {
+    return SafeArea(
+        child: StreamBuilder(
+            stream:
+                locator<FirestoreService>().getConferenceTalks(user.conference),
+            builder: (_, snapshot) {
+              if (!snapshot.hasData || snapshot.data.size == 0) {
+                return Center(
+                  child: Text("Calculating your preferred talks..."),
+                );
+              } else {
+                print(snapshot.data.docs);
+                var docs = snapshot.data.docs;
+                conferenceTalks = new List();
+                for (int i = 0; i < docs.length; i++) {
+                  Talk talk = Talk.fromData(docs[i].data());
+                  conferenceTalks.add(talk);
+                  print(conferenceTalks.length);
+                }
+                user.selectTalksToAttend(conferenceTalks);
+                return Container();
+              }
+            }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return talksCalculation();
   }
 }

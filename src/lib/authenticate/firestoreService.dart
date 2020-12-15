@@ -49,8 +49,6 @@ class FirestoreService {
         .snapshots();
   }
 
-
-
   Stream<QuerySnapshot> getConferenceTags(String confID) {
     return firestore
         .collection("conference")
@@ -73,15 +71,16 @@ class FirestoreService {
 
   updateUser(Atendee user) async {
     firestore.collection("users").doc(user.id).update(user.toJson());
-    firestore.collection("users").doc(user.id).update({"talks": FieldValue.delete()});
+    firestore
+        .collection("users")
+        .doc(user.id)
+        .update({"talks": FieldValue.delete()});
     List<Map<String, dynamic>> dbtalks;
-    if(user.talks.length>0){
+    if (user.talks.length > 0) {
       for (Talk talk in user.talks) {
         dbtalks.add(talk.toJson());
       }
-        firestore
-            .collection("users")
-            .doc(user.id).update({"talks":dbtalks});
+      firestore.collection("users").doc(user.id).update({"talks": dbtalks});
     }
   }
 
@@ -91,6 +90,26 @@ class FirestoreService {
         .doc(confID)
         .collection("talks")
         .snapshots();
+  }
+
+  Future getListTalks(String confID) async {
+    List<Talk> talks = new List();
+    var querytalks = firestore
+        .collection("conference")
+        .doc(confID)
+        .collection("talks")
+        .get()
+        .then((value) {
+      var docs = value.docs;
+      print(docs.toString());
+      for (int i = 0; i < docs.length; i++) {
+        Talk talk = Talk.fromData(docs[i].data());
+        print(talk.name);
+        talks.add(talk);
+        //talks.add(Talk.fromData(doc.data()));
+      }
+    });
+    return talks;
   }
 
   addTalk(Talk talk, String confID) async {

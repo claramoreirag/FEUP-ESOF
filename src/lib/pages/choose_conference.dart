@@ -154,7 +154,7 @@ class _ListTalks extends State<ListTalks> {
         if(snapshot.connectionState==ConnectionState.waiting){
           return Center(child: Text("Loading..."),);
         }else{
-          print('hello');
+          
           return ListView.builder(
             itemCount: snapshot.data.length,
 
