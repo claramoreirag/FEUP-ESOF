@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/person.dart';
+import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/add_tags.dart';
 import 'dart:io';
 import 'package:hello/authenticate/firestoreService.dart';
@@ -187,14 +188,16 @@ class _RegisterTalk extends State<RegisterTalk> {
                 label: Text("Create Talk"),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    Talk talk = Talk(
+                        date: dateController.text,
+                        beginTime: beginTimeController.text,
+                        endTime: endTimeController.text,
+                        name: nameController.text,
+                        speaker: speakerNameController.text,
+                        //conference: widget.conference.id,
+                        tags: tags);
                     locator<FirestoreService>()
-                        .addTalk(
-                            date: dateController.text,
-                            beginTime: beginTimeController.text,
-                            endTime: endTimeController.text,
-                            name: nameController.text,
-                            conference: widget.conference.id,
-                            tags: tags)
+                        .addTalk(talk, widget.conference.id)
                         .then((_) {
                       Scaffold.of(context).showSnackBar(
                           SnackBar(content: Text('Successfully Added')));
@@ -207,7 +210,7 @@ class _RegisterTalk extends State<RegisterTalk> {
                           .showSnackBar(SnackBar(content: Text(onError)));
                     });
                   }
-                  sleep(Duration(milliseconds: 1000));
+
                   Navigator.pop(context);
                 },
               ),

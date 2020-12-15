@@ -1,3 +1,5 @@
+import 'package:hello/classes/talk.dart';
+
 class Speaker {
   String name;
   String cv;
@@ -22,7 +24,8 @@ class Atendee {
   String linkedIn;
   String cv;
   String conference;
-
+  List<Talk> talks;
+  Map<String, int> priorities;
   Atendee(
       {this.id,
       this.fullName,
@@ -70,7 +73,8 @@ class Atendee {
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
         this.cv = data['cv'],
-        this.conference = data['conference'];
+        this.conference = data['conference'],
+        this.talks = new List();
 
   fromData(Map<String, dynamic> data) {
     this.id = data['id'];
@@ -126,6 +130,71 @@ class Atendee {
         if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
       }
       interests.sort((a, b) => map[b].compareTo(map[a]));
+    }
+    this.priorities = map;
+  }
+
+  calculateTalksPriority(Map<String, int> map, List<Talk> talks) {
+    Map<Talk, int> talksByPriority = Map<Talk, int>();
+    for (int i = 0; i < talks.length; i++) {
+      int priority = 0;
+      for (int j = 0; j < talks[i].tags.length; j++) {
+        if (map.keys.contains(talks[i].tags[j]))
+          priority += map[talks[i].tags[j]];
+      }
+      talksByPriority[talks[i]] = priority;
+    }
+    return talksByPriority;
+  }
+
+  isBefore(String hour1, String hour2) {
+    //só comparar se os dias forem iguais
+    var info1 = hour1.split(" ");
+    var info2 = hour2.split(" ");
+    if (info1[1] != info2[1]) {
+      var hour1_arr = info1[0].split(":");
+      var hour2_arr = info2[0].split(":");
+      int hour1_int = int.parse(hour1_arr[0]) * 100 + int.parse(hour1_arr[1]);
+      int hour2_int = int.parse(hour2_arr[0]) * 100 + int.parse(hour2_arr[1]);
+      if (hour1_int >= 1200 && hour1_int < 1300) hour1_int -= 1200;
+      if (hour2_int >= 1200 && hour2_int < 1300) hour2_int -= 1200;
+      if (hour1_int < hour2_int)
+        return true;
+      else
+        return false;
+    } else if (info1[1] == "AM" && info2[1] == "PM")
+      return true;
+    else
+      return false;
+  }
+
+  isCompatible(Talk talk1, Talk talk2) {
+    if (talk1.date != talk2.date) return true;
+    if (talk1.endTime == talk2.beginTime ||
+        isBefore(talk1.endTime, talk2.beginTime)) return true;
+    if (talk2.endTime == talk1.beginTime ||
+        isBefore(talk2.endTime, talk1.beginTime)) return true;
+    return false;
+  }
+
+  isTalkCompatible(List<Talk> talks, Talk talk) {
+    for (int i = 0; i < talks.length; i++) {
+      if (!isCompatible(talks[i], talk)) return false;
+    }
+    return true;
+  }
+
+  selectTalksToAttend(List<Talk> conferenceTalks) {
+    Map<Talk, int> talksByPriority =
+        calculateTalksPriority(this.priorities, conferenceTalks);
+    conferenceTalks
+        .sort((a, b) => talksByPriority[b].compareTo(talksByPriority[a]));
+    talks.clear();
+    talks.add(conferenceTalks[0]);
+    for (int i = 1; i < conferenceTalks.length; i++) {
+      if (isTalkCompatible(talks, conferenceTalks[i])) {
+        talks.add(conferenceTalks[i]);
+      }
     }
   }
 }

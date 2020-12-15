@@ -39,6 +39,10 @@ class App extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          builder: (context, child) => MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child),
           title: 'Flutter Time Picker example',
           theme: ThemeData(
             primarySwatch: Colors.blue,
@@ -55,8 +59,9 @@ class App extends StatelessWidget {
             '/create_conference': (context) => CreateConference(),
             '/conference_list': (context) => ConferenceList(),
             //'/choose_keywords': (context) => ChooseKeywords(),
-            '/choose_keywords': (context) => chooseKeywords(user, conference),
-            '/evaluate_interests': (context) => evaluatesInterests(user),
+            '/choose_keywords': (context) => chooseKeywords(),
+/*             '/choose_keywords': (context) => chooseKeywords(user, conference),
+            '/evaluate_interests': (context) => evaluatesInterests(user), */
             '/register': (context) => Register(),
           },
         ));
