@@ -189,11 +189,12 @@ class Atendee {
         calculateTalksPriority(this.priorities, conferenceTalks);
     conferenceTalks
         .sort((a, b) => talksByPriority[b].compareTo(talksByPriority[a]));
-    //limpar lista de talks do attendee
+    talks.clear();
     talks.add(conferenceTalks[0]);
     for (int i = 1; i < conferenceTalks.length; i++) {
-      if (isTalkCompatible(talks, conferenceTalks[i]))
+      if (isTalkCompatible(talks, conferenceTalks[i])) {
         talks.add(conferenceTalks[i]);
+      }
     }
   }
 }

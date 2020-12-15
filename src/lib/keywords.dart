@@ -253,7 +253,12 @@ class _scheduleMaking extends State<scheduleMaking> {
                   print(conferenceTalks.length);
                 }
                 user.selectTalksToAttend(conferenceTalks);
-                return Container();
+                for (var talk in user.talks) print(talk.name);
+                print(user.talks.toString());
+                locator<FirestoreService>().updateUser(user);
+                return Center(
+                  child: Text("Your schedule is ready!"),
+                );
               }
             }));
   }

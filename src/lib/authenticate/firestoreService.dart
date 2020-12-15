@@ -75,7 +75,7 @@ class FirestoreService {
         .collection("users")
         .doc(user.id)
         .update({"talks": FieldValue.delete()});
-    List<Map<String, dynamic>> dbtalks;
+    List<Map<String, dynamic>> dbtalks = new List();
     if (user.talks.length > 0) {
       for (Talk talk in user.talks) {
         dbtalks.add(talk.toJson());
