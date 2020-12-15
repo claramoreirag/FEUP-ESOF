@@ -61,6 +61,8 @@ class _TimetableExampleState extends State<TimetableExample> {
           ),
         ],
       ),
+/*       body: Column(children: <Widget>[
+        Text(LocalDate.today().at(LocalTime(16, 0, 0)).toString()), */
       body: Timetable<BasicEvent>(
         controller: _controller,
         eventBuilder: (event) {
@@ -75,6 +77,7 @@ class _TimetableExampleState extends State<TimetableExample> {
           onTap: () => _showSnackBar('All-day event $event tapped'),
         ),
       ),
+      /* ] */
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -135,13 +138,13 @@ class _TimetableExampleState extends State<TimetableExample> {
   }
 
   void _addEvent() async {
-    events.add(BasicEvent(
+/*     events.add(BasicEvent(
       id: 1,
       title: 'My Event1',
       color: Colors.red,
-      start: LocalDate.today().at(LocalTime(16, 0, 0)),
+      start: a,
       end: LocalDate.today().at(LocalTime(17, 0, 0)),
-    ));
+    )); */
 
     events.add(BasicEvent(
       id: 2,
@@ -155,11 +158,11 @@ class _TimetableExampleState extends State<TimetableExample> {
     QuerySnapshot queryTalks = await dbref.collection("talks").get();
     var talks = queryTalks.docs;
     var i = 0;
-    for (var talk in talks) {
+/*      for (var talk in talks) {
       var title = talk['name'];
       var btime = talk['beginTime'];
       var etime = talk['endTime'];
-      //var date = talk['date'];
+      var date = talk['date'];
       events.add(BasicEvent(
         id: i,
         title: title,
@@ -167,7 +170,7 @@ class _TimetableExampleState extends State<TimetableExample> {
         start: btime,
         end: etime,
       ));
-    }
+    }  */
     i++;
   }
 }

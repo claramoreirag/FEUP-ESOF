@@ -42,52 +42,54 @@ class _RegisterConference extends State<RegisterConference> {
     return Form(
         key: _formKey,
         child: SingleChildScrollView(
+            child: Padding(
+          padding: EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 16.0),
-                child: TextFormField(
-                  controller: confNameController,
-                  decoration: InputDecoration(
-                    border: new OutlineInputBorder(),
-                    labelText: 'Enter Conference name',
-                    contentPadding: EdgeInsets.all(10.0),
-                  ),
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                controller: confNameController,
+                decoration: InputDecoration(
+                  border: new OutlineInputBorder(),
+                  labelText: 'Enter Conference name',
+                  contentPadding: EdgeInsets.all(10.0),
                 ),
               ),
-              /* TextButton.icon(
-              onPressed: () async {
-                Navigator.pushNamed(context, '/create_talk');
-              },
-              icon: Icon(Icons.calendar_today),
-              label: Text('Add talk '),
-              style: TextButton.styleFrom(
-                primary: Colors.black,
-              ), 
-            
-            ),*/
-              RaisedButton(
-                color: Colors.lightBlue,
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    await databaseReference.collection("conference").doc().set({
-                      "name": confNameController.text,
-                    }).then((_) {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('Successfully Added')));
-                      confNameController.clear();
-                    }).catchError((onError) {
-                      Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text(onError)));
-                    });
-                  }
-                  Navigator.pop(context);
-                },
-                child: Text('Add'),
-              )
+              SizedBox(
+                height: 550,
+              ),
+              Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton.extended(
+                    icon: Icon(Icons.playlist_add),
+                    label: Text("Create Conference"),
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        await databaseReference
+                            .collection("conference")
+                            .doc()
+                            .set({
+                          "name": confNameController.text,
+                        }).then((_) {
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('Successfully Added')));
+                          confNameController.clear();
+                        }).catchError((onError) {
+                          Scaffold.of(context)
+                              .showSnackBar(SnackBar(content: Text(onError)));
+                        });
+                        Navigator.pop(context);
+                      }
+                    },
+                  )),
             ],
           ),
-        ));
+        )));
   }
 }
