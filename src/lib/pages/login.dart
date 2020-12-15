@@ -4,7 +4,7 @@ import '../authenticate/authentication.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
-  Login({Key key, this.title}) : super(key: key);
+  Login({this.title}) : super(key: Key("Login"));
 
   final String title;
   @override
@@ -20,6 +20,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final emailField = TextField(
+      key: Key("Email"),
       controller: emailController,
       obscureText: false,
       style: style,
@@ -30,6 +31,7 @@ class _Login extends State<Login> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final passwordField = TextField(
+      key: Key("Password"),
       controller: passwordController,
       obscureText: true,
       style: style,
@@ -40,6 +42,7 @@ class _Login extends State<Login> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final loginButton = Material(
+      key: Key("loginButton"),
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Colors.blue[300],
