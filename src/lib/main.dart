@@ -34,6 +34,7 @@ class App extends StatelessWidget {
     Atendee user = new Atendee(
         id: '1', fullName: "leonor", email: "leonor.gomes@gmail.com");
     Conference conference = new Conference();
+    
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
