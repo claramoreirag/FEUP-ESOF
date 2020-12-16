@@ -1,3 +1,5 @@
+import 'package:hello/classes/talk.dart';
+
 class Speaker {
   String name;
   String cv;
@@ -11,7 +13,7 @@ class Speaker {
 }
 
 class Atendee {
-  List<String> interests;
+  List<String> interests = [];
   String id;
   String fullName;
   String email;
@@ -75,13 +77,13 @@ class Atendee {
   }
 
   addInterest(String keyword) {
-    if (interests.length == 0 || !interests.contains(keyword)) {
+    if (this.interests.length == 0 || !this.interests.contains(keyword)) {
       this.interests.add(keyword);
     }
   }
 
   removeInterest(String keyword) {
-    if (interests.contains(keyword)) interests.remove(keyword);
+    if (this.interests.contains(keyword)) this.interests.remove(keyword);
   }
 
   orderInterestsByPriority(Map<String, int> map) {
@@ -93,3 +95,56 @@ class Atendee {
     }
   }
 }
+
+
+// calculateTalksPriority(Map<String, int> map, List<Talk> talks) {
+//     Map<Talk, int> talksByPriority = Map<Talk, int>();
+//     for (int i = 0; i < talks.length; i++) {
+//       int priority = 0;
+//       for (int j = 0; j < talks[i].tags.length; j++) {
+//         if (map.keys.contains(talks[i].tags[j]))
+//           priority += map[talks[i].tags[j]];
+//       }
+//       talksByPriority[talks[i]] = priority;
+//     }
+//     return talksByPriority;
+//   }
+
+//   isBefore(String hour1, String hour2) {
+//     //só comparar se os dias forem iguais
+//     var info1 = hour1.split(":");
+//     var info2 = hour2.split(":");
+//     int hour_1 = int.parse(info1[0]) * 100 + int.parse(info1[1]);
+//     int hour_2 = int.parse(info2[0]) * 100 + int.parse(info2[1]);
+//     return hour_1 < hour_2;
+//   }
+
+//   isCompatible(Talk talk1, Talk talk2) {
+//     if (talk1.date != talk2.date) return true;
+//     if (talk1.endTime == talk2.beginTime ||
+//         isBefore(talk1.endTime, talk2.beginTime)) return true;
+//     if (talk2.endTime == talk1.beginTime ||
+//         isBefore(talk2.endTime, talk1.beginTime)) return true;
+//     return false;
+//   }
+
+//   isTalkCompatible(List<Talk> talks, Talk talk) {
+//     for (int i = 0; i < talks.length; i++) {
+//       if (!isCompatible(talks[i], talk)) return false;
+//     }
+//     return true;
+//   }
+
+//   selectTalksToAttend(List<Talk> conferenceTalks) {
+//     Map<Talk, int> talksByPriority =
+//         calculateTalksPriority(this.priorities, conferenceTalks);
+//     conferenceTalks
+//         .sort((a, b) => talksByPriority[b].compareTo(talksByPriority[a]));
+//     talks.clear();
+//     talks.add(conferenceTalks[0]);
+//     for (int i = 1; i < conferenceTalks.length; i++) {
+//       if (isTalkCompatible(talks, conferenceTalks[i])) {
+//         talks.add(conferenceTalks[i]);
+//       }
+//     }
+//   }
