@@ -20,7 +20,7 @@ class _CreateConference extends State<CreateConference> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            RegisterConference(),
+            Flexible(child: RegisterConference()),
           ]),
     );
   }
