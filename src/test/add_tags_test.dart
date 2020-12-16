@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../lib/pages/add_tags.dart';
+import 'package:hello/pages/add_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

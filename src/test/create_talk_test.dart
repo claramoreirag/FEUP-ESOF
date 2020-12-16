@@ -1,13 +1,31 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/pages/create_talk.dart';
+import 'package:hello/authenticate/authentication.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mockito/mockito.dart';
+
+
+class MockAuth extends Mock implements Authenticator {}
+class MockFirestore extends Mock implements FirestoreService {}
+
 
 
 void main(){
   testWidgets('Creating a talk as an admin', (tester) async {
-  	
-    // await tester.pumpWidget(MaterialApp(home: CreateTalk(),));
-
+    // MockAuth mockAuth = MockAuth();
+    // MockFirestore mockFirestore = MockFirestore();
+    // await tester.pumpWidget(MultiProvider(
+    //   providers: [
+    //     Provider<Authenticator>(
+    //       create: (context) => mockAuth,
+    //     ),
+    //   ],
+    //   child: MaterialApp(
+    //     home: CreateTalk(),)));
 
     // //TODO: improve comments
 
