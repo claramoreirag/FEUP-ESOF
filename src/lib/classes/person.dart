@@ -73,8 +73,8 @@ class Atendee {
         this.phoneNumber = data['phoneNumber'],
         this.linkedIn = data['linkedIn'],
         this.cv = data['cv'],
-        this.conference = data['conference'],
-        this.talks = new List();
+        this.conference = data['conference']; //cuidad com o ;
+  //this.talks = data['talks'];
 
   fromData(Map<String, dynamic> data) {
     this.id = data['id'];
@@ -149,23 +149,11 @@ class Atendee {
 
   isBefore(String hour1, String hour2) {
     //só comparar se os dias forem iguais
-    var info1 = hour1.split(" ");
-    var info2 = hour2.split(" ");
-    if (info1[1] != info2[1]) {
-      var hour1_arr = info1[0].split(":");
-      var hour2_arr = info2[0].split(":");
-      int hour1_int = int.parse(hour1_arr[0]) * 100 + int.parse(hour1_arr[1]);
-      int hour2_int = int.parse(hour2_arr[0]) * 100 + int.parse(hour2_arr[1]);
-      if (hour1_int >= 1200 && hour1_int < 1300) hour1_int -= 1200;
-      if (hour2_int >= 1200 && hour2_int < 1300) hour2_int -= 1200;
-      if (hour1_int < hour2_int)
-        return true;
-      else
-        return false;
-    } else if (info1[1] == "AM" && info2[1] == "PM")
-      return true;
-    else
-      return false;
+    var info1 = hour1.split(":");
+    var info2 = hour2.split(":");
+    int hour_1 = int.parse(info1[0]) * 100 + int.parse(info1[1]);
+    int hour_2 = int.parse(info2[0]) * 100 + int.parse(info2[1]);
+    return hour_1 < hour_2;
   }
 
   isCompatible(Talk talk1, Talk talk2) {

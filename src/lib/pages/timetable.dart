@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/authenticate/firestoreService.dart';
 import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/person.dart';
+import 'package:hello/classes/talk.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,9 +31,10 @@ class _TimetableExampleState extends State<TimetableExample> {
   TimetableController<BasicEvent> _controller;
   List<BasicEvent> events;
   Atendee user;
+  var smth;
   _TimetableExampleState({Atendee user}) {
     events = List();
-    _addEvents();
+
     this.user = user;
   }
 
@@ -78,6 +80,7 @@ class _TimetableExampleState extends State<TimetableExample> {
               );
             } else {
               user = Atendee.fromData(snapshot.data.docs[0].data());
+              _addEvents();
 
               return Scaffold(
                 key: _scaffoldKey,
@@ -91,7 +94,8 @@ class _TimetableExampleState extends State<TimetableExample> {
                     ),
                   ],
                 ),
-                body: Timetable<BasicEvent>(
+                body: /* Align(alignment: Alignment.center, child: Text("$smth")), */
+                    Timetable<BasicEvent>(
                   controller: _controller,
                   eventBuilder: (event) {
                     return BasicEventWidget(
@@ -199,39 +203,31 @@ class _TimetableExampleState extends State<TimetableExample> {
   }
 
   void _addEvent() async {
-    events.add(BasicEvent(
-      id: 1,
-      title: 'My Event1',
-      color: Colors.red,
-      start: LocalDate.today().at(LocalTime(16, 0, 0)),
-      end: LocalDate.today().at(LocalTime(17, 0, 0)),
-    ));
+    int i = 0;
+    smth = user.talks[0];
 
-    events.add(BasicEvent(
-      id: 2,
-      title: 'My Event2',
-      color: Colors.red,
-      start: LocalDate.today().at(LocalTime(12, 0, 0)),
-      end: LocalDate.today().at(LocalTime(16, 0, 0)),
-    ));
-
-    var dbref = FirebaseFirestore.instance;
-    QuerySnapshot queryTalks = await dbref.collection("talks").get();
-    var talks = queryTalks.docs;
-    var i = 0;
-    for (var talk in talks) {
-      var title = talk['name'];
-      var btime = talk['beginTime'];
-      var etime = talk['endTime'];
-      //var date = talk['date'];
+    for (var talk in user.talks) {
+      var title = talk.name;
+      var btime = talk.beginTime.split(":");
+      var etime = talk.endTime.split(":");
+      var date = talk.date.split("-");
+      var year = int.parse(date[0]);
+      var month = int.parse(date[1]);
+      var day = int.parse(date[2]);
+      i = i + 1;
+      int btime_hour = int.parse(btime[0]);
+      int btime_minutes = int.parse(btime[1]);
+      int etime_hour = int.parse(etime[0]);
+      int etime_minutes = int.parse(etime[1]);
       events.add(BasicEvent(
         id: i,
         title: title,
         color: Colors.red,
-        start: btime,
-        end: etime,
+        start: LocalDate(year, month, day)
+            .at(LocalTime(btime_hour, btime_minutes, 0)),
+        end: LocalDate(year, month, day)
+            .at(LocalTime(etime_hour, etime_minutes, 0)),
       ));
     }
-    i++;
   }
 }

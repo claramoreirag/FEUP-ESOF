@@ -137,30 +137,31 @@ class _RegisterTalk extends State<RegisterTalk> {
                   ),
                 ),
               ),
-              TextButton.icon(
-                onPressed: () async {
-                  TimeOfDay end_time = await showTimePicker(
-                    initialTime: TimeOfDay.now(),
-                    context: context,
-                    builder: (BuildContext context, Widget child) {
-                      return MediaQuery(
-                        data: MediaQuery.of(context)
-                            .copyWith(alwaysUse24HourFormat: true),
-                        child: child,
-                      );
-                    },
-                  );
-                  setState(() {
-                    endTimeController.text = end_time.format(context);
-                    button_end_time = endTimeController.text;
-                  });
-                },
-                icon: Icon(Icons.access_time),
-                label: Text('End Time: $button_end_time'),
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
-                ),
-              ),
+              Builder(
+                  builder: (context) => TextButton.icon(
+                        onPressed: () async {
+                          TimeOfDay end_time = await showTimePicker(
+                            initialTime: TimeOfDay.now(),
+                            context: context,
+                            builder: (BuildContext context, Widget child) {
+                              return MediaQuery(
+                                data: MediaQuery.of(context)
+                                    .copyWith(alwaysUse24HourFormat: true),
+                                child: child,
+                              );
+                            },
+                          );
+                          setState(() {
+                            endTimeController.text = end_time.format(context);
+                            button_end_time = endTimeController.text;
+                          });
+                        },
+                        icon: Icon(Icons.access_time),
+                        label: Text('End Time: $button_end_time'),
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                      )),
             ]),
             TextButton.icon(
               onPressed: () async {
@@ -185,31 +186,8 @@ class _RegisterTalk extends State<RegisterTalk> {
                 ),
               ),
             ),
-            SizedBox(height: 330),
-
-            /*  Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: TextFormField(
-                    controller: speakerLinkedinController,
-                    decoration: InputDecoration(
-                      border: new OutlineInputBorder(),
-                      labelText: "Enter Speakers LinkedIn",
-                      contentPadding: EdgeInsets.all(10.0),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: TextFormField(
-                    controller: speakerCVController,
-                    decoration: InputDecoration(
-                      border: new OutlineInputBorder(),
-                      labelText: "Enter Speakers CV",
-                      contentPadding: EdgeInsets.all(10.0),
-                    ),
-                  ),
-                ), */
-            RaisedButton(
+            //SizedBox(height: 330),
+/*             RaisedButton(
               color: Colors.lightBlue,
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
@@ -235,11 +213,11 @@ class _RegisterTalk extends State<RegisterTalk> {
                         .showSnackBar(SnackBar(content: Text(onError)));
                   });
                 }
-                sleep(Duration(milliseconds: 1000));
+
                 Navigator.pop(context);
               },
               child: Text('Add'),
-            ),
+            ), */
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(

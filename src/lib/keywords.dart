@@ -72,7 +72,7 @@ class _chooseKeywords extends State<chooseKeywords> {
                       keywords.addAll(tags);
                     }
                   }
-                  //print(keywords);
+
                   values = mapValues(keywords);
                   return StatefulBuilder(
                       builder: (BuildContext context, StateSetter setState) {
