@@ -460,14 +460,40 @@ Use cross-links to the code repository and only embed real fragments of code whe
 
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+In order to make sure that our application works as expected, we have implemented a series of tests using flutter's testing framework.
 
-In this section it is only expected to include the following:
+### Test Plan
+#### Flutter Unit Tests
+We have implemented unit tests to ensure that our base classes and their methods work as expected.
+The tests encompass:
+  - Constructors
+  - Attributes
+  - Methods
 
-- test plan describing the list of features to be tested and the testing methods and tools;
-- test case specifications to verify the functionalities, using unit tests and acceptance tests.
+#### Flutter Widget Tests
+We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database that would require a massive amount of refactoring to fix in little time.
+The tests encompass:
+  - Adding tags as an admin
+  - Choosing keywords as an attendee
+  - Logging in as a user
 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+
+### Test Case Specifications
+#### Flutter Unit Tests
+##### Constructors
+These tests confirm that whenever a constructor is called, an object of one of our base classes is created. 
+##### Attributes
+These tests confirm that whenever an object of one of our base classes is created, its attribute fields are filled correctly.
+##### Methods
+These tests confirm that whenever a method is called, their algorithms are correct and they return the expected result.
+
+#### Flutter Widget Tests
+##### Adding tags as an admin
+These tests confirm that, when the admin is on the "Add Tags" page, enters the title of a tag, and presses the button, that tag is registered in the app. They also confirm that when the admin only enters the title and does not press the button, the tag is not added.
+##### Choosing keywords as an attendee
+These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
+##### Logging in as a user
+These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
 
 ---
 
