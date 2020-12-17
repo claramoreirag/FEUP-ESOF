@@ -59,29 +59,29 @@ As a mobile application the product needs to have a performance tailored to the 
 - Actor: Attendee or Conference Admin
 - Description: Attendees and Conference Admins register so that they can use the app and register in the system.
 - Preconditions and Postconditions: Before the Register there is nothing, as a User's story begins registering so they can access their info later.
-- Normal Flow: During register, user's provide their email, a password, name and date of birth. After registering, user's usually carry on and make their own profiles, discover the app's functionalities.
+- Normal Flow: During register, user's provide their email, a password, name and location. After registering, user's usually carry on and make their own profiles and discover the app's functionalities.
 - Alternative Flows: There are no alternate actions for the register process.
 
 **Login/Profile**
 
 - Actor: Attendee or Conference Admin
-- Description: As of the act of registering, the users get access through login with email and password and have their own profile
+- Description: As of the act of registering, the users get access through login with email and password and have their own profile.
 - Preconditions and Postconditions: To perform the login action, one must first register. Same goes for the profile.
-- Normal Flow: During login, email and password should be provided in order to access one's account. In the profile, people can visualize their own profile info and they can edit it.
-- Alternate Flows: User's have to login to access the app, howeer they do not have to necessarily go through their profile everytime they login, they can skip ahead and do something else in the app.
+- Normal Flow: During login, email and password should be provided and be valid credentials in order to access one's account. In the profile, people can visualize their own profile info.
+- Alternate Flows: User's have to login to access the app, however they do not have to necessarily go through their profile everytime they login, they can skip ahead and do something else in the app.
 
 **Choose tags of their interest**
 
 - Actor: Attendee
 - Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
 - Preconditions and postconditions: To choose tags, one must be logged in the app and have chosen the conference they will attend. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
-- Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
+- Normal flow: After choosing the tags, the user will prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
 **Prioritize tags**
 
 - Actor: Attendee
-- Description: The attendees can order the tags they choose according to their preferences,after register and also later on while using the app.
+- Description: The attendees can order the tags they choose according to their preferences, after register and also later on while using the app.
 - Preconditions and postconditions: Before prioritizing tags, the attendee must have selected the tags of his interest. After prioritizing tags,the app can generate a schedule even more tailored to the attendee.
 - Normal Flow: The user should prioritize the tags after choosing them. After prioritizing the tags, the user can navigative the rest of the app.
 - Alternate Flows: The users can prioritize tags whenever they want. Prioritizing tags is not a mandatory step, so the user can step over it.
@@ -90,7 +90,7 @@ As a mobile application the product needs to have a performance tailored to the 
 
 - Actor: Attendee
 - Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
-- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app. 
+- Preconditions and postconditions: For the attendee to choose the conference, the conference must be already uploaded on to the app. 
 After choosing the conference, the attendee can choose the tags according to their interests.
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
@@ -118,7 +118,7 @@ After choosing the conference, the attendee can choose the tags according to the
 - Actor: Conference Admin
 - Description: The conference Admin can add the conference information, such as its talks, the schedule and tag, so that they can be accessed later on by the attendees.
 - Preconditions and postconditions: The Conference Admins need to be logged in and have a talk schedule ready to add to the app.
-- Normal Flow: The Conference Admin adds the talks to the app and procedes to indicate the tags associated to them.
+- Normal Flow: The Conference Admin adds the talks to the app and proceedes to indicate the tags associated to them.
 - Alternate Flows: This is a necessary step for the app to be able to generate schedules for the attendees.
 
 ---
@@ -370,25 +370,6 @@ After choosing the conference, the attendee can choose the tags according to the
 ```
 
 **Value:** Must have
-
-**Effort:** S
-
-
-<br>
-
- - As an admin, I want to be able to consult the already uploaded talks so that I know which ones I still need to upload
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Consulting talks already added 
-		Given I am logged in as an admin user
-		And I am viewing the conference information
-		Then I see the talks that I have already added
-```
-
-**Value:** Must Have
 
 **Effort:** S
 
