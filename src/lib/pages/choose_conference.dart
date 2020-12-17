@@ -31,8 +31,14 @@ class _ChooseConference extends State<ChooseConference> {
         title: Text('Conferences'),
         centerTitle: true,
       ),
-      body: ListPage(
-        user: user,
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.pop(context, user);
+          return true;
+        },
+        child: ListPage(
+          user: user,
+        ),
       ),
     );
   }
