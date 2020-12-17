@@ -140,7 +140,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/add_talk_display.png)
+<img src = "./img/add_talk_display.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -161,7 +161,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/login_display.png)
+<img src = "./img/login_display.png" width=200 >
+
 
 **Acceptance tests:**
 ```gherkin
@@ -181,7 +182,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/select_tags_display.png)
+<img src = "./img/select_tags_display.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -202,7 +203,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/profile.png)
+<img src = "./img/profile" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -222,7 +223,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/evaluate_interests.png)
+<img src = "./img/evaluate_interests.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -243,7 +244,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/choose_conference.png)
+<img src = "./img/choose_conference.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -264,7 +265,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/check_schedule.png)
+<img src = "./img/check_schedule.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -340,7 +341,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
  **User interface mockups:**
 
-![](./img/burguer_menu.png)
+<img src = "./img/burguer_menu.png" width=200 >
+
 
  **Acceptance tests:**
  ```gherkin
@@ -354,24 +356,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Effort:** M
 
-<br>
 
- - As an attendee, I want to choose the conference that I will attend
-
-**User interface mockups:**
-
-**Acceptance tests:**
- ```gherkin
-	Scenario: Choosing the conference
-		Given I am logged in 
-		And I am in the burger menu
-		When I want to choose a conference
-		Then I can choose the conference
-```
-
-**Value:** Must have
-
-**Effort:** S
 
 ---
 
