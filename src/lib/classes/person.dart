@@ -63,18 +63,25 @@ class Atendee {
             conference: conference,
             interests: new List());
 
-  Atendee.fromData(Map<String, dynamic> data)
-      : this.id = data['id'],
-        this.fullName = data['fullName'],
-        this.email = data['email'],
-        this.userRole = data['userRole'],
-        this.location = data['location'],
-        this.profilePhoto = data['profilePhoto'],
-        this.phoneNumber = data['phoneNumber'],
-        this.linkedIn = data['linkedIn'],
-        this.cv = data['cv'],
-        this.conference = data['conference']; //cuidad com o ;
-  //this.talks = data['talks'];
+  Atendee.fromData(Map<String, dynamic> data) {
+    this.id = data['id'];
+    this.fullName = data['fullName'];
+    this.email = data['email'];
+    this.userRole = data['userRole'];
+    this.location = data['location'];
+    this.profilePhoto = data['profilePhoto'];
+    this.phoneNumber = data['phoneNumber'];
+    this.linkedIn = data['linkedIn'];
+    this.cv = data['cv'];
+    this.conference = data['conference'];
+    this.talks = new List();
+    print(data['talks']);
+    if (data['talks'].length > 0) {
+      for (var talk in data['talks']) {
+        talks.add(Talk.fromData(talk));
+      }
+    }
+  }
 
   fromData(Map<String, dynamic> data) {
     this.id = data['id'];

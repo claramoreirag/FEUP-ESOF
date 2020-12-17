@@ -4,6 +4,7 @@ import 'package:hello/authenticate/firestoreService.dart';
 import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/person.dart';
 import 'package:hello/classes/talk.dart';
+import 'package:hello/pages/choose_conference.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,6 +28,7 @@ class TimetableExample extends StatefulWidget {
 }
 
 class _TimetableExampleState extends State<TimetableExample> {
+  static int i = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TimetableController<BasicEvent> _controller;
   List<BasicEvent> events;
@@ -154,34 +156,36 @@ class _TimetableExampleState extends State<TimetableExample> {
                           'Create Conference',
                           () => Navigator.pushNamed(
                               context, '/create_conference')),
-                      Drawer_Tile(Icons.import_contacts, 'Choose Interests',
+/*                       Drawer_Tile(Icons.import_contacts, 'Choose Interests',
                           () async {
                         user = await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                     chooseKeywords(user: user)));
-                      }),
+                      }), */
                       Drawer_Tile(
                           Icons.list,
                           'Conferences List',
                           () =>
                               Navigator.pushNamed(context, '/conference_list')),
-                      Drawer_Tile(Icons.lock, 'Logout',
-                          () => {context.read<Authenticator>().signOut()}),
-                      Drawer_Tile(
-                          Icons.my_library_add,
-                          'Choose conference',
-                          () => Navigator.pushNamed(
-                              context, '/choose_conference')),
-                      Drawer_Tile(
+                      Drawer_Tile(Icons.lock, 'Logout', () => {signout()}),
+                      Drawer_Tile(Icons.my_library_add, 'Choose conference',
+                          () async {
+                        user = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ChooseConference(user: user)));
+                      }),
+/*                       Drawer_Tile(
                           Icons.import_contacts,
                           'Evaluate Interests',
                           () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      evaluatesInterests(user))))
+                                      evaluatesInterests(user)))) */
                     ],
                   ),
                 ),
@@ -203,7 +207,6 @@ class _TimetableExampleState extends State<TimetableExample> {
   }
 
   void _addEvent() async {
-    int i = 0;
     smth = user.talks[0];
 
     for (var talk in user.talks) {
@@ -229,5 +232,10 @@ class _TimetableExampleState extends State<TimetableExample> {
             .at(LocalTime(etime_hour, etime_minutes, 0)),
       ));
     }
+  }
+
+  void signout() {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    context.read<Authenticator>().signOut();
   }
 }

@@ -106,7 +106,10 @@ class _chooseKeywords extends State<chooseKeywords> {
           label: Text('Validate'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
-            Navigator.pop(context, user);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => evaluatesInterests(user)));
           },
         ));
   }
@@ -143,6 +146,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
   }
 
   Widget getDropdownButton() {
+    int val;
     print(user.interests.toString());
     List<Widget> lista = [];
     for (int i = 0; i < user.interests.length; i++) {
@@ -151,6 +155,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
           new Text(user.interests[i]),
           new DropdownButton<int>(
             items: <int>[1, 2, 3, 4, 5].map((int value) {
+              val = value;
               return new DropdownMenuItem<int>(
                 value: value,
                 child: new Text(value.toString()),
@@ -164,6 +169,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
             },
             focusColor: Colors.blue[100],
           ),
+          new Text(val.toString()),
         ]),
       );
     }
@@ -234,33 +240,48 @@ class _scheduleMaking extends State<scheduleMaking> {
   }
   List<Talk> conferenceTalks = new List();
   Widget talksCalculation() {
-    return SafeArea(
-        child: StreamBuilder(
-            stream:
-                locator<FirestoreService>().getConferenceTalks(user.conference),
-            builder: (_, snapshot) {
-              if (!snapshot.hasData || snapshot.data.size == 0) {
-                return Center(
-                  child: Text("Calculating your preferred talks..."),
-                );
-              } else {
-                print(snapshot.data.docs);
-                var docs = snapshot.data.docs;
-                conferenceTalks = new List();
-                for (int i = 0; i < docs.length; i++) {
-                  Talk talk = Talk.fromData(docs[i].data());
-                  conferenceTalks.add(talk);
-                  print(conferenceTalks.length);
-                }
-                user.selectTalksToAttend(conferenceTalks);
-                for (var talk in user.talks) print(talk.name);
-                print(user.talks.toString());
-                locator<FirestoreService>().updateUser(user);
-                return Center(
-                  child: Text("Your schedule is ready!"),
-                );
-              }
-            }));
+    return Scaffold(
+        appBar: AppBar(),
+        body: SafeArea(
+            child: StreamBuilder(
+                stream: locator<FirestoreService>()
+                    .getConferenceTalks(user.conference),
+                builder: (_, snapshot) {
+                  if (!snapshot.hasData || snapshot.data.size == 0) {
+                    return Center(
+                      child: Text("Calculating your preferred talks..."),
+                    );
+                  } else {
+                    print(snapshot.data.docs);
+                    var docs = snapshot.data.docs;
+                    conferenceTalks = new List();
+                    for (int i = 0; i < docs.length; i++) {
+                      Talk talk = Talk.fromData(docs[i].data());
+                      conferenceTalks.add(talk);
+                      print(conferenceTalks.length);
+                    }
+                    user.selectTalksToAttend(conferenceTalks);
+                    for (var talk in user.talks) print(talk.name);
+                    print(user.talks.toString());
+                    locator<FirestoreService>().updateUser(user);
+                    return Center(
+                      child: Text(
+                        "Your schedule is ready!",
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    );
+                  }
+                })),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: FloatingActionButton.extended(
+          // isExtended: true,
+          label: Text("OK"),
+          icon: Icon(Icons.check),
+          backgroundColor: Colors.blue,
+          onPressed: () {
+            Navigator.pushNamed(context, '/timetable');
+          },
+        ));
   }
 
   @override
