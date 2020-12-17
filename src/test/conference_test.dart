@@ -47,12 +47,11 @@ void main() {
     //Adding keywords
     conference.addKeywords();
 
-    expect(conference.keywords.length, 4);
+    expect(conference.keywords.length, 3);
 
     expect(conference.keywords[0], 'Cybersecurity');
     expect(conference.keywords[1], 'AI');
     expect(conference.keywords[2], 'Data Science');
-    expect(conference.keywords[3], 'AI');
   });
 
 }
