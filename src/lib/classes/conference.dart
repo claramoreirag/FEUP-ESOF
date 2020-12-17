@@ -3,7 +3,7 @@ class Conference {
   String title;
   String description;
   List talks;
-  List keywords;
+  List keywords = [];
 
   Conference({this.id, this.title});
 
