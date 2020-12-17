@@ -2,6 +2,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hello/classes/person.dart';
 
 void main() {
+  test('Testing Speaker class', () {
+    Speaker speaker = Speaker('NameTest', 'CVtest', 'LinkedInTest');
+
+    expect(speaker.name, 'NameTest');
+    expect(speaker.cv, 'CVtest');
+    expect(speaker.linkedIn, 'LinkedInTest');
+  });
+
   test('Interest should be added and removed whenever these functions are called', () {
     final atendee = Atendee();
     expect(atendee.interests.length, 0);
