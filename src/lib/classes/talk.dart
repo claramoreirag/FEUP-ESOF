@@ -5,7 +5,7 @@ class Talk {
   int id;
   String title;
   String description;
-  List<dynamic> tags;
+  List<dynamic> tags = [];
   Speaker speaker;
 
 
