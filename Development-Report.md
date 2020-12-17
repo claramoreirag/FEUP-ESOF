@@ -145,7 +145,7 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Uploading talks as an admin
-		Given I am logged in as an admin
+		Given I am logged in 
 		And I am on the add_talk page
 		When I add a talk
 		Then the talk is added on the app
@@ -161,7 +161,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/login.png" width=200 >
+<img src = "./img/login_display.png" width=200 >
 
 
 **Acceptance tests:**
@@ -187,7 +187,7 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing interests as an attendee
-		Given I am logged in as an attendee
+		Given I am logged in 
 		And I am on the choose tag page
 		When I select a tag
 		Then that tag is added as an interest of mine
@@ -199,7 +199,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want to have my own profile
+- As a user, I want to have my own profile
 
 **User interface mockups:**
 
@@ -209,7 +209,8 @@ After choosing the conference, the attendee can choose the tags according to the
 ```gherkin
 	Scenario: Consulting profile information
 		Given I am logged in
-		And I am viewing the Profile Page
+		And I am on the burguer menu
+		When I choose the Profile option
 		Then I see my profile information
 ```
 
@@ -228,9 +229,9 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Evaluating interests quantitatively
-		Given I am logged in as an attendee
+		Given I am logged in 
 		And I am on the evaluate interests page
-		When I choose the value of my interest
+		When I choose the value of my interests
 		Then that value persists on the app
 ```
 
@@ -249,7 +250,7 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing a conference as an attendee
-		Given I am logged in as an attendee
+		Given I am logged in 
 		And I am on the choose conference page
 		When I select a conference
 		Then I can select my interests
@@ -270,13 +271,13 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Checking generated schedule
-		Given I am logged in as an attendee
+		Given I am logged in 
 		And I have already chose my interests and evaluated them
-		When I ask to see my schedule
+		When I go to the main page
 		Then I can consult my schedule
 ```
 
-**Value:** Could Have
+**Value:** Must Have
 
 **Effort:** L
 
@@ -286,18 +287,16 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/burguer_menu.png" width=200 >
-
 **Acceptance tests:**
 ```gherkin
 	Scenario: Logging out as an user
 		Given I am logged in
 		And I am on the burguer menu
-		When I logout 
+		When I choose the Logout option
 		Then I am logged out of the app
 ```
 
-**Value:** Must Have
+**Value:** Should Have
 
 **Effort:** S
 
@@ -307,13 +306,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/create_conference.png" width=200 >
-
 **Acceptance tests:**
 ```gherkin
 	Scenario: Creating a conference as an admin
-		Given I am logged in as an admin
-		And I am on the create_conference page
+		Given I am logged in 
+		And I am on the Create Conference page
 		When I create a conference with valid data 
 		Then the conference is saved on the app
 ```
@@ -328,8 +325,6 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/register.png" width=200 >
-
 **Acceptance tests:**
 ```gherkin
 	Scenario: Registering as a user
@@ -340,7 +335,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Value:** Should Have
 
-**Effort:** S
+**Effort:** L
 
 <br>
 
@@ -362,8 +357,6 @@ After choosing the conference, the attendee can choose the tags according to the
 **Value:** Must Have
 
 **Effort:** M
-
-
 
 ---
 
@@ -406,33 +399,62 @@ We are using the Flutter framework because it was recommended to us by our teach
 
 ### Prototype
 
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+Our application allows to create conferences, attend them and craft a schedule based on the user interests.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+Everyone can be a conference manager and everyone can attend conferences, but there are some actions that can only be executed if the user is a conference manager, like add talks, in other words if the user has created at least one conference.
+
+All the crucial user stories were completed with success, with the exception of register, that broke down for an unknown reason few hours before the release. We had a very ambicious backlog since the very beginning of the project and as a result we couldn't accomplish all of those side-features.
 
 ---
 
 ## Implementation
 
-Regular product increments are a good practice of product management.
+To generate the schedule fit for the user needs, an algorithm was implemented. 
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+First, it calculates the interest per talk by adding the priorities of each keyword of a talk and creating a map with keys being the talks and values being the interest.
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+After that, it sorts a list of talks from the conference in a way that the first talks are the one that the user is more interested in. 
+
+Lastly, it iterates through that list and if the possible talk is compatible with the already added talks, it adds to the list of talks the user will/can attend.
 
 ---
 
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+In order to make sure that our application works as expected, we have implemented a series of tests using flutter's testing framework.
 
-In this section it is only expected to include the following:
+### Test Plan
+#### Flutter Unit Tests
+We have implemented unit tests to ensure that our base classes and their methods work as expected.
+The tests encompass:
+  - Constructors
+  - Attributes
+  - Methods
 
-- test plan describing the list of features to be tested and the testing methods and tools;
-- test case specifications to verify the functionalities, using unit tests and acceptance tests.
+#### Flutter Widget Tests
+We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database and it would require a massive amount of refactoring to fix in such a short time.
+The tests encompass:
+  - Adding tags as an admin
+  - Choosing keywords as an attendee
+  - Logging in as a user
 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
 
+### Test Case Specifications
+#### Flutter Unit Tests
+##### Constructors
+These tests confirm that whenever a constructor is called, an object of one of our base classes is created. 
+##### Attributes
+These tests confirm that whenever an object of one of our base classes is created, its attribute fields are filled correctly.
+##### Methods
+These tests confirm that whenever a method is called, their algorithms are correct and they return the expected result.
+
+#### Flutter Widget Tests
+##### Adding tags as an admin
+These tests confirm that, when the admin is on the "Add Tags" page, enters the title of a tag, and presses the button, that tag is registered in the app. They also confirm that when the admin only enters the title and does not press the button, the tag is not added.
+##### Choosing keywords as an attendee
+These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
+##### Logging in as a user
+These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
 ---
 
 ## Configuration and change management
