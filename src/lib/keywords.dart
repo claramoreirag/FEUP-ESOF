@@ -103,7 +103,7 @@ class _chooseKeywords extends State<chooseKeywords> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton.extended(
-          label: Text('Validate'),
+          label: Text('OK'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
             Navigator.push(
@@ -137,41 +137,50 @@ class evaluatesInterests extends StatefulWidget {
 class _evaluatesInterests extends State<evaluatesInterests> {
   Atendee user;
   Map<String, int> map = new Map();
+  Map<String, int> dropdownValues = new Map();
 
   _evaluatesInterests(Atendee user) {
     this.user = user;
     this.map = Map<String, int>();
+    for (int i = 0; i < user.interests.length; i++) {
+      dropdownValues[user.interests[i]] = 1;
+    }
 /*     this.user.addInterest('Computer Science');
     this.user.addInterest('AI'); */
   }
 
   Widget getDropdownButton() {
-    int val;
     print(user.interests.toString());
     List<Widget> lista = [];
     for (int i = 0; i < user.interests.length; i++) {
-      lista.add(
-        new Row(children: <Widget>[
-          new Text(user.interests[i]),
-          new DropdownButton<int>(
-            items: <int>[1, 2, 3, 4, 5].map((int value) {
-              val = value;
-              return new DropdownMenuItem<int>(
-                value: value,
-                child: new Text(value.toString()),
-              );
-            }).toList(),
-            onChanged: (int value) {
-              locator<FirestoreService>().updateUser(user);
-              setState(() {
-                map[user.interests[i]] = value;
-              });
-            },
-            focusColor: Colors.blue[100],
+      lista.add(Row(children: <Widget>[
+        SizedBox(width: 15),
+        Text(user.interests[i]),
+        SizedBox(width: 10),
+        DropdownButton<int>(
+          elevation: 16,
+          iconEnabledColor: Colors.lightBlue,
+          underline: Container(
+            height: 2,
+            color: Colors.lightBlue,
           ),
-          new Text(val.toString()),
-        ]),
-      );
+          value: dropdownValues[user.interests[i]],
+          items: <int>[1, 2, 3, 4, 5].map((int value) {
+            return new DropdownMenuItem<int>(
+              value: value,
+              child: new Text(value.toString()),
+            );
+          }).toList(),
+          onChanged: (int value) {
+            locator<FirestoreService>().updateUser(user);
+            setState(() {
+              map[user.interests[i]] = value;
+              dropdownValues[user.interests[i]] = value;
+            });
+          },
+          focusColor: Colors.blue[100],
+        ),
+      ]));
     }
 
     this.user.orderInterestsByPriority(map);
@@ -189,7 +198,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
         body: SafeArea(child: getDropdownButton()),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton.extended(
-          label: Text('Validate'),
+          label: Text('OK'),
           icon: Icon(Icons.playlist_add_check_rounded),
           onPressed: () async {
             Navigator.push(context,

@@ -186,38 +186,9 @@ class _RegisterTalk extends State<RegisterTalk> {
                 ),
               ),
             ),
-            //SizedBox(height: 330),
-/*             RaisedButton(
-              color: Colors.lightBlue,
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  Talk talk = Talk(
-                      date: dateController.text,
-                      beginTime: beginTimeController.text,
-                      endTime: endTimeController.text,
-                      name: nameController.text,
-                      speaker: speakerNameController.text,
-                      //conference: widget.conference.id,
-                      tags: tags);
-                  locator<FirestoreService>()
-                      .addTalk(talk, widget.conference.id)
-                      .then((_) {
-                    Scaffold.of(context).showSnackBar(
-                        SnackBar(content: Text('Successfully Added')));
-                    beginTimeController.clear();
-                    endTimeController.clear();
-                    nameController.clear();
-                    dateController.clear();
-                  }).catchError((onError) {
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text(onError)));
-                  });
-                }
-
-                Navigator.pop(context);
-              },
-              child: Text('Add'),
-            ), */
+            SizedBox(
+              height: 30,
+            ),
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(

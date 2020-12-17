@@ -21,18 +21,6 @@ class FirestoreService {
     }
   }
 
-/*
-  Future<Atendee> getUser(String uid) async {
-    try {
-      Atendee atendee;
-      var userData = await _usersCollectionReference.doc(uid).get().then((value) {atendee.fromData(value.data());});
-      return Atendee.fromData(userData.data());
-    } catch (e) {
-      return e.message;
-    }
-  }
-*/
-
   Future<Atendee> getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.doc(uid).get();
@@ -54,6 +42,14 @@ class FirestoreService {
         .doc(confID)
         .collection("talks")
         .snapshots();
+  }
+
+  Future<void> getUserConferences(String userID) async {
+    QuerySnapshot queryConfs = await firestore
+        .collection("conference")
+        .where("admin", isEqualTo: userID)
+        .get();
+    return queryConfs.docs;
   }
 
   List<String> tagsToStringList(List<dynamic> tags) {
@@ -126,16 +122,4 @@ class FirestoreService {
           .update({"id": docRef.id});
     });
   }
-
-  // Atendee getSignedUser(String uid) {
-  //   try {
-  //     Atendee atendee;
-
-  //     var userData = (_usersCollectionReference.doc(uid).get());
-  //     userData.then((DocumentSnapshot) => DocumentSnapshot.data());
-  //     return Atendee.fromData(userData.data());
-  //   } catch (e) {
-  //     return e.message;
-  //   }
-  // }
 }

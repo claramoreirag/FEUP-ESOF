@@ -88,10 +88,9 @@ class _ListPage extends State<ListPage> {
                   return ListTile(
                       title: Text(snapshot.data[index]["name"]),
                       onTap: () {
-                        locator<FirestoreService>().setUserConference(
-                            snapshot.data[index].documentID,
-                            FirebaseAuth.instance.currentUser.uid);
-                        sleep(Duration(milliseconds: 500));
+                        user.conference = snapshot.data[index].documentID;
+                        locator<FirestoreService>().updateUser(user);
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(

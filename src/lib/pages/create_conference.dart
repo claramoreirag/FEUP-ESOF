@@ -1,15 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/classes/conference.dart';
+import 'package:hello/classes/person.dart';
 
 class CreateConference extends StatefulWidget {
   Conference conference;
-
+  Atendee user;
+  CreateConference(Atendee user) {
+    this.user = user;
+  }
   @override
-  _CreateConference createState() => _CreateConference();
+  _CreateConference createState() => _CreateConference(user);
 }
 
 class _CreateConference extends State<CreateConference> {
+  Atendee user;
+
+  _CreateConference(Atendee user) {
+    this.user = user;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +29,27 @@ class _CreateConference extends State<CreateConference> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            RegisterConference(),
+            RegisterConference(user),
           ]),
     );
   }
 }
 
 class RegisterConference extends StatefulWidget {
+  Atendee user;
+
+  RegisterConference(Atendee user) {
+    this.user = user;
+  }
   @override
-  _RegisterConference createState() => _RegisterConference();
+  _RegisterConference createState() => _RegisterConference(user);
 }
 
 class _RegisterConference extends State<RegisterConference> {
+  Atendee user;
+  _RegisterConference(Atendee user) {
+    this.user = user;
+  }
   final _formKey = GlobalKey<FormState>();
   TextEditingController confNameController = TextEditingController();
   final databaseReference = FirebaseFirestore.instance;
@@ -61,7 +79,7 @@ class _RegisterConference extends State<RegisterConference> {
                 ),
               ),
               SizedBox(
-                height: 550,
+                height: 30,
               ),
               Align(
                   alignment: Alignment.bottomRight,
@@ -75,6 +93,7 @@ class _RegisterConference extends State<RegisterConference> {
                             .doc()
                             .set({
                           "name": confNameController.text,
+                          "admin": user.id
                         }).then((_) {
                           Scaffold.of(context).showSnackBar(
                               SnackBar(content: Text('Successfully Added')));

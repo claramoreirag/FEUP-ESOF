@@ -5,6 +5,7 @@ import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/person.dart';
 import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/choose_conference.dart';
+import 'package:hello/pages/create_conference.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +15,7 @@ import '../authenticate/authentication.dart';
 import 'package:provider/provider.dart';
 
 import '../keywords.dart';
+import 'conference_list.dart';
 
 class TimetableExample extends StatefulWidget {
   Atendee user;
@@ -54,7 +56,7 @@ class _TimetableExampleState extends State<TimetableExample> {
         endTime: LocalTime(20, 0, 0),
       ),
       initialDate: LocalDate.today(),
-      visibleRange: VisibleRange.days(5),
+      visibleRange: VisibleRange.days(3),
       firstDayOfWeek: DayOfWeek.monday,
     );
   }
@@ -72,14 +74,22 @@ class _TimetableExampleState extends State<TimetableExample> {
             .getUserStream(FirebaseAuth.instance.currentUser.uid),
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
-            return Center(
-              child: Text("Loading..."),
-            );
+            return Scaffold(
+                body: Center(
+              child: Text(
+                "Loading...",
+                style: TextStyle(fontSize: 40),
+              ),
+            ));
           } else {
             if (snapshot.data.size == 0) {
-              return Center(
-                child: Text("Loading..."),
-              );
+              return Scaffold(
+                  body: Center(
+                child: Text(
+                  "Loading...",
+                  style: TextStyle(fontSize: 40),
+                ),
+              ));
             } else {
               user = Atendee.fromData(snapshot.data.docs[0].data());
               _addEvents();
@@ -102,15 +112,15 @@ class _TimetableExampleState extends State<TimetableExample> {
                   eventBuilder: (event) {
                     return BasicEventWidget(
                       event,
-                      onTap: () =>
-                          _showSnackBar('Part-day event $event tapped'),
+                      /* onTap: () =>
+                          _showSnackBar('Part-day event $event tapped'), */
                     );
                   },
                   allDayEventBuilder: (context, event, info) =>
                       BasicAllDayEventWidget(
                     event,
                     info: info,
-                    onTap: () => _showSnackBar('All-day event $event tapped'),
+                    //onTap: () => _showSnackBar('All-day event $event tapped'),
                   ),
                 ),
                 drawer: Drawer(
@@ -132,10 +142,10 @@ class _TimetableExampleState extends State<TimetableExample> {
                                 child: Padding(
                                   padding: EdgeInsets.all(10.0),
                                   child: Image.asset("images/logo.png",
-                                      width: 80, height: 80),
+                                      width: 70, height: 70),
                                 )),
                             Padding(
-                                padding: EdgeInsets.all(3.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Text(
                                   'Schedule IT',
                                   style: TextStyle(
@@ -154,22 +164,18 @@ class _TimetableExampleState extends State<TimetableExample> {
                       Drawer_Tile(
                           Icons.my_library_add,
                           'Create Conference',
-                          () => Navigator.pushNamed(
-                              context, '/create_conference')),
-/*                       Drawer_Tile(Icons.import_contacts, 'Choose Interests',
-                          () async {
-                        user = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    chooseKeywords(user: user)));
-                      }), */
+                          () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateConference(user)))),
                       Drawer_Tile(
                           Icons.list,
                           'Conferences List',
-                          () =>
-                              Navigator.pushNamed(context, '/conference_list')),
-                      Drawer_Tile(Icons.lock, 'Logout', () => {signout()}),
+                          () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConferenceList(user)))),
                       Drawer_Tile(Icons.my_library_add, 'Choose conference',
                           () async {
                         user = await Navigator.push(
@@ -178,14 +184,7 @@ class _TimetableExampleState extends State<TimetableExample> {
                                 builder: (context) =>
                                     ChooseConference(user: user)));
                       }),
-/*                       Drawer_Tile(
-                          Icons.import_contacts,
-                          'Evaluate Interests',
-                          () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      evaluatesInterests(user)))) */
+                      Drawer_Tile(Icons.lock, 'Logout', () => {signout()}),
                     ],
                   ),
                 ),
@@ -203,7 +202,12 @@ class _TimetableExampleState extends State<TimetableExample> {
 
   void _addEvents() async {
     //buscar coisas bonitas da BD
+    _eventsClear();
     _addEvent();
+  }
+
+  void _eventsClear() async {
+    events.clear();
   }
 
   void _addEvent() async {
@@ -225,7 +229,7 @@ class _TimetableExampleState extends State<TimetableExample> {
       events.add(BasicEvent(
         id: i,
         title: title,
-        color: Colors.red,
+        color: Colors.blue[200],
         start: LocalDate(year, month, day)
             .at(LocalTime(btime_hour, btime_minutes, 0)),
         end: LocalDate(year, month, day)
