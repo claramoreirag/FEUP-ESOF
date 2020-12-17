@@ -161,7 +161,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/login_display.png" width=200 >
+<img src = "./img/login.png" width=200 >
 
 
 **Acceptance tests:**
@@ -203,7 +203,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/profile" width=200 >
+<img src = "./img/profile.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -286,10 +286,13 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+<img src = "./img/burguer_menu.png" width=200 >
+
 **Acceptance tests:**
 ```gherkin
 	Scenario: Logging out as an user
 		Given I am logged in
+		And I am on the burguer menu
 		When I logout 
 		Then I am logged out of the app
 ```
@@ -303,6 +306,8 @@ After choosing the conference, the attendee can choose the tags according to the
 - As a conference admin, I want to create a Conference
 
 **User interface mockups:**
+
+<img src = "./img/create_conference.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
@@ -322,6 +327,8 @@ After choosing the conference, the attendee can choose the tags according to the
 - As an user, I want to be able to register on the app
 
 **User interface mockups:**
+
+<img src = "./img/register.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
