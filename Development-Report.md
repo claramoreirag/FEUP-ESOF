@@ -181,7 +181,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/select_tags_display.jpg)
+![](./img/select_tags_display.png)
 
 **Acceptance tests:**
 ```gherkin
@@ -202,6 +202,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+![](./img/profile.png)
+
 **Acceptance tests:**
 ```gherkin
 	Scenario: Consulting profile information
@@ -219,6 +221,8 @@ After choosing the conference, the attendee can choose the tags according to the
 - As an attendee, I want to evaluate my interests quantitatively in keywords I choose so that talks about topics that interest me the most are prioritized.
 
 **User interface mockups:**
+
+![](./img/evaluate_interests.png)
 
 **Acceptance tests:**
 ```gherkin
@@ -239,6 +243,8 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+![](./img/choose_conference.png)
+
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing a conference as an attendee
@@ -257,6 +263,8 @@ After choosing the conference, the attendee can choose the tags according to the
 - As an attendee, I want to be able to check my generated schedule
 
 **User interface mockups:**
+
+![](./img/check_schedule.png)
 
 **Acceptance tests:**
 ```gherkin
@@ -331,6 +339,8 @@ After choosing the conference, the attendee can choose the tags according to the
  - As an user, I want to have an app that is easy to navigate through
 
  **User interface mockups:**
+
+![](./img/burguer_menu.png)
 
  **Acceptance tests:**
  ```gherkin
