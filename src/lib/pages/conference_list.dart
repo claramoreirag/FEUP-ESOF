@@ -117,9 +117,9 @@ class _ConferencePage extends State<ConferencePage> {
               style: TextButton.styleFrom(
                 primary: Colors.black,
               )),
-          ListTalks(
+          /*  ListTalks(
             conference: conference,
-          )
+          ) */
         ]));
   }
 }
