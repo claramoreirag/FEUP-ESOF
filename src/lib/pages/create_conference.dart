@@ -87,6 +87,7 @@ class _RegisterConference extends State<RegisterConference> {
                       }
                     },
                   )),
+
             ],
           ),
         )));

@@ -134,10 +134,16 @@ class evaluatesInterests extends StatefulWidget {
 class _evaluatesInterests extends State<evaluatesInterests> {
   Atendee user;
   Map<String, int> map = new Map();
+  Map<String, int> dropdownValues = new Map();
+  //int dropdownValue = 1;
 
   _evaluatesInterests(Atendee user) {
     this.user = user;
     this.map = Map<String, int>();
+    for (int i = 0; i < user.interests.length; i++) {
+      dropdownValues[user.interests[i]] = 1;
+    }
+
 /*     this.user.addInterest('Computer Science');
     this.user.addInterest('AI'); */
   }
@@ -146,26 +152,34 @@ class _evaluatesInterests extends State<evaluatesInterests> {
     print(user.interests.toString());
     List<Widget> lista = [];
     for (int i = 0; i < user.interests.length; i++) {
-      lista.add(
-        new Row(children: <Widget>[
-          new Text(user.interests[i]),
-          new DropdownButton<int>(
-            items: <int>[1, 2, 3, 4, 5].map((int value) {
-              return new DropdownMenuItem<int>(
-                value: value,
-                child: new Text(value.toString()),
-              );
-            }).toList(),
-            onChanged: (int value) {
-              locator<FirestoreService>().updateUser(user);
-              setState(() {
-                map[user.interests[i]] = value;
-              });
-            },
-            focusColor: Colors.blue[100],
+      lista.add(Row(children: <Widget>[
+        SizedBox(width: 15),
+        Text(user.interests[i]),
+        SizedBox(width: 10),
+        DropdownButton<int>(
+          elevation: 16,
+          iconEnabledColor: Colors.lightBlue,
+          underline: Container(
+            height: 2,
+            color: Colors.lightBlue,
           ),
-        ]),
-      );
+          value: dropdownValues[user.interests[i]],
+          items: <int>[1, 2, 3, 4, 5].map((int value) {
+            return new DropdownMenuItem<int>(
+              value: value,
+              child: new Text(value.toString()),
+            );
+          }).toList(),
+          onChanged: (int value) {
+            locator<FirestoreService>().updateUser(user);
+            setState(() {
+              map[user.interests[i]] = value;
+              dropdownValues[user.interests[i]] = value;
+            });
+          },
+          focusColor: Colors.blue[100],
+        ),
+      ]));
     }
 
     this.user.orderInterestsByPriority(map);
@@ -178,7 +192,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Evaluate your interests from 1 to 5"),
+          title: Text("Evaluate Interests"),
         ),
         body: SafeArea(child: getDropdownButton()),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
