@@ -27,37 +27,6 @@ class Authenticator {
     }
   }
 
-/*
-  Future<String> register(
-      {String displayName,
-      String email,
-      String password,
-      String userRole,
-      String location,
-      String profilePhoto,
-      String phoneNumber,
-      String linkedIn,
-      String cv}) async {
-    try {
-      var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      //((value) => value.user.updateProfile(displayName: displayName));
-      await _firestoreService.createUser(session.User(
-          id: authResult.user.uid,
-          email: email,
-          fullName: displayName,
-          userRole: userRole,
-          location: location,
-          profilePhoto: profilePhoto,
-          phoneNumber: phoneNumber,
-          linkedIn: linkedIn,
-          cv: cv));
-      return "Registered";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
-  }
-*/
   Future<String> register(
       {String displayName,
       String email,

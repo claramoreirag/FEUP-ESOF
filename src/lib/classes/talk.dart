@@ -1,6 +1,3 @@
-import 'tags.dart';
-import 'person.dart';
-
 class Talk {
   String id;
   String name;

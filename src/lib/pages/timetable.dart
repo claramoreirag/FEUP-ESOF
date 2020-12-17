@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hello/authenticate/firestoreService.dart';
 import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/person.dart';
-import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/choose_conference.dart';
 import 'package:hello/pages/create_conference.dart';
 import 'package:time_machine/time_machine.dart';
@@ -14,7 +13,6 @@ import '../authenticate/authentication.dart';
 
 import 'package:provider/provider.dart';
 
-import '../keywords.dart';
 import 'conference_list.dart';
 
 class TimetableExample extends StatefulWidget {
