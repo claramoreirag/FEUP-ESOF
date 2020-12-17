@@ -203,7 +203,7 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-<img src = "./img/profile" width=200 >
+<img src = "./img/profile.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
