@@ -132,12 +132,12 @@ class Atendee {
   }
 
   orderInterestsByPriority(Map<String, int> map) {
-    if (map.isNotEmpty) {
-      for (int i = 0; i < interests.length; i++) {
-        if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
-      }
-      interests.sort((a, b) => map[b].compareTo(map[a]));
-    }
+    // if (map.isNotEmpty) {
+    //   for (int i = 0; i < interests.length; i++) {
+    //     if (!map.keys.contains(interests[i])) map[interests[i]] = 0;
+    //   }
+    //   interests.sort((a, b) => map[b].compareTo(map[a]));
+    // }
     this.priorities = map;
   }
 
