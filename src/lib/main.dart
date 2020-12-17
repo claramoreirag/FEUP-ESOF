@@ -34,6 +34,7 @@ class App extends StatelessWidget {
     Atendee user = new Atendee(
         id: '1', fullName: "leonor", email: "leonor.gomes@gmail.com");
     Conference conference = new Conference();
+
     return MultiProvider(
         providers: [
           Provider<Authenticator>(
@@ -44,6 +45,10 @@ class App extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          builder: (context, child) => MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child),
           title: 'Flutter Time Picker example',
           theme: ThemeData(
             primarySwatch: Colors.blue,
@@ -57,14 +62,14 @@ class App extends StatelessWidget {
             '/actor': (context) => Actor(),
             '/create_talk': (context) => CreateTalk(),
             '/add_tags': (context) => AddTags(),
-            '/create_conference': (context) => CreateConference(),
-            '/conference_list': (context) => ConferenceList(),
+            // '/create_conference': (context) => CreateConference(),
+            //'/conference_list': (context) => ConferenceList(),
             '/choose_conference': (context) => ChooseConference(),
             //'/choose_keywords': (context) => ChooseKeywords(),
             //'/choose_keywords': (context) => chooseKeywords(),
             //'/evaluate_interests': (context) => evaluatesInterests(user),
             //'/choose_keywords': (context) => ChooseKeywords(),
-            '/choose_keywords': (context) => chooseKeywords(user, conference),
+
             '/evaluate_interests': (context) => evaluatesInterests(user),
             '/register': (context) => Register(),
           },

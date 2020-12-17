@@ -1,13 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/person.dart';
 import 'create_talk.dart';
 
 class ConferenceList extends StatefulWidget {
+  Atendee user;
+  ConferenceList(Atendee user) {
+    this.user = user;
+  }
   @override
-  _ConferenceList createState() => _ConferenceList();
+  _ConferenceList createState() => _ConferenceList(user);
 }
 
 class _ConferenceList extends State<ConferenceList> {
+  Atendee user;
+  _ConferenceList(Atendee user) {
+    this.user = user;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,17 +27,26 @@ class _ConferenceList extends State<ConferenceList> {
         title: Text('Conferences'),
         centerTitle: true,
       ),
-      body: ListPage(),
+      body: ListPage(user),
     );
   }
 }
 
 class ListPage extends StatefulWidget {
+  Atendee user;
+  ListPage(Atendee user) {
+    this.user = user;
+  }
   @override
-  _ListPage createState() => _ListPage();
+  _ListPage createState() => _ListPage(user);
 }
 
 class _ListPage extends State<ListPage> {
+  Atendee user;
+  _ListPage(Atendee user) {
+    this.user = user;
+  }
+
   Future<void> getConferences() async {
     var dbref = FirebaseFirestore.instance;
     QuerySnapshot queryConfs = await dbref.collection("conference").get();
@@ -43,7 +64,7 @@ class _ListPage extends State<ListPage> {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-          future: getConferences(),
+          future: locator<FirestoreService>().getUserConferences(user.id),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -69,10 +90,12 @@ class ConferencePage extends StatefulWidget {
   ConferencePage({this.conference});
 
   @override
-  _ConferencePage createState() => _ConferencePage();
+  _ConferencePage createState() => _ConferencePage(conference: conference);
 }
 
 class _ConferencePage extends State<ConferencePage> {
+  final DocumentSnapshot conference;
+  _ConferencePage({this.conference});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,23 +103,24 @@ class _ConferencePage extends State<ConferencePage> {
           title: Text(widget.conference["name"]),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            TextButton.icon(
-                onPressed: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              CreateTalk(conference: widget.conference)));
-                },
-                icon: Icon(Icons.calendar_today),
-                label: Text('Add talk '),
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
-                )),
-          ],
-        ));
+        body: Column(children: [
+          TextButton.icon(
+              onPressed: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CreateTalk(conference: widget.conference)));
+              },
+              icon: Icon(Icons.calendar_today),
+              label: Text('Add talk '),
+              style: TextButton.styleFrom(
+                primary: Colors.black,
+              )),
+          /*  ListTalks(
+            conference: conference,
+          ) */
+        ]));
   }
 }
 
@@ -127,16 +151,17 @@ class _ListTalks extends State<ListTalks> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FutureBuilder(
-          future: getTalks(),
+      child: StreamBuilder(
+          stream: locator<FirestoreService>()
+              .getConferenceTalks(widget.conference.id),
           builder: (_, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (!snapshot.hasData) {
               return Center(
                 child: Text("Loading..."),
               );
             } else {
               return ListView.builder(
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data.size,
                 itemBuilder: (_, index) {
                   return ListTile(title: Text(snapshot.data[index]["name"]));
                   //onTap: ()=> navigateToDetail(snapshot.data[index]));

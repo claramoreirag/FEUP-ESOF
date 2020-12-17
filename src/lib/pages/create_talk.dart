@@ -1,7 +1,16 @@
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/classes/person.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/talk.dart';
 import 'package:hello/pages/add_tags.dart';
+import 'dart:io';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
 
 class CreateTalk extends StatefulWidget {
   final DocumentSnapshot conference;
@@ -39,6 +48,8 @@ class _RegisterTalk extends State<RegisterTalk> {
 
   String button_start_time = '';
   String button_end_time = '';
+  TimeOfDay start_time;
+  TimeOfDay end_time;
   String button_date = '';
   String button_tags = '';
 
@@ -51,7 +62,9 @@ class _RegisterTalk extends State<RegisterTalk> {
   final speakerNameController = TextEditingController();
   final speakerCVController = TextEditingController();
   final speakerLinkedinController = TextEditingController();
+
   List<String> tags = new List();
+  String stringtags = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,6 +75,15 @@ class _RegisterTalk extends State<RegisterTalk> {
             Padding(
               padding: EdgeInsets.only(top: 16.0),
               child: TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  if (button_start_time.compareTo(button_end_time) >= 0) {
+                    return 'Start must happen before finish';
+                  }
+                  return null;
+                },
                 controller: nameController,
                 decoration: InputDecoration(
                   border: new OutlineInputBorder(),
@@ -89,48 +111,66 @@ class _RegisterTalk extends State<RegisterTalk> {
               ),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              TextButton.icon(
-                onPressed: () async {
-                  var time = await showTimePicker(
-                    initialTime: TimeOfDay.now(),
-                    context: context,
-                  );
-                  beginTimeController.text = time.format(context);
-                  setState(() {
-                    button_start_time = beginTimeController.text;
-                  });
-                },
-                icon: Icon(Icons.access_time),
-                label: Text('Start Time: $button_start_time'),
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
+              Builder(
+                builder: (context) => TextButton.icon(
+                  onPressed: () async {
+                    TimeOfDay begin_time = await showTimePicker(
+                      initialTime: TimeOfDay.now(),
+                      context: context,
+                      builder: (BuildContext context, Widget child) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context)
+                              .copyWith(alwaysUse24HourFormat: true),
+                          child: child,
+                        );
+                      },
+                    );
+                    setState(() {
+                      beginTimeController.text = begin_time.format(context);
+                      button_start_time = beginTimeController.text;
+                    });
+                  },
+                  icon: Icon(Icons.access_time),
+                  label: Text('Start Time: $button_start_time'),
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
                 ),
               ),
-              TextButton.icon(
-                onPressed: () async {
-                  var time = await showTimePicker(
-                    initialTime: TimeOfDay.now(),
-                    context: context,
-                  );
-                  endTimeController.text = time.format(context);
-                  setState(() {
-                    button_end_time = endTimeController.text;
-                  });
-                },
-                icon: Icon(Icons.access_time),
-                label: Text('End Time: $button_end_time'),
-                style: TextButton.styleFrom(
-                  primary: Colors.black,
-                ),
-              ),
+              Builder(
+                  builder: (context) => TextButton.icon(
+                        onPressed: () async {
+                          TimeOfDay end_time = await showTimePicker(
+                            initialTime: TimeOfDay.now(),
+                            context: context,
+                            builder: (BuildContext context, Widget child) {
+                              return MediaQuery(
+                                data: MediaQuery.of(context)
+                                    .copyWith(alwaysUse24HourFormat: true),
+                                child: child,
+                              );
+                            },
+                          );
+                          setState(() {
+                            endTimeController.text = end_time.format(context);
+                            button_end_time = endTimeController.text;
+                          });
+                        },
+                        icon: Icon(Icons.access_time),
+                        label: Text('End Time: $button_end_time'),
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                      )),
             ]),
             TextButton.icon(
               onPressed: () async {
                 tags = await Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AddTags()));
+                stringtags = showTagsString();
               },
               icon: Icon(Icons.calendar_today),
-              label: Text('Tags: $button_tags'),
+              label: Text('Tags: ' + stringtags + ' $button_tags'),
               style: TextButton.styleFrom(
                 primary: Colors.black,
               ),
@@ -146,58 +186,51 @@ class _RegisterTalk extends State<RegisterTalk> {
                 ),
               ),
             ),
-
-            /*  Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: TextFormField(
-                    controller: speakerLinkedinController,
-                    decoration: InputDecoration(
-                      border: new OutlineInputBorder(),
-                      labelText: "Enter Speakers LinkedIn",
-                      contentPadding: EdgeInsets.all(10.0),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: TextFormField(
-                    controller: speakerCVController,
-                    decoration: InputDecoration(
-                      border: new OutlineInputBorder(),
-                      labelText: "Enter Speakers CV",
-                      contentPadding: EdgeInsets.all(10.0),
-                    ),
-                  ),
-                ), */
-            RaisedButton(
-              color: Colors.lightBlue,
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  await databaseReference.collection("talks").doc().set({
-                    "date": dateController.text,
-                    "beginTime": beginTimeController.text,
-                    "endTime": endTimeController.text,
-                    "name": nameController.text,
-                    "conference": databaseReference
-                        .doc('conference/' + widget.conference.id),
-                    "tags": tags
-                  }).then((_) {
-                    Scaffold.of(context).showSnackBar(
-                        SnackBar(content: Text('Successfully Added')));
-                    beginTimeController.clear();
-                    endTimeController.clear();
-                    nameController.clear();
-                    dateController.clear();
-                  }).catchError((onError) {
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text(onError)));
-                  });
-                }
-                Navigator.pop(context);
-              },
-              child: Text('Add'),
+            SizedBox(
+              height: 30,
             ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton.extended(
+                label: Text("Create Talk"),
+                onPressed: () async {
+                  if (_formKey.currentState.validate()) {
+                    Talk talk = Talk(
+                        date: dateController.text,
+                        beginTime: beginTimeController.text,
+                        endTime: endTimeController.text,
+                        name: nameController.text,
+                        speaker: speakerNameController.text,
+                        //conference: widget.conference.id,
+                        tags: tags);
+                    locator<FirestoreService>()
+                        .addTalk(talk, widget.conference.id)
+                        .then((_) {
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(content: Text('Successfully Added')));
+                      beginTimeController.clear();
+                      endTimeController.clear();
+                      nameController.clear();
+                      dateController.clear();
+                    }).catchError((onError) {
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text(onError)));
+                    });
+                  }
+
+                  Navigator.pop(context);
+                },
+              ),
+            )
           ]),
         ));
+  }
+
+  String showTagsString() {
+    String tagsString = '';
+    for (String tag in tags) {
+      tagsString = tagsString + ', ' + tag;
+    }
+    return tagsString;
   }
 }
