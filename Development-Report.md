@@ -1,6 +1,6 @@
 # openCX-T7G3 ESOF Teas Development Report
 
-Welcome to the documentation pages of the Schedule IT of **openCX**!
+Welcome to the documentation view of the Schedule IT of **openCX**!
 
 - Business modeling
   - [Product Vision](#Product-Vision)
@@ -463,7 +463,7 @@ The Model component contains all the app data: profiles, schedules, CVs, etc.
 
 Last but not least, the Controller component that connects the Model to the View: the Model sends data for the View to display and the View sends user inputs for the Model to process.
 
-The Model gets the data from the databases containing all the user and conference information and the View gets inputs from the user interactions with the GUI Pages.
+The Model gets the data from the databases containing all the user and conference information and the View gets inputs from the user interactions with the GUI view.
 
 ### Physical architecture
 
