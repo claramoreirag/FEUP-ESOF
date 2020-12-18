@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello/pages/timetable.dart';
 import '../authenticate/signupModel.dart';
-import 'package:hello/pages/actor.dart';
 
 class Register extends StatefulWidget {
   Register({Key key, this.title}) : super(key: key);
@@ -22,6 +20,7 @@ class _Register extends State<Register> {
 
   SignUpViewModel model = SignUpViewModel();
 
+  String dropdownValue = 'Atendee';
   @override
   Widget build(BuildContext context) {
     final usernameField = TextField(
@@ -74,6 +73,29 @@ class _Register extends State<Register> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
+    final userType = DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.blue[300], fontSize: 24),
+      underline: Container(
+        height: 3,
+        color: Colors.blue[300],
+      ),
+      onChanged: (String newValue) {
+        setState(() {
+          dropdownValue = newValue;
+        });
+      },
+      items: <String>['Atendee', 'Admin']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
     final registerButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
@@ -88,9 +110,9 @@ class _Register extends State<Register> {
             password: passwordController.text.trim(),
             location: locationController.text.trim(),
             phoneNumber: phoneController.text.trim(),
+            userRole: dropdownValue,
           );
-          return Navigator.pop(
-              context); //context,MaterialPageRoute(builder: (context) => TimetableExample()),(Route<dynamic> route) => false);
+          return Navigator.pop(context);
         },
         child: Text("Register",
             textAlign: TextAlign.center,
@@ -123,8 +145,15 @@ class _Register extends State<Register> {
                 locationField,
                 SizedBox(height: 15.0),
                 phoneField,
-                SizedBox(height: 45.0),
+                SizedBox(height: 15.0),
+                //userType,
+                SizedBox(
+                  height: 35.0,
+                ),
                 registerButton,
+                SizedBox(
+                  height: 15.0,
+                ),
               ],
             ),
           ),

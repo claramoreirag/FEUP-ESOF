@@ -1,6 +1,3 @@
-import 'tags.dart';
-import 'person.dart';
-
 class Talk {
 // <<<<<<< HEAD
 //   int id;
