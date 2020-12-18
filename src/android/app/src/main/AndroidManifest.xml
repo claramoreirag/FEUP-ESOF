@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hello">
    <application
-        android:label="hello"
+        android:usesCleartextTraffic="true"
+        android:label="Schedule IT"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
