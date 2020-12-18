@@ -145,13 +145,8 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Uploading talks as an admin
-<<<<<<< HEAD
-		Given I am logged in as an admin
-		And I am on the "Create Talk" page
-=======
 		Given I am logged in 
 		And I am on the add_talk page
->>>>>>> origin/master
 		When I add a talk
 		Then the talk is added on the app
 ```
@@ -349,16 +344,11 @@ After choosing the conference, the attendee can choose the tags according to the
 **User interface mockups:**
 
 
-<<<<<<< HEAD
-**Acceptance tests:**
-```gherkin
-=======
 <img src = "./img/burguer_menu.png" width=200 >
 
 
  **Acceptance tests:**
  ```gherkin
->>>>>>> origin/master
 	Scenario: Navigating through the app
 		Given I am logged in 
 		When I open the burger menu
@@ -369,65 +359,6 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Effort:** M
 
-<<<<<<< HEAD
-<br>
-
- - As an attendee, I want to choose the conference that I will attend
-
-**User interface mockups:**
-
-**Acceptance tests:**
-
-```gherkin
-	Scenario: Choosing the conference
-		Given I am logged in 
-		And I am in the burger menu
-		When I want to choose a conference
-		Then I can choose the conference
-```
-
-**Value:** Must have
-
-**Effort:** S
-
-
-<br>
-
-
- - As an admin, I want to be able to consult the already uploaded talks so that I know which ones I still need to upload
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Consulting talks already added 
-		Given I am logged in as an admin user
-		And I am viewing the conference information
-		Then I see the talks that I have already added
-```
-
-**Value:** Must Have
-
-**Effort:** S
-
-<br>
-
-- As an attendee, I want to be able to check my schedule
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: 
-```
-
-**Value:** Must Have
-
-**Effort:** M
-
-
-=======
->>>>>>> origin/master
 ---
 
 ### Domain model
@@ -502,11 +433,7 @@ The tests encompass:
   - Methods
 
 #### Flutter Widget Tests
-<<<<<<< HEAD
-We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database that would require a massive amount of refactoring to fix in little time.
-=======
 We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database and it would require a massive amount of refactoring to fix in such a short time.
->>>>>>> origin/master
 The tests encompass:
   - Adding tags as an admin
   - Choosing keywords as an attendee
@@ -529,10 +456,6 @@ These tests confirm that, when the admin is on the "Add Tags" page, enters the t
 These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
 ##### Logging in as a user
 These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 ---
 
 ## Configuration and change management
