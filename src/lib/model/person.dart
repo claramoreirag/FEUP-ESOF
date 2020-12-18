@@ -76,9 +76,11 @@ class Atendee {
     this.conference = data['conference'];
     this.talks = new List();
     print(data['talks']);
-    if (data['talks'].length > 0) {
-      for (var talk in data['talks']) {
-        talks.add(Talk.fromData(talk));
+    if (data['talks'] != null) {
+      if (data['talks'].length > 0) {
+        for (var talk in data['talks']) {
+          talks.add(Talk.fromData(talk));
+        }
       }
     }
   }
