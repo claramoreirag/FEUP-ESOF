@@ -1,4 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/authenticate/firestoreService.dart';
+import 'package:hello/authenticate/locator.dart';
+import 'package:hello/classes/person.dart';
+import 'package:hello/classes/talk.dart';
+import 'package:hello/pages/choose_conference.dart';
+import 'package:hello/pages/create_conference.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,19 +14,32 @@ import '../authenticate/authentication.dart';
 
 import 'package:provider/provider.dart';
 
+import '../keywords.dart';
+import 'conference_list.dart';
+
 class TimetableExample extends StatefulWidget {
+  Atendee user;
+
+  TimetableExample({Atendee user}) {
+    this.user = user;
+  }
+
   @override
-  _TimetableExampleState createState() => _TimetableExampleState();
+  _TimetableExampleState createState() =>
+      _TimetableExampleState(user: this.user);
 }
 
 class _TimetableExampleState extends State<TimetableExample> {
+  static int i = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TimetableController<BasicEvent> _controller;
   List<BasicEvent> events;
-
-  _TimetableExampleState() {
+  Atendee user;
+  var smth;
+  _TimetableExampleState({Atendee user}) {
     events = List();
-    _addEvents();
+
+    this.user = user;
   }
 
   @override
@@ -36,7 +56,7 @@ class _TimetableExampleState extends State<TimetableExample> {
         endTime: LocalTime(20, 0, 0),
       ),
       initialDate: LocalDate.today(),
-      visibleRange: VisibleRange.days(5),
+      visibleRange: VisibleRange.days(3),
       firstDayOfWeek: DayOfWeek.monday,
     );
   }
@@ -49,78 +69,129 @@ class _TimetableExampleState extends State<TimetableExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text('Your Timetable'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.today),
-            onPressed: () => _controller.animateToToday(),
-            tooltip: 'Jump to today',
-          ),
-        ],
-      ),
-      body: Timetable<BasicEvent>(
-        controller: _controller,
-        eventBuilder: (event) {
-          return BasicEventWidget(
-            event,
-            onTap: () => _showSnackBar('Part-day event $event tapped'),
-          );
-        },
-        allDayEventBuilder: (context, event, info) => BasicAllDayEventWidget(
-          event,
-          info: info,
-          onTap: () => _showSnackBar('All-day event $event tapped'),
-        ),
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Container(
-                  child: Column(
-                children: <Widget>[
-                  Material(
-                      elevation: 10,
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      child: Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Image.asset("images/logo.png",
-                            width: 80, height: 80),
-                      )),
-                  Padding(
-                      padding: EdgeInsets.all(3.0),
-                      child: Text(
-                        'Schedule IT',
-                        style: TextStyle(color: Colors.white, fontSize: 25.0),
-                      )),
-                ],
-              )),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: <Color>[Colors.blue[800], Colors.blue])),
-            ),
-            Drawer_Tile(Icons.person, 'Profile',
-                () => Navigator.pushNamed(context, '/profile')),
-            Drawer_Tile(Icons.my_library_add, 'Create Conference',
-                () => Navigator.pushNamed(context, '/create_conference')),
-            Drawer_Tile(Icons.import_contacts, 'Choose Interests',
-                () => Navigator.pushNamed(context, '/choose_keywords')),
-            Drawer_Tile(Icons.list, 'Conferences List',
-                () => Navigator.pushNamed(context, '/conference_list')),
-            Drawer_Tile(Icons.lock, 'Logout',
-                () => {context.read<Authenticator>().signOut()}),
-          ],
-        ),
-      ),
-    );
+    return StreamBuilder<QuerySnapshot>(
+        stream: locator<FirestoreService>()
+            .getUserStream(FirebaseAuth.instance.currentUser.uid),
+        builder: (_, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+                body: Center(
+              child: Text(
+                "Loading...",
+                style: TextStyle(fontSize: 40),
+              ),
+            ));
+          } else {
+            if (snapshot.data.size == 0) {
+              return Scaffold(
+                  body: Center(
+                child: Text(
+                  "Loading...",
+                  style: TextStyle(fontSize: 40),
+                ),
+              ));
+            } else {
+              user = Atendee.fromData(snapshot.data.docs[0].data());
+              _addEvents();
+
+              return Scaffold(
+                key: _scaffoldKey,
+                appBar: AppBar(
+                  title: Text(''),
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.today),
+                      onPressed: () => _controller.animateToToday(),
+                      tooltip: 'Jump to today',
+                    ),
+                  ],
+                ),
+                body: /* Align(alignment: Alignment.center, child: Text("$smth")), */
+                    Timetable<BasicEvent>(
+                  controller: _controller,
+                  eventBuilder: (event) {
+                    return BasicEventWidget(
+                      event,
+                      /* onTap: () =>
+                          _showSnackBar('Part-day event $event tapped'), */
+                    );
+                  },
+                  allDayEventBuilder: (context, event, info) =>
+                      BasicAllDayEventWidget(
+                    event,
+                    info: info,
+                    //onTap: () => _showSnackBar('All-day event $event tapped'),
+                  ),
+                ),
+                drawer: Drawer(
+                  // Add a ListView to the drawer. This ensures the user can scroll
+                  // through the options in the drawer if there isn't enough vertical
+                  // space to fit everything.
+                  child: ListView(
+                    // Important: Remove any padding from the ListView.
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      DrawerHeader(
+                        child: Container(
+                            child: Column(
+                          children: <Widget>[
+                            Material(
+                                elevation: 10,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50.0)),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Image.asset("images/logo.png",
+                                      width: 70, height: 70),
+                                )),
+                            Padding(
+                                padding: EdgeInsets.all(4.0),
+                                child: Text(
+                                  'Schedule IT',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 25.0),
+                                )),
+                          ],
+                        )),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: <Color>[
+                          Colors.blue[800],
+                          Colors.blue
+                        ])),
+                      ),
+                      Drawer_Tile(Icons.person, 'Profile',
+                          () => Navigator.pushNamed(context, '/profile')),
+                      Drawer_Tile(
+                          Icons.my_library_add,
+                          'Create Conference',
+                          () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateConference(user)))),
+                      Drawer_Tile(
+                          Icons.list,
+                          'Conferences List',
+                          () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConferenceList(user)))),
+                      Drawer_Tile(Icons.my_library_add, 'Choose conference',
+                          () async {
+                        user = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ChooseConference(user: user)));
+                      }),
+                      Drawer_Tile(Icons.lock, 'Logout', () => {signout()}),
+                    ],
+                  ),
+                ),
+              );
+            }
+          }
+        });
   }
 
   void _showSnackBar(String content) {
@@ -131,43 +202,44 @@ class _TimetableExampleState extends State<TimetableExample> {
 
   void _addEvents() async {
     //buscar coisas bonitas da BD
+    _eventsClear();
     _addEvent();
   }
 
+  void _eventsClear() async {
+    events.clear();
+  }
+
   void _addEvent() async {
-    events.add(BasicEvent(
-      id: 1,
-      title: 'My Event1',
-      color: Colors.red,
-      start: LocalDate.today().at(LocalTime(16, 0, 0)),
-      end: LocalDate.today().at(LocalTime(17, 0, 0)),
-    ));
+    smth = user.talks[0];
 
-    events.add(BasicEvent(
-      id: 2,
-      title: 'My Event2',
-      color: Colors.red,
-      start: LocalDate.today().at(LocalTime(12, 0, 0)),
-      end: LocalDate.today().at(LocalTime(16, 0, 0)),
-    ));
-
-    var dbref = FirebaseFirestore.instance;
-    QuerySnapshot queryTalks = await dbref.collection("talks").get();
-    var talks = queryTalks.docs;
-    var i = 0;
-    for (var talk in talks) {
-      var title = talk['name'];
-      var btime = talk['beginTime'];
-      var etime = talk['endTime'];
-      //var date = talk['date'];
+    for (var talk in user.talks) {
+      var title = talk.name;
+      var btime = talk.beginTime.split(":");
+      var etime = talk.endTime.split(":");
+      var date = talk.date.split("-");
+      var year = int.parse(date[0]);
+      var month = int.parse(date[1]);
+      var day = int.parse(date[2]);
+      i = i + 1;
+      int btime_hour = int.parse(btime[0]);
+      int btime_minutes = int.parse(btime[1]);
+      int etime_hour = int.parse(etime[0]);
+      int etime_minutes = int.parse(etime[1]);
       events.add(BasicEvent(
         id: i,
         title: title,
-        color: Colors.red,
-        start: btime,
-        end: etime,
+        color: Colors.blue[200],
+        start: LocalDate(year, month, day)
+            .at(LocalTime(btime_hour, btime_minutes, 0)),
+        end: LocalDate(year, month, day)
+            .at(LocalTime(etime_hour, etime_minutes, 0)),
       ));
     }
-    i++;
+  }
+
+  void signout() {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    context.read<Authenticator>().signOut();
   }
 }
