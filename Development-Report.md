@@ -30,13 +30,13 @@ Clara Moreira, Flávia Carvalhido, João Dossena, Leonor Gomes, Luís Assunção
 
 ## Product Vision
 
-Crafting YOUR conference schedule
+Crafting YOUR personalized schedule, tailored for your needs.
 
 ---
 
 ## Elevator Pitch
 
-Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! You don't need to clear your schedule to go to talks, we fit them right in your schedule for you! Going to a conference was never easier.
+Conference productivity? Let's make it a thing! You don't have to look for talks, we find them for you! With ScheduleIT, you’ll have your own personalized generated schedule fit to your preferences and interests! Going to a conference was never easier.
 
 ---
 
@@ -59,29 +59,29 @@ As a mobile application the product needs to have a performance tailored to the 
 - Actor: Attendee or Conference Admin
 - Description: Attendees and Conference Admins register so that they can use the app and register in the system.
 - Preconditions and Postconditions: Before the Register there is nothing, as a User's story begins registering so they can access their info later.
-- Normal Flow: During register, user's provide their email, a password, name and date of birth. After registering, user's usually carry on and make their own profiles, discover the app's functionalities.
+- Normal Flow: During register, user's provide their email, a password, name and location. After registering, user's usually carry on and make their own profiles and discover the app's functionalities.
 - Alternative Flows: There are no alternate actions for the register process.
 
 **Login/Profile**
 
 - Actor: Attendee or Conference Admin
-- Description: As of the act of registering, the users get access through login with email and password and have their own profile
+- Description: As of the act of registering, the users get access through login with email and password and have their own profile.
 - Preconditions and Postconditions: To perform the login action, one must first register. Same goes for the profile.
-- Normal Flow: During login, email and password should be provided in order to access one's account. In the profile, people can visualize their own profile info and they can edit it.
-- Alternate Flows: User's have to login to access the app, howeer they do not have to necessarily go through their profile everytime they login, they can skip ahead and do something else in the app.
+- Normal Flow: During login, email and password should be provided and be valid credentials in order to access one's account. In the profile, people can visualize their own profile info.
+- Alternate Flows: User's have to login to access the app, however they do not have to necessarily go through their profile everytime they login, they can skip ahead and do something else in the app.
 
 **Choose tags of their interest**
 
 - Actor: Attendee
 - Description: Every attendee must have tags of themes in which they are interested in. Therefore, after register and also later on while using the app, attendees can choose (add or delete) tags. This is extremelly important for later generation of the schedule.
 - Preconditions and postconditions: To choose tags, one must be logged in the app and have chosen the conference they will attend. After choosing the tags, the app has more information about the user's interests and will make a schedule tailored to them.
-- Normal flow: After choosing the tags, the user may do something else in the app but the most common action would be to prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
+- Normal flow: After choosing the tags, the user will prioritize those tags in order for the app to take into consideration how much the user likes a theme compared to other.
 - Alternate flow: Choosing tags is mandatory in order for the app to generate schedules therefore this is a mandatory step.
 
 **Prioritize tags**
 
 - Actor: Attendee
-- Description: The attendees can order the tags they choose according to their preferences,after register and also later on while using the app.
+- Description: The attendees can order the tags they choose according to their preferences, after register and also later on while using the app.
 - Preconditions and postconditions: Before prioritizing tags, the attendee must have selected the tags of his interest. After prioritizing tags,the app can generate a schedule even more tailored to the attendee.
 - Normal Flow: The user should prioritize the tags after choosing them. After prioritizing the tags, the user can navigative the rest of the app.
 - Alternate Flows: The users can prioritize tags whenever they want. Prioritizing tags is not a mandatory step, so the user can step over it.
@@ -90,23 +90,16 @@ As a mobile application the product needs to have a performance tailored to the 
 
 - Actor: Attendee
 - Description: The attendee chooses the conference they want to attend so that the app can start generating a schedule for the attendee.
-- Preconditions and postconditions: For the attendee to choose the conference, the conference admin has to have already uploaded the schedule on to the app. 
+- Preconditions and postconditions: For the attendee to choose the conference, the conference must be already uploaded on to the app. 
 After choosing the conference, the attendee can choose the tags according to their interests.
 - Normal Flow: The attendee chooses from a list of available conferences the one he wishes to attend.
 - Alternate Flows: The attendee must choose a conference for the app to generate a schedule. If he does not choose a conference, nothing happens and there's no generated schedule.
 
-**Upload CV**
+
+**Have a Generated Schedule According to Attendee interests**
 
 - Actor: Attendee
-- Description: The attendees can upload their own CV for conference admins to check and share with the speakers and/or companies.
-- Preconditions and postconditions: In order to upload the CV, the attendee must be logged in and after upload, the conference admin has access to the attendees' CVs. Admins can therefore share the CVs.
-- Normal Flow: To upload the CV, the attendee must choose a file from the device containing their CV and upload it to the app, to their own profile. Therefore, whenever they are in a talk, the conference admin can have access to their profile and check their CV, sharing it with the speaker or other bodies involved.
-- Alternate Flows: A attendee may choose not to upload their CV at all. This is an optional use case.
-
-**Have a Generated Schedule that fits own Schedule**
-
-- Actor: Attendee
-- Description:The ateendes are presented with a costumized conference schedule, according to their interests. This schedule is generated in such a way that it does not interfere with previous activities the user has scheduled.
+- Description:The ateendes are presented with a costumized conference schedule, according to their interests.
 - Preconditions and postconditions: There has to be a selected conference for the app to generate a schedule based on the attendee's interests. Afterwards, the attendee will have a personalized schedule just for them.
 - Normal Flow: The attendee, after picking a conference, gets a automatically generated schedule based on their interests.
 - Alternate Flows: There are no alternate flows to this use case.
@@ -119,37 +112,14 @@ After choosing the conference, the attendee can choose the tags according to the
 - Normal Flow: After choosing the conference and keywords of interest, the schedule is generated. The attendee will be able to open and consult it.
 - Alternate Flows:After the schedule is generated, the attendee can check it whenever he/she wants.
 
-**Customize generated schedule**
-
-- Actor: Attendee
-- Description: The Attendee may want to customize the generated schedule: adding talks, deleting talks, choosing a time frame that must be clear (break time), for example.
-- Preconditions and postconditions: There needs to be a generated schedule already for users to customize it. After customization, the user's schedule is updated and saved to the database for later consulting.
-- Normal Flow: The user opens the schedule, taps the 'Edit' button and may add, delete or even move talks around. Afterwards they save the changes so that the schedule is updated and can be consulted later on.
-- Alternate Flows: A user may choose not to edit the schedule at all or edit it and not save the changes.
-
-**Consult speakers' social media profiles**
-
-- Actor: Attendee
-- Description: The attendees are able to consult speaker's social media profiles of the talks they are participating.
-- Preconditions and postconditions: The attendee must already have the schedule generated.
-- Normal Flow: After seeing the generated schedule, attendees may check the social media profiles of speakers from each of the talks in their schedule.
-- Alternate Flows: Attendees may not check any social media profile, this is a complementary feature.
 
 **Add conference talks, schedule and tags**
 
 - Actor: Conference Admin
 - Description: The conference Admin can add the conference information, such as its talks, the schedule and tag, so that they can be accessed later on by the attendees.
 - Preconditions and postconditions: The Conference Admins need to be logged in and have a talk schedule ready to add to the app.
-- Normal Flow: The Conference Admin adds the talks to the app and procedes to indicate the tags associated to them.
+- Normal Flow: The Conference Admin adds the talks to the app and proceedes to indicate the tags associated to them.
 - Alternate Flows: This is a necessary step for the app to be able to generate schedules for the attendees.
-
-**Check and share attendee's CVs**
-
-- Actor: Conference Admin
-- Description: The conference admin can consult and share the attendee's CVs with the bodies involved in the conference.
-- Preconditions and postconditions: The attendees must have already uploaded their CVs for admins to check them and share them with other people.
-- Normal Flow: The Conference Admin checks the participants of a talk and can access their profiles/CVs. They can therefore share them with someone else.
-- Alternate Flows: The Conference Admin can opt to not use this feature or just not share the CVs.
 
 ---
 
@@ -170,15 +140,15 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/add_talk_display.png)
+<img src = "./img/add_talk_display.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
 	Scenario: Uploading talks as an admin
-		Given I am logged in as an admin
-		And I am on the "Create Talk" page
+		Given I am logged in 
+		And I am on the add_talk page
 		When I add a talk
-		Then the talk is registered in the database [TO DO: REVIEW]
+		Then the talk is added on the app
 ```
 
 **Value:** Must have
@@ -187,21 +157,19 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to be able to login in the app
+- As an user, I want to be able to login on the app
 
 **User interface mockups:**
 
-![](./img/login_display.png)
+<img src = "./img/login_display.png" width=200 >
+
 
 **Acceptance tests:**
 ```gherkin
 	Scenario: Entering as a user
-	    Given I am on the "Login" page
-	    And I am registered in the database
-	    When I correctly type my email
-	    And I correctly type my password
-	    And I tap the “Sign in” button
-	    Then I am on the "Timetable" page
+	    Given I am on the Login page
+	    When I login with valid credentials
+	    Then I am logged in
 ```
 
 **Value:** Should Have
@@ -214,16 +182,15 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
-![](./img/select_tags_display.jpg)
+<img src = "./img/select_tags_display.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing interests as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the "Add tags" page
-		When I check a tag's box
-		Then that tag is added to my profile [TO DO: REVIEW]
+		Given I am logged in 
+		And I am on the choose tag page
+		When I select a tag
+		Then that tag is added as an interest of mine
 ```
 
 **Value:** Must Have
@@ -232,19 +199,19 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want to have my own profile
+- As a user, I want to have my own profile
 
 **User interface mockups:**
 
+<img src = "./img/profile.png" width=200 >
+
 **Acceptance tests:**
 ```gherkin
-	Scenario: Seeing your own profile as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the "Timetable" page
-		When I click on the "Hamburger" button
-		And I click on the "Profile" button
-		Then I am taken to my profile page
+	Scenario: Consulting profile information
+		Given I am logged in
+		And I am on the burguer menu
+		When I choose the Profile option
+		Then I see my profile information
 ```
 
 **Value:** Must Have
@@ -257,13 +224,15 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+<img src = "./img/evaluate_interests.png" width=200 >
+
 **Acceptance tests:**
 ```gherkin
-	Scenario: Evaluating interests as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the "Rate Keywords" page
-		[TO DO]
+	Scenario: Evaluating interests quantitatively
+		Given I am logged in 
+		And I am on the evaluate interests page
+		When I choose the value of my interests
+		Then that value persists on the app
 ```
 
 **Value:** Should Have
@@ -276,14 +245,15 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **User interface mockups:**
 
+<img src = "./img/choose_conference.png" width=200 >
+
 **Acceptance tests:**
 ```gherkin
 	Scenario: Choosing a conference as an attendee
-		Given I am an attendee
-		And I am logged in
-		And I am on the [TO DO] page
-		When I [TO DO]
-		Then [TO DO]
+		Given I am logged in 
+		And I am on the choose conference page
+		When I select a conference
+		Then I can select my interests
 ```
 
 **Value:** Should Have
@@ -292,103 +262,41 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As an attendee, I want to upload my CV to the app for it to be shared by the conference admin
+- As an attendee, I want to be able to check my generated schedule
 
 **User interface mockups:**
 
-**Acceptance tests:**
-```gherkin
-	Scenario: Uploading CV as an attendee
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As a conference admin, I wish to receive the CV's of each talk attendees
-
-**User interface mockups:**
+<img src = "./img/check_schedule.png" width=200 >
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: Receiving attendees' CVs as an admin
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As an attendee, I wish to customize the generated talk schedule so that it becomes perfectly tailored to my needs
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Customizing the schedule as an attendee
-		Given I am an attendee
-		And I am logged in
-		[TO DO]
+	Scenario: Checking generated schedule
+		Given I am logged in 
+		And I have already chose my interests and evaluated them
+		When I go to the main page
+		Then I can consult my schedule
 ```
 
 **Value:** Must Have
-
-**Effort:** [TO DO: add here and to kanban board]
-
-<br>
-
-- As an attendee, I want to check the speaker's social media profiles
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: Viewing a speaker's social media profiles as an attendee
-		Given 
-```
-
-**Value:** Could Have
-
-**Effort:** M
-
-<br>
-
-- As an attendee, I want my own schedule to be compatible with the generated talk schedule
-
-**User interface mockups:**
-
-**Acceptance tests:**
-```gherkin
-	Scenario: 
-		Given 
-```
-
-**Value:** Could Have
 
 **Effort:** L
 
 <br>
 
-- As a user, I want to be able to log off of my profile
+- As an user, I want to be able to log out of my profile
 
 **User interface mockups:**
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: Logging off as a user
+	Scenario: Logging out as an user
 		Given I am logged in
-		And I am on the "Timetable" page
-		When I click on the "Hamburger" button
-		And I click on the "Logout" button
-		Then I am logged off of the app
+		And I am on the burguer menu
+		When I choose the Logout option
+		Then I am logged out of the app
 ```
 
-**Value:** Must Have
+**Value:** Should Have
 
 **Effort:** S
 
@@ -401,10 +309,10 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Creating a conference as an admin
-		Given I am logged in as an admin
-		And I am on the "Create Conference" page
-		When I [TO DO]
-		Then a conference is registered on the database
+		Given I am logged in 
+		And I am on the Create Conference page
+		When I create a conference with valid data 
+		Then the conference is saved on the app
 ```
 
 **Value:** Must Have
@@ -413,40 +321,43 @@ After choosing the conference, the attendee can choose the tags according to the
 
 <br>
 
-- As a user, I want to register to the app
+- As an user, I want to be able to register on the app
 
 **User interface mockups:**
 
 **Acceptance tests:**
 ```gherkin
 	Scenario: Registering as a user
-	    Given I am on the "Register" page
-	    When I correctly type my username
-	    And I correctly type my email
-	    And I correctly type my password
-	    And I tap the "Register" button
-	    Then I am registered on the database
+	    Given I am on the Register page
+	    When I register with valid data
+	    Then I am authenticated
 ```
 
-**Value:** Must Have
+**Value:** Should Have
 
-**Effort:** S
+**Effort:** L
 
 <br>
 
-- As an attendee, I want to be able to check my schedule
+- As an user, I want to have an app that is easy to navigate through
 
 **User interface mockups:**
 
-**Acceptance tests:**
-```gherkin
-	Scenario: 
+
+<img src = "./img/burguer_menu.png" width=200 >
+
+
+ **Acceptance tests:**
+ ```gherkin
+	Scenario: Navigating through the app
+		Given I am logged in 
+		When I open the burger menu
+		Then I can navigate through the app
 ```
 
 **Value:** Must Have
 
 **Effort:** M
-
 
 ---
 
@@ -467,11 +378,13 @@ The software architecture of the app contains all its key components and their r
 
 ![Logical architecture](./img/logical_architecture.png)
 
+![Dependencies](./img/logical_architecture2.png)
+
 To structure our app on a high-level, we opted to use the MVC architectural pattern, since it is very recommended for this sort of project.
 
 In the View component resides the user interface and front-end of our app: the display of our different app states and data.
 
-The Model component contains all the app data: profiles, schedules, CVs, etc.
+The Model component contains all the app data: profiles, schedules, etc.
 
 Last but not least, the Controller component that connects the Model to the View: the Model sends data for the View to display and the View sends user inputs for the Model to process.
 
@@ -479,41 +392,70 @@ The Model gets the data from the databases containing all the user and conferenc
 
 ### Physical architecture
 
-![Physical architecture](./img/physical_layer.png)
+![Physical architecture](./img/physical_arch.png)
 
-We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like CVs, schedules, profiles, etc.
+We are using the Flutter framework because it was recommended to us by our teachers as it is the easiest with which to get acquainted and to work. For authentication purposes in the app, we opted to use Firebase as it appears to be the best option for our login system. The server is needed to save our app data like schedules, talks, profiles, etc.
 
 ---
 
 ### Prototype
 
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+Our application allows to create conferences, attend them and craft a schedule based on the user interests.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+Everyone can be a conference manager and everyone can attend conferences, but there are some actions that can only be executed if the user is a conference manager, like add talks, in other words if the user has created at least one conference.
+
+All the crucial user stories were completed with success, with the exception of register, that broke down for an unknown reason few hours before the release. We had a very ambicious backlog since the very beginning of the project and as a result we couldn't accomplish all of those side-features.
 
 ---
 
 ## Implementation
 
-Regular product increments are a good practice of product management.
+To generate the schedule fit for the user needs, an algorithm was implemented. 
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+First, it calculates the interest per talk by adding the priorities of each keyword of a talk and creating a map with keys being the talks and values being the interest.
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+After that, it sorts a list of talks from the conference in a way that the first talks are the one that the user is more interested in. 
+
+Lastly, it iterates through that list and if the possible talk is compatible with the already added talks, it adds to the list of talks the user will/can attend.
 
 ---
 
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+In order to make sure that our application works as expected, we have implemented a series of tests using flutter's testing framework.
 
-In this section it is only expected to include the following:
+### Test Plan
+#### Flutter Unit Tests
+We have implemented unit tests to ensure that our base classes and their methods work as expected.
+The tests encompass:
+  - Constructors
+  - Attributes
+  - Methods
 
-- test plan describing the list of features to be tested and the testing methods and tools;
-- test case specifications to verify the functionalities, using unit tests and acceptance tests.
+#### Flutter Widget Tests
+We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database and it would require a massive amount of refactoring to fix in such a short time.
+The tests encompass:
+  - Adding tags as an admin
+  - Choosing keywords as an attendee
+  - Logging in as a user
 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
 
+### Test Case Specifications
+#### Flutter Unit Tests
+##### Constructors
+These tests confirm that whenever a constructor is called, an object of one of our base classes is created. 
+##### Attributes
+These tests confirm that whenever an object of one of our base classes is created, its attribute fields are filled correctly.
+##### Methods
+These tests confirm that whenever a method is called, their algorithms are correct and they return the expected result.
+
+#### Flutter Widget Tests
+##### Adding tags as an admin
+These tests confirm that, when the admin is on the "Add Tags" page, enters the title of a tag, and presses the button, that tag is registered in the app. They also confirm that when the admin only enters the title and does not press the button, the tag is not added.
+##### Choosing keywords as an attendee
+These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
+##### Logging in as a user
+These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
 ---
 
 ## Configuration and change management

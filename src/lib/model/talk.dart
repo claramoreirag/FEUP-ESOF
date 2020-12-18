@@ -1,4 +1,11 @@
 class Talk {
+// <<<<<<< HEAD
+//   int id;
+//   String title;
+//   String description;
+//   List<dynamic> tags = [];
+//   Speaker speaker;
+// =======
   String id;
   String name;
   //String description;
@@ -7,6 +14,7 @@ class Talk {
   List<dynamic> tags;
   String speaker;
   String date;
+// >>>>>>> development
 
   Talk(
       {String id,
