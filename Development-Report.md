@@ -176,7 +176,7 @@ After choosing the conference, the attendee can choose the tags according to the
 ```gherkin
 	Scenario: Uploading talks as an admin
 		Given I am logged in as an admin
-		And I am on the add_talk page
+		And I am on the "Create Talk" page
 		When I add a talk
 		Then the talk is registered in the database [TO DO: REVIEW]
 ```
@@ -196,12 +196,12 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Entering as a user
-	    Given I am in the Login page
+	    Given I am on the "Login" page
 	    And I am registered in the database
 	    When I correctly type my email
 	    And I correctly type my password
 	    And I tap the “Sign in” button
-	    Then I am in the Initial page
+	    Then I am on the "Timetable" page
 ```
 
 **Value:** Should Have
@@ -221,7 +221,7 @@ After choosing the conference, the attendee can choose the tags according to the
 	Scenario: Choosing interests as an attendee
 		Given I am an attendee
 		And I am logged in
-		And I am on the add_tags page
+		And I am on the "Add tags" page
 		When I check a tag's box
 		Then that tag is added to my profile [TO DO: REVIEW]
 ```
@@ -238,8 +238,13 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario:
-		Given 
+	Scenario: Seeing your own profile as an attendee
+		Given I am an attendee
+		And I am logged in
+		And I am on the "Timetable" page
+		When I click on the "Hamburger" button
+		And I click on the "Profile" button
+		Then I am taken to my profile page
 ```
 
 **Value:** Must Have
@@ -254,8 +259,11 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: 
-		Given 
+	Scenario: Evaluating interests as an attendee
+		Given I am an attendee
+		And I am logged in
+		And I am on the "Rate Keywords" page
+		[TO DO]
 ```
 
 **Value:** Should Have
@@ -322,7 +330,10 @@ After choosing the conference, the attendee can choose the tags according to the
 
 **Acceptance tests:**
 ```gherkin
-	Scenario: 
+	Scenario: Customizing the schedule as an attendee
+		Given I am an attendee
+		And I am logged in
+		[TO DO]
 ```
 
 **Value:** Must Have
@@ -371,8 +382,9 @@ After choosing the conference, the attendee can choose the tags according to the
 ```gherkin
 	Scenario: Logging off as a user
 		Given I am logged in
-		And I am on the [TO DEFINE] page
-		When I click on the 'Sign out' button
+		And I am on the "Timetable" page
+		When I click on the "Hamburger" button
+		And I click on the "Logout" button
 		Then I am logged off of the app
 ```
 
@@ -390,7 +402,7 @@ After choosing the conference, the attendee can choose the tags according to the
 ```gherkin
 	Scenario: Creating a conference as an admin
 		Given I am logged in as an admin
-		And I am on the create_conference page
+		And I am on the "Create Conference" page
 		When I [TO DO]
 		Then a conference is registered on the database
 ```
@@ -408,7 +420,7 @@ After choosing the conference, the attendee can choose the tags according to the
 **Acceptance tests:**
 ```gherkin
 	Scenario: Registering as a user
-	    Given I am in the Register page
+	    Given I am on the "Register" page
 	    When I correctly type my username
 	    And I correctly type my email
 	    And I correctly type my password
