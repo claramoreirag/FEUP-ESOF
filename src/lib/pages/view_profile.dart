@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/authenticate/authentication.dart';
 import 'package:hello/authenticate/firestoreService.dart';
 import 'package:hello/authenticate/locator.dart';
 import '../classes/person.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hello/pages/actor.dart';
 
 class ViewProfile extends StatefulWidget {
   @override
@@ -110,34 +107,6 @@ class _ViewProfile extends State<ViewProfile> {
                                     fontSize: 20.0,
                                     color: Colors.black,
                                   )))),
-                      /* Card(
-                  color: Colors.white,
-                  margin:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  child: ListTile(
-                      leading: Icon(
-                        Icons.work_outline_rounded,
-                        color: Colors.black,
-                      ),
-                      title: Text('LinkedIn Profile Link',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                          )))),
-              Card(
-                  color: Colors.white,
-                  margin:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  child: ListTile(
-                      leading: Icon(
-                        Icons.picture_as_pdf_outlined,
-                        color: Colors.black,
-                      ),
-                      title: Text('CV PDF Format',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                          )))), */
                     ],
                   );
                 }
