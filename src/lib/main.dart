@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hello/controller/locator.dart';
 import 'package:hello/view/choose_conference.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
 import 'controller/authentication.dart';
 import 'controller/authentication_wrapper.dart';
 import 'view/view_profile.dart';
@@ -15,18 +14,6 @@ import 'view/register.dart';
 import 'model/conference.dart';
 import 'model/person.dart';
 import 'keywords.dart';
-=======
-import 'authenticate/authentication.dart';
-import 'authenticate/authentication_wrapper.dart';
-import 'pages/view_profile.dart';
-import 'pages/create_talk.dart';
-import 'pages/add_tags.dart';
-import 'pages/timetable.dart';
-import 'pages/register.dart';
-import 'classes/conference.dart';
-import 'classes/person.dart';
-import 'pages/keywords.dart';
->>>>>>> a3e8f5e6de530de8b68b791e1b9e58f3faef134c
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

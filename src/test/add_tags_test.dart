@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hello/pages/add_tags.dart';
+import 'package:hello/view/add_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
-void main(){
- testWidgets('Adding tags as an admin', (tester) async {
-    await tester.pumpWidget(MaterialApp(home: AddTags(),));
+void main() {
+  testWidgets('Adding tags as an admin', (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: AddTags(),
+    ));
 
     //Entering tag 'Artificial Intelligence' into tag field
     Finder tagField = find.byType(TextField);

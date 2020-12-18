@@ -1,23 +1,41 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hello/classes/conference.dart';
-import 'package:hello/classes/talk.dart';
-
+import 'package:hello/model/conference.dart';
+import 'package:hello/model/talk.dart';
 
 void main() {
-  test('Keywords should be added to conference whenever the function is called', () {
+  test('Keywords should be added to conference whenever the function is called',
+      () {
     final conference = Conference();
 
     //First talk has 2 tags
-    Talk talk = Talk(id:'1', name:'TalkTitle', beginTime:'14:00', endTime:'16:00', tags:['Cybersecurity', 'AI'], 
-      speaker:'mockSpeaker', date:'18/12/2020');
+    Talk talk = Talk(
+        id: '1',
+        name: 'TalkTitle',
+        beginTime: '14:00',
+        endTime: '16:00',
+        tags: ['Cybersecurity', 'AI'],
+        speaker: 'mockSpeaker',
+        date: '18/12/2020');
 
     //Second talk has 2 tags
-    Talk talk2 = Talk(id:'2', name:'Talk2', beginTime:'15:00', endTime:'16:00', tags:['Data Science', 'AI'], 
-      speaker:'mockSpeaker2', date:'18/12/2020');
+    Talk talk2 = Talk(
+        id: '2',
+        name: 'Talk2',
+        beginTime: '15:00',
+        endTime: '16:00',
+        tags: ['Data Science', 'AI'],
+        speaker: 'mockSpeaker2',
+        date: '18/12/2020');
 
     //Third talk has no tags
-    Talk talk3 = Talk(id:'3', name:'Talk3', beginTime:'16:00', endTime:'17:00', tags:[], 
-      speaker:'mockSpeaker3', date:'18/12/2020');
+    Talk talk3 = Talk(
+        id: '3',
+        name: 'Talk3',
+        beginTime: '16:00',
+        endTime: '17:00',
+        tags: [],
+        speaker: 'mockSpeaker3',
+        date: '18/12/2020');
 
     //Verifying length of talks list
     expect(conference.talks.length, 0);
@@ -42,5 +60,4 @@ void main() {
     expect(conference.keywords[1], 'AI');
     expect(conference.keywords[2], 'Data Science');
   });
-
 }
