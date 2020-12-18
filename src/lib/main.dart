@@ -13,7 +13,7 @@ import 'pages/timetable.dart';
 import 'pages/register.dart';
 import 'classes/conference.dart';
 import 'classes/person.dart';
-import 'keywords.dart';
+import 'pages/keywords.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

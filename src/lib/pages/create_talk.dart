@@ -23,8 +23,9 @@ class _CreateTalk extends State<CreateTalk> {
         centerTitle: true,
       ),
       body: Column(
-        children: <Widget>[RegisterTalk(conference: widget.conference)],
-      ),
+        children: <Widget>[
+        Flexible(child: RegisterTalk(conference: widget.conference)),
+        ]),
     );
   }
 }
