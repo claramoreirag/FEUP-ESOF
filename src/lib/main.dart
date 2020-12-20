@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hello/authenticate/locator.dart';
-import 'package:hello/pages/choose_conference.dart';
+import 'package:hello/controller/locator.dart';
+import 'package:hello/view/choose_conference.dart';
 import 'package:provider/provider.dart';
-import 'authenticate/authentication.dart';
-import 'authenticate/authentication_wrapper.dart';
-import 'pages/view_profile.dart';
-import 'pages/create_talk.dart';
-import 'pages/add_tags.dart';
-import 'pages/timetable.dart';
-import 'pages/register.dart';
-import 'classes/conference.dart';
-import 'classes/person.dart';
-import 'pages/keywords.dart';
+import 'controller/authentication.dart';
+import 'controller/authentication_wrapper.dart';
+import 'view/view_profile.dart';
+import 'view/create_talk.dart';
+import 'view/add_tags.dart';
+import 'view/timetable.dart';
+import 'view/register.dart';
+import 'model/conference.dart';
+import 'model/person.dart';
+import 'keywords.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

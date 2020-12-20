@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hello/pages/login.dart';
+import 'package:hello/view/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
-void main(){
- testWidgets('Logging in as a user', (tester) async {
-    await tester.pumpWidget(MaterialApp(home: Login(),));
+void main() {
+  testWidgets('Logging in as a user', (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Login(),
+    ));
 
     //Entering email
     Finder emailField = find.byType(TextField).first;

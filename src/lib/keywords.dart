@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/classes/person.dart';
-import 'package:hello/classes/talk.dart';
-import 'authenticate/firestoreService.dart';
-import 'authenticate/locator.dart';
-import 'classes/conference.dart';
+import 'package:hello/model/person.dart';
+import 'package:hello/model/talk.dart';
+import 'controller/firestoreService.dart';
+import 'controller/locator.dart';
+import 'model/conference.dart';
 
 void printList(List<String> lst) {
   print("List size: ");

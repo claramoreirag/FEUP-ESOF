@@ -1,0 +1,121 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hello/model/person.dart';
+import 'package:hello/model/talk.dart';
+
+//TODO change name to Firestore controller para parecer mais mvc
+
+class FirestoreService {
+  final CollectionReference _usersCollectionReference =
+      FirebaseFirestore.instance.collection("users");
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Future createUser(Atendee user) async {
+    try {
+      await _usersCollectionReference.doc(user.id).set(user.toJson());
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future<Atendee> getUser(String uid) async {
+    try {
+      var userData = await _usersCollectionReference.doc(uid).get();
+      return Atendee.fromData(userData.data());
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Stream<QuerySnapshot> getUserStream(String uid) {
+    return _usersCollectionReference
+        .where(FieldPath.documentId, isEqualTo: uid)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> getConferenceTags(String confID) {
+    return firestore
+        .collection("conference")
+        .doc(confID)
+        .collection("talks")
+        .snapshots();
+  }
+
+  Future<void> getUserConferences(String userID) async {
+    QuerySnapshot queryConfs = await firestore
+        .collection("conference")
+        .where("admin", isEqualTo: userID)
+        .get();
+    return queryConfs.docs;
+  }
+
+  List<String> tagsToStringList(List<dynamic> tags) {
+    List<String> list = new List();
+    for (int i = 0; i < tags.length; i++) {
+      list.add(tags[i]);
+    }
+    return list;
+  }
+
+  setUserConference(String confID, String uid) async {
+    firestore.collection("users").doc(uid).update({"conference": confID});
+  }
+
+  updateUser(Atendee user) async {
+    firestore.collection("users").doc(user.id).update(user.toJson());
+    firestore
+        .collection("users")
+        .doc(user.id)
+        .update({"talks": FieldValue.delete()});
+    List<Map<String, dynamic>> dbtalks = new List();
+    if (user.talks.length > 0) {
+      for (Talk talk in user.talks) {
+        dbtalks.add(talk.toJson());
+      }
+      firestore.collection("users").doc(user.id).update({"talks": dbtalks});
+    }
+  }
+
+  Stream<QuerySnapshot> getConferenceTalks(String confID) {
+    return firestore
+        .collection("conference")
+        .doc(confID)
+        .collection("talks")
+        .snapshots();
+  }
+
+  Future getListTalks(String confID) async {
+    List<Talk> talks = new List();
+    var querytalks = firestore
+        .collection("conference")
+        .doc(confID)
+        .collection("talks")
+        .get()
+        .then((value) {
+      var docs = value.docs;
+      print(docs.toString());
+      for (int i = 0; i < docs.length; i++) {
+        Talk talk = Talk.fromData(docs[i].data());
+        print(talk.name);
+        talks.add(talk);
+        //talks.add(Talk.fromData(doc.data()));
+      }
+    });
+    return talks;
+  }
+
+  addTalk(Talk talk, String confID) async {
+    await firestore
+        .collection("conference")
+        .doc(confID)
+        .collection('talks')
+        .add(talk.toJson())
+        .then((docRef) {
+      firestore
+          .collection("conference")
+          .doc(confID)
+          .collection('talks')
+          .doc(docRef.id)
+          .update({"id": docRef.id});
+    });
+  }
+}
