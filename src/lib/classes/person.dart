@@ -24,7 +24,7 @@ class Atendee {
   String linkedIn;
   String cv;
   String conference;
-  List<Talk> talks;
+  List<Talk> talks = List();
   Map<String, int> priorities;
   Atendee(
       {this.id,
