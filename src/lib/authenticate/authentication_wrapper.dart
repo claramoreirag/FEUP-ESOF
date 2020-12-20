@@ -1,5 +1,3 @@
-import 'package:hello/authenticate/firestoreService.dart';
-import 'package:hello/authenticate/locator.dart';
 import 'package:hello/classes/person.dart';
 
 import '../pages/login.dart';

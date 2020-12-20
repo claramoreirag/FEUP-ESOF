@@ -1,10 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:hello/classes/conference.dart';
 import 'package:hello/classes/person.dart';
 import 'package:hello/classes/talk.dart';
-import 'package:tuple/tuple.dart';
 
 //TODO change name to Firestore controller para parecer mais mvc
 
