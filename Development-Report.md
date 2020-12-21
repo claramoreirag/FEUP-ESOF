@@ -436,9 +436,10 @@ The tests encompass:
 We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database and it would require a massive amount of refactoring to fix in such a short time.
 The tests encompass:
   - Adding tags as an admin
-  - Choosing keywords as an attendee
   - Logging in as a user
 
+#### Flutter Acceptance Test
+Using Gherkin testing, we automatized an acceptance test for the login user story. This test is in the "test_driver" folder.
 
 ### Test Case Specifications
 #### Flutter Unit Tests
@@ -452,10 +453,12 @@ These tests confirm that whenever a method is called, their algorithms are corre
 #### Flutter Widget Tests
 ##### Adding tags as an admin
 These tests confirm that, when the admin is on the "Add Tags" page, enters the title of a tag, and presses the button, that tag is registered in the app. They also confirm that when the admin only enters the title and does not press the button, the tag is not added.
-##### Choosing keywords as an attendee
-These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
 ##### Logging in as a user
 These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
+
+#### Flutter Acceptance Test
+##### Login
+This test confirms that if the user fills the "Email" and "Password" fields in the Login Page, he/she is logged in.
 ---
 
 ## Configuration and change management
