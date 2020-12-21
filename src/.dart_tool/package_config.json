@@ -159,9 +159,9 @@
     },
     {
       "name": "file",
-      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/file-5.2.1",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/file-6.0.0-nullsafety.4",
       "packageUri": "lib/",
-      "languageVersion": "2.2"
+      "languageVersion": "2.12"
     },
     {
       "name": "firebase_auth",
@@ -218,6 +218,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_driver",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/packages/flutter_driver",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_gherkin",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/flutter_gherkin-1.1.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
       "name": "flutter_launcher_icons",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.8.1",
       "packageUri": "lib/",
@@ -236,10 +248,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "fuchsia_remote_debug_protocol",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/packages/fuchsia_remote_debug_protocol",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "get_it",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/get_it-5.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.1"
+    },
+    {
+      "name": "gherkin",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/gherkin-1.1.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
     },
     {
       "name": "glob",
@@ -282,6 +306,12 @@
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/js-0.6.3-nullsafety.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "json_rpc_2",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/json_rpc_2-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
     },
     {
       "name": "logging",
@@ -327,7 +357,7 @@
     },
     {
       "name": "node_io",
-      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/node_io-1.2.0",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/node_io-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.2"
     },
@@ -362,6 +392,12 @@
       "languageVersion": "2.7"
     },
     {
+      "name": "platform",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/platform-3.0.0-nullsafety.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "plugin_platform_interface",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-1.0.3",
       "packageUri": "lib/",
@@ -370,6 +406,12 @@
     {
       "name": "pool",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/pool-1.5.0-nullsafety.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "process",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/process-4.0.0-nullsafety.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -482,6 +524,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sync_http",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/sync_http-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "synchronized",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2",
       "packageUri": "lib/",
@@ -566,6 +614,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "webdriver",
+      "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/webdriver-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "webkit_inspection_protocol",
       "rootUri": "file:///C:/Programs/flutter_windows_1.22.2-stable/.pub-cache/hosted/pub.dartlang.org/webkit_inspection_protocol-0.7.4",
       "packageUri": "lib/",
@@ -590,7 +644,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-21T17:44:53.701858Z",
+  "generated": "2020-12-21T17:48:24.905566Z",
   "generator": "pub",
   "generatorVersion": "2.12.0-76.0.dev"
 }
