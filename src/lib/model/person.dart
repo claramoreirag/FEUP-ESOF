@@ -148,7 +148,7 @@ class Atendee {
     for (int i = 0; i < talks.length; i++) {
       int priority = 0;
       for (int j = 0; j < talks[i].tags.length; j++) {
-        if (map.keys.contains(talks[i].tags[j]))
+        if (map.keys.contains(talks[i].tags[j]) && map[talks[i].tags[j]] > 0)
           priority += map[talks[i].tags[j]];
       }
       talksByPriority[talks[i]] = priority;
@@ -189,7 +189,8 @@ class Atendee {
     talks.clear();
     talks.add(conferenceTalks[0]);
     for (int i = 1; i < conferenceTalks.length; i++) {
-      if (isTalkCompatible(talks, conferenceTalks[i])) {
+      if (isTalkCompatible(talks, conferenceTalks[i]) &&
+          talksByPriority[conferenceTalks[i]] > 0) {
         talks.add(conferenceTalks[i]);
       }
     }

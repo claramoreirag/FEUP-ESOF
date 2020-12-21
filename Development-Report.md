@@ -400,11 +400,9 @@ We are using the Flutter framework because it was recommended to us by our teach
 
 ### Prototype
 
-Our application allows to create conferences, attend them and craft a schedule based on the user interests.
-
-Everyone can be a conference manager and everyone can attend conferences, but there are some actions that can only be executed if the user is a conference manager, like add talks, in other words if the user has created at least one conference.
-
-All the crucial user stories were completed with success, with the exception of register, that broke down for an unknown reason few hours before the release. We had a very ambicious backlog since the very beginning of the project and as a result we couldn't accomplish all of those side-features.
+During iteration 0 whe planned the project using an Agile methodology, preparing with the objective of having a defined path but not plannning down to every little detail. Having this in mind, we decided what the main focus of the app would be: a personalized schedule. 
+Also during iteration 0 we decided to use firebase authentication as the method of authentication in the app and created some mockups to guide us during the styling and user experience development.
+No code was made during this iteration because we were still learning flutter and developing code at this early stage of knowledge would only bring chaos to the project.
 
 ---
 
@@ -436,9 +434,10 @@ The tests encompass:
 We have implemented some widget tests to ensure that the widgets are displayed and work correctly. However, we could not test every single widget since we had problems with the database and it would require a massive amount of refactoring to fix in such a short time.
 The tests encompass:
   - Adding tags as an admin
-  - Choosing keywords as an attendee
   - Logging in as a user
 
+#### Flutter Acceptance Test
+Using Gherkin testing, we automatized an acceptance test for the login user story. This test is in the "test_driver" folder.
 
 ### Test Case Specifications
 #### Flutter Unit Tests
@@ -452,10 +451,12 @@ These tests confirm that whenever a method is called, their algorithms are corre
 #### Flutter Widget Tests
 ##### Adding tags as an admin
 These tests confirm that, when the admin is on the "Add Tags" page, enters the title of a tag, and presses the button, that tag is registered in the app. They also confirm that when the admin only enters the title and does not press the button, the tag is not added.
-##### Choosing keywords as an attendee
-These tests confirm that whenever the checkbox becomes checked, that keyword is added to the attendee's list of interests. And whenever the checkbox becomes unchecked, the keyword is removed from the attendee's interests.
 ##### Logging in as a user
 These tests confirm that when the user types their email and password in their respective fields, the text is read correctly.
+
+#### Flutter Acceptance Test
+##### Login
+This test confirms that if the user fills the "Email" and "Password" fields in the Login Page, he/she is logged in.
 ---
 
 ## Configuration and change management

@@ -4,18 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hello/controller/locator.dart';
 import 'package:hello/view/choose_conference.dart';
 import 'package:provider/provider.dart';
-import 'controller/authentication.dart';
-import 'controller/authentication_wrapper.dart';
-import 'view/view_profile.dart';
-import 'view/create_talk.dart';
-import 'view/add_tags.dart';
-import 'view/timetable.dart';
-import 'view/register.dart';
-import 'model/conference.dart';
-import 'model/person.dart';
-import 'keywords.dart';
+import 'package:hello/controller/authentication.dart';
+import 'package:hello/controller/authentication_wrapper.dart';
+import 'package:hello/view/view_profile.dart';
+import 'package:hello/view/create_talk.dart';
+import 'package:hello/view/add_tags.dart';
+import 'package:hello/view/timetable.dart';
+import 'package:hello/view/register.dart';
+import 'package:hello/model/conference.dart';
+import 'package:hello/model/person.dart';
+import 'package:hello/view/keywords.dart';
 
 Future<void> main() async {
+  begin();
+}
+
+Future<void> begin() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setupLocator();
