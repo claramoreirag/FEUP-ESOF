@@ -143,6 +143,7 @@ class _evaluatesInterests extends State<evaluatesInterests> {
     this.map = Map<String, int>();
     for (int i = 0; i < user.interests.length; i++) {
       dropdownValues[user.interests[i]] = 1;
+      map[user.interests[i]] = 1;
     }
 /*     this.user.addInterest('Computer Science');
     this.user.addInterest('AI'); */
