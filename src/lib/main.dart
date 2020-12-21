@@ -13,19 +13,18 @@ import 'package:hello/view/timetable.dart';
 import 'package:hello/view/register.dart';
 import 'package:hello/model/conference.dart';
 import 'package:hello/model/person.dart';
-import 'package:hello/keywords.dart';
+import 'package:hello/view/keywords.dart';
 
 Future<void> main() async {
   begin();
 }
 
 Future<void> begin() async {
-WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setupLocator();
   runApp(App());
 }
-
 
 class App extends StatelessWidget {
   // Create the initialization Future outside of `build`:

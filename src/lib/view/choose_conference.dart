@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/controller/firestoreService.dart';
 import 'package:hello/controller/locator.dart';
 import 'package:hello/model/conference.dart';
-import 'package:hello/keywords.dart';
+import 'package:hello/view/keywords.dart';
 import 'package:hello/model/person.dart';
 
 class ChooseConference extends StatefulWidget {
