@@ -265,7 +265,8 @@ class _scheduleMaking extends State<scheduleMaking> {
                     conferenceTalks = new List();
                     for (int i = 0; i < docs.length; i++) {
                       Talk talk = Talk.fromData(docs[i].data());
-                      conferenceTalks.add(talk);
+                      /*  if (interestInTalk(talk)) */ conferenceTalks
+                          .add(talk);
                       print(conferenceTalks.length);
                     }
                     user.selectTalksToAttend(conferenceTalks);

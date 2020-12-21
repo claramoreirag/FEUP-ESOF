@@ -400,11 +400,9 @@ We are using the Flutter framework because it was recommended to us by our teach
 
 ### Prototype
 
-Our application allows to create conferences, attend them and craft a schedule based on the user interests.
-
-Everyone can be a conference manager and everyone can attend conferences, but there are some actions that can only be executed if the user is a conference manager, like add talks, in other words if the user has created at least one conference.
-
-All the crucial user stories were completed with success, with the exception of register, that broke down for an unknown reason few hours before the release. We had a very ambicious backlog since the very beginning of the project and as a result we couldn't accomplish all of those side-features.
+During iteration 0 whe planned the project using an Agile methodology, preparing with the objective of having a defined path but not plannning down to every little detail. Having this in mind, we decided what the main focus of the app would be: a personalized schedule. 
+Also during iteration 0 we decided to use firebase authentication as the method of authentication in the app and created some mockups to guide us during the styling and user experience development.
+No code was made during this iteration because we were still learning flutter and developing code at this early stage of knowledge would only bring chaos to the project.
 
 ---
 
