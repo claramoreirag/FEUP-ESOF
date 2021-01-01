@@ -22,7 +22,7 @@ class _Login extends State<Login> {
     final emailField = TextField(key:Key("Email"),
       controller: emailController,
       obscureText: false,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
@@ -33,7 +33,8 @@ class _Login extends State<Login> {
       key:Key("Password"),
       controller: passwordController,
       obscureText: true,
-      style: style,
+      style: style.copyWith(
+          fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
@@ -44,7 +45,7 @@ class _Login extends State<Login> {
       key:Key("loginButton"),
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Colors.blue[300],
+      color: Colors.red[400],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -56,14 +57,14 @@ class _Login extends State<Login> {
         child: Text("Login",
             textAlign: TextAlign.center,
             style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: Colors.white, fontWeight: FontWeight.bold,fontFamily: 'Monospace')),
       ),
     );
 
     final goToRegisterButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Colors.blue[300],
+      color: Colors.red[400],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -73,7 +74,7 @@ class _Login extends State<Login> {
         child: Text("Don't have an account? Register here",
             textAlign: TextAlign.center,
             style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'Monospace')),
       ),
     );
 
