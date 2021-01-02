@@ -46,6 +46,7 @@ class App extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          
           builder: (context, child) => MediaQuery(
               data:
                   MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),

@@ -37,7 +37,7 @@ class _AddTags extends State<AddTags> {
               controller: tagController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Tag',
+                labelText: 'Tag'
               ),
             ),
           ),
@@ -53,6 +53,12 @@ class _AddTags extends State<AddTags> {
               itemCount: tags.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/bg.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   height: 50,
                   margin: EdgeInsets.all(2),
                   child: Center(
@@ -73,7 +79,8 @@ class _AddTags extends State<AddTags> {
           onPressed: () async {
             Navigator.pop(context, tags);
           },
-    ));
+      ),
+    );
   }
 
 }

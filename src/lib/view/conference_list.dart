@@ -63,6 +63,12 @@ class _ListPage extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+          image: new AssetImage("images/bg.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: FutureBuilder(
           future: locator<FirestoreService>().getUserConferences(user.id),
           builder: (_, snapshot) {
