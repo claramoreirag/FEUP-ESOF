@@ -51,7 +51,7 @@ class App extends StatelessWidget {
               data:
                   MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
               child: child),
-          title: 'Flutter Time Picker example',
+          title: 'Schedule IT',
           theme: ThemeData(
             // Define the default brightness and colors.
             brightness: Brightness.light,
