@@ -76,7 +76,7 @@ class _TimetableExampleState extends State<TimetableExample> {
                 body: Center(
               child: Text(
                 "Loading...",
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(fontSize: 40, color: Colors.red[200]), 
               ),
             ));
           } else {
@@ -85,7 +85,7 @@ class _TimetableExampleState extends State<TimetableExample> {
                   body: Center(
                 child: Text(
                   "Loading...",
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 40, color: Colors.red[200]),
                 ),
               ));
             } else {
@@ -99,6 +99,7 @@ class _TimetableExampleState extends State<TimetableExample> {
                   actions: <Widget>[
                     IconButton(
                       icon: Icon(Icons.today),
+                      color: Colors.red[400],
                       onPressed: () => _controller.animateToToday(),
                       tooltip: 'Jump to today',
                     ),
@@ -140,21 +141,21 @@ class _TimetableExampleState extends State<TimetableExample> {
                                 child: Padding(
                                   padding: EdgeInsets.all(10.0),
                                   child: Image.asset("images/logo.png",
-                                      width: 70, height: 70),
+                                      width: 65, height: 65),
                                 )),
                             Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
                                   'Schedule IT',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 25.0),
+                                      color: Colors.red[500], fontSize: 25.0),
                                 )),
                           ],
                         )),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(colors: <Color>[
-                          Colors.blue[800],
-                          Colors.blue
+                          Colors.blue[300],
+                          Colors.blueGrey[200]
                         ])),
                       ),
                       Drawer_Tile(Icons.person, 'Profile',

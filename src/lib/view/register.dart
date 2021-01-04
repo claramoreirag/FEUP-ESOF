@@ -26,7 +26,7 @@ class _Register extends State<Register> {
     final usernameField = TextField(
       controller: usernameController,
       obscureText: false,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Username",
@@ -36,7 +36,7 @@ class _Register extends State<Register> {
     final emailField = TextField(
       controller: emailController,
       obscureText: false,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
@@ -46,7 +46,7 @@ class _Register extends State<Register> {
     final passwordField = TextField(
       controller: passwordController,
       obscureText: true,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
@@ -55,7 +55,7 @@ class _Register extends State<Register> {
     );
     final locationField = TextField(
       controller: locationController,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Location",
@@ -65,7 +65,7 @@ class _Register extends State<Register> {
 
     final phoneField = TextField(
       controller: phoneController,
-      style: style,
+      style: style.copyWith(fontFamily: 'Monospace'),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Phone Number",
@@ -99,7 +99,7 @@ class _Register extends State<Register> {
     final registerButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
+      color: Colors.red[400],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(17.0, 15.0, 17.0, 15.0),
@@ -117,7 +117,8 @@ class _Register extends State<Register> {
         child: Text("Register",
             textAlign: TextAlign.center,
             style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: Colors.white, fontWeight: FontWeight.bold,
+                fontFamily: 'Monospace')),
       ),
     );
 

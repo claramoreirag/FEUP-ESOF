@@ -46,13 +46,28 @@ class App extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          
           builder: (context, child) => MediaQuery(
               data:
                   MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
               child: child),
-          title: 'Flutter Time Picker example',
+          title: 'Schedule IT',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            // Define the default brightness and colors.
+            brightness: Brightness.light,
+            primaryColor: Colors.blue[200],
+            accentColor: Colors.red[400],
+            iconTheme: IconThemeData(color: Colors.red[400]),
+            // Define the default font family.
+            fontFamily: 'Monospace',
+
+            // Define the default TextTheme. Use this to specify the default
+            // text styling for headlines, titles, bodies of text, and more.
+            textTheme: TextTheme(
+              headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.white),
+              headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Monospace'),
+            ),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           initialRoute: '/authentication',

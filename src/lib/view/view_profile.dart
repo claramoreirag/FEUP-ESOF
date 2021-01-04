@@ -43,7 +43,6 @@ class _ViewProfile extends State<ViewProfile> {
                         u.fullName,
                         style: TextStyle(
                           fontSize: 35.0,
-                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -51,7 +50,7 @@ class _ViewProfile extends State<ViewProfile> {
                         u.userRole,
                         style: TextStyle(
                             fontSize: 15.0,
-                            color: Colors.blueGrey,
+                            color: Colors.red[300],
                             letterSpacing: 2.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -59,7 +58,7 @@ class _ViewProfile extends State<ViewProfile> {
                         height: 20,
                         width: 200,
                         child: Divider(
-                          color: Colors.blue,
+                          color: Colors.red[300],
                         ),
                       ),
                       Card(
@@ -69,7 +68,7 @@ class _ViewProfile extends State<ViewProfile> {
                           child: ListTile(
                               leading: Icon(
                                 Icons.pin_drop_outlined,
-                                color: Colors.black,
+                                color: Colors.red[400]
                               ),
                               title: Text(u.location,
                                   style: TextStyle(
@@ -83,7 +82,7 @@ class _ViewProfile extends State<ViewProfile> {
                           child: ListTile(
                             leading: Icon(
                               Icons.phone,
-                              color: Colors.black,
+                              color: Colors.red[400]
                             ),
                             title: Text(
                               u.phoneNumber,
@@ -100,7 +99,7 @@ class _ViewProfile extends State<ViewProfile> {
                           child: ListTile(
                               leading: Icon(
                                 Icons.email,
-                                color: Colors.black,
+                                color: Colors.red[400]
                               ),
                               title: Text(u.email,
                                   style: TextStyle(
